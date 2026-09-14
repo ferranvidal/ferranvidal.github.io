@@ -2,6 +2,8 @@
 
 Source for my personal portfolio and professional website.
 
+Published at [ferranvidal.github.io](https://ferranvidal.github.io).
+
 The site presents selected production AI, machine learning, sports analytics, and data-platform work. It is built with [al-folio](https://github.com/alshedivat/al-folio), Jekyll, and GitHub Pages.
 
 ## Local development
