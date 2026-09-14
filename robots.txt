@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://ferranvidal.github.io/sitemap.xml
