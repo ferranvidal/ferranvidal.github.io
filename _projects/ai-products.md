@@ -3,7 +3,7 @@ layout: page
 title: Independent AI product engineering
 description: Full-stack products spanning application design, LLM workflows, payments, and deployment.
 permalink: /projects/ai-products/
-importance: 5
+importance: 6
 category: products
 ---
 
@@ -19,4 +19,7 @@ category: products
   <h2>Conversational CV</h2>
   <p>I built a retrieval-augmented assistant that answers questions about my professional background from a curated knowledge base, declines unsupported questions, and avoids inventing dates, metrics, or technologies.</p>
   <p><a class="fv-button" href="https://huggingface.co/spaces/ferranvidal/career_conversation">Open the conversational CV</a></p>
+
+{% include project_navigation.liquid %}
+
 </div>

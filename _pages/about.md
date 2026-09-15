@@ -2,7 +2,6 @@
 layout: about
 title: home
 permalink: /
-subtitle: Data Scientist · AI and Machine Learning Engineer
 
 selected_papers: false
 social: false
@@ -21,21 +20,19 @@ latest_posts:
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
 
 <div class="fv-home">
-  <div class="fv-eyebrow">Data scientist · ML engineer · MIT PhD</div>
-  <h1>I build production AI and data systems for complex, high-stakes domains.</h1>
-  <p class="fv-lede">Nine years across research and engineering, including production work for FIFA, Google, the English Premier League, the Golden State Warriors, FC Internazionale, and US Soccer. I turn difficult data and modeling problems into systems people can trust and use.</p>
+  <div class="fv-hero">
+    <div>
+      <div class="fv-eyebrow">Data scientist · ML engineer · MIT PhD</div>
+      <h1>I build production AI and data systems for complex, high-stakes domains.</h1>
+      <p class="fv-lede">Nine years across research and engineering, including production work for FIFA, Google, the English Premier League, the Golden State Warriors, FC Internazionale, and US Soccer. I turn difficult data and modeling problems into systems people can trust and use.</p>
+    </div>
+    <img class="fv-headshot" src="{{ '/assets/img/headshot.jpg' | relative_url }}" alt="Ferran Vidal-Codina">
+  </div>
 
   <div class="fv-actions">
     <a class="fv-button fv-button--primary" href="{{ '/projects/' | relative_url }}">View selected work</a>
     <a class="fv-button" href="{{ '/assets/pdf/Ferran_Vidal_Codina_Resume.pdf' | relative_url }}">Download résumé</a>
     <a class="fv-button" href="https://huggingface.co/spaces/ferranvidal/career_conversation">Ask my CV</a>
-  </div>
-
-  <div class="fv-proof" aria-label="Selected career metrics">
-    <div class="fv-proof-item"><div class="fv-proof-value">15+</div><div class="fv-proof-label">commercial engagements</div></div>
-    <div class="fv-proof-item"><div class="fv-proof-value">450+</div><div class="fv-proof-label">professional matches evaluated</div></div>
-    <div class="fv-proof-item"><div class="fv-proof-value">50 ms</div><div class="fv-proof-label">p99 live data latency</div></div>
-    <div class="fv-proof-item"><div class="fv-proof-value">50%</div><div class="fv-proof-label">reduction in Redshift spend</div></div>
   </div>
 
   <section class="fv-section">
@@ -44,7 +41,7 @@ latest_posts:
       <a class="fv-work-item" href="{{ '/projects/fifa-auto-eventing/' | relative_url }}">
         <span class="fv-work-number">01</span>
         <span><span class="fv-work-title">Automatic event detection at the FIFA World Cup</span><span class="fv-work-copy">A provider-agnostic system that converted player and ball tracking data into structured football events.</span></span>
-        <span class="fv-work-result">&gt;90% detection<br>&gt;95% set pieces</span>
+        <span class="fv-work-result">&gt;90% detection<br>&gt;95% set pieces<br>Deployed at the 2022 World Cup</span>
       </a>
       <a class="fv-work-item" href="{{ '/projects/playbook-digitization/' | relative_url }}">
         <span class="fv-work-number">02</span>
@@ -53,8 +50,13 @@ latest_posts:
       </a>
       <a class="fv-work-item" href="{{ '/projects/sports-analytics-assistants/' | relative_url }}">
         <span class="fv-work-number">03</span>
-        <span><span class="fv-work-title">Natural-language analytics over decades of sports data</span><span class="fv-work-copy">Retrieval and evaluation workflows grounded in play-by-play, box-score, and graph data.</span></span>
-        <span class="fv-work-result">20 seasons play-by-play<br>80 seasons box scores</span>
+        <span><span class="fv-work-title">Three open-source sports analytics assistants</span><span class="fv-work-copy">NBA, MLB, and NCAA basketball chatbots with a shared data and agent architecture.</span></span>
+        <span class="fv-work-result">Prefect · BigQuery<br>DuckDB · LangGraph · OpenAI</span>
+      </a>
+      <a class="fv-work-item" href="{{ '/projects/saot-technology-validation/' | relative_url }}">
+        <span class="fv-work-number">04</span>
+        <span><span class="fv-work-title">Validating the technology behind SAOT</span><span class="fv-work-copy">Live data collection, latency assessment, and technology accuracy validation for FIFA's officiating technology.</span></span>
+        <span class="fv-work-result">80+ matches<br>GCP · RabbitMQ</span>
       </a>
     </div>
   </section>
@@ -62,17 +64,17 @@ latest_posts:
   <section class="fv-section fv-two-column">
     <div>
       <h2>Across the stack</h2>
-      <p>I have owned data ingestion, warehouse design, modeling, evaluation, APIs, cloud infrastructure, and user-facing AI applications. My best work usually sits at the boundary between several of those layers.</p>
+      <p>I’m comfortable moving between the layers of a system: pulling data from an awkward API, shaping it into something people can query, and putting a useful interface on top. I’ve worked on the infrastructure, the models, and the product around them.</p>
     </div>
     <div>
       <h2>How I work</h2>
-      <p>I start from the decision a system must support, build the evaluation harness early, inspect failures directly, and stay explicit about the gap between the metric I can compute and the outcome that matters.</p>
+      <p>I like to get a small version working early, then learn from the places where it breaks. I talk to the people who will use the system, look at the failures myself, and keep the difference between a good metric and a good outcome in view.</p>
     </div>
   </section>
 
   <section class="fv-section">
     <h2>Recognition</h2>
-    <p>My automatic event-detection research received the International Sports Engineering Association Paper of the Year award. I was also awarded a $150,000 La Caixa Foundation Fellowship for graduate study at MIT.</p>
+    <p>My automatic event-detection research received the International Sports Engineering Association Paper of the Year award in 2023. I was also awarded a $150,000 La Caixa Foundation Fellowship for graduate study at MIT.</p>
   </section>
 
   <section class="fv-section">

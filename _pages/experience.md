@@ -10,7 +10,7 @@ nav_order: 2
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
 
 <div class="fv-page">
-  <p class="fv-lede">I am a hands-on data scientist and machine learning engineer with nine years of research and engineering experience, including seven years delivering production data platforms, ML systems, and AI applications.</p>
+  <p class="fv-lede">I am a hands-on data scientist, AI & machine learning engineer with nine years of research and engineering experience, including seven years delivering production data platforms, ML systems, and AI applications.</p>
 
   <h2>Professional experience</h2>
 

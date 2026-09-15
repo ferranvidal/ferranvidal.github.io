@@ -3,7 +3,7 @@ layout: page
 title: Real-time and analytical data platforms
 description: Cloud infrastructure for live sports data and multi-provider analytical workloads.
 permalink: /projects/data-platforms/
-importance: 4
+importance: 5
 category: engineering
 ---
 
@@ -26,4 +26,7 @@ category: engineering
 
   <h2>Architecture as a decision</h2>
   <p>Across these projects, the objective was not infrastructure for its own sake. The platform choices followed the operational need: predictable low latency for certification events, and observable, maintainable analytical workloads for a professional club.</p>
+
+{% include project_navigation.liquid %}
+
 </div>

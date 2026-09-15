@@ -1,0 +1,31 @@
+{% assign sorted_projects = site.projects | sort: 'importance' %}
+{% assign current_index = 0 %}
+{% for project in sorted_projects %}
+  {% if project.url == page.url %}
+    {% assign current_index = forloop.index0 %}
+  {% endif %}
+{% endfor %}
+{% assign previous_index = current_index | minus: 1 %}
+{% assign next_index = current_index | plus: 1 %}
+
+<nav class="fv-project-nav" aria-label="Project navigation">
+  <div class="fv-project-nav-item fv-project-nav-item--previous">
+    {% for project in sorted_projects %}
+      {% if forloop.index0 == previous_index %}
+        <a href="{{ project.url | relative_url }}"
+          ><span>← Previous</span><strong>{{ project.title }}</strong></a
+        >
+      {% endif %}
+    {% endfor %}
+  </div>
+  <a class="fv-project-nav-all" href="{{ '/projects/' | relative_url }}">All projects</a>
+  <div class="fv-project-nav-item fv-project-nav-item--next">
+    {% for project in sorted_projects %}
+      {% if forloop.index0 == next_index %}
+        <a href="{{ project.url | relative_url }}"
+          ><span>Next →</span><strong>{{ project.title }}</strong></a
+        >
+      {% endif %}
+    {% endfor %}
+  </div>
+</nav>
