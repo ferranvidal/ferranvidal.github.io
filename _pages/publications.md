@@ -10,7 +10,7 @@ nav_order: 3
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
 
 <div class="fv-page">
-  <p class="fv-lede">Peer-reviewed research spanning sports technology, computational methods, nanophotonics, and applied data analysis.</p>
+  <p class="fv-lede">Peer-reviewed research spanning sports technology, computational methods, nanophotonics, and applied data analysis. <a href="https://scholar.google.com/citations?user=GsF2GmAAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a>.</p>
 
   <p><strong>Paper of the Year.</strong> The International Sports Engineering Association and Springer recognized <em>Automatic event detection in football using tracking data</em> with the 2022 Sports Engineering Best Paper Award.</p>
   <h2>Peer-reviewed papers</h2>

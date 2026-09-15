@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Assistants for sports analytics in plain language
-description: Natural-language sports analysis grounded in accurate, structured NBA, MLB, and NCAA basketball data.
-period: 2022 – present
+title: Conversational sports analytics
+description: RAG-based natural-language chatbots for NBA, MLB, and NCAA basketball.
+period: 2025 – present
 img:
 permalink: /projects/sports-analytics-assistants/
 importance: 4
@@ -11,6 +11,7 @@ category: flagship
 
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
 <script src="{{ '/assets/js/nba-shot-chart.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/mlb-charts.js' | relative_url }}" defer></script>
 
 <div class="fv-page">
   <p class="fv-lede">I designed and built production chatbots that let users explore sports data through natural language without giving up analytical accuracy. The systems turn questions into validated queries over structured NBA, MLB, and NCAA basketball data, then return answers and visualizations tied to the underlying records.</p>
@@ -22,7 +23,8 @@ category: flagship
     <div><strong>End to end</strong><span>ingestion through evaluation</span></div>
   </div>
 
-  <h2>NBA assistant</h2>
+  <details class="fv-collapsible" open>
+  <summary><h2>NBA assistant</h2></summary>
   <p>The NBA chatbot covers approximately 70K games, 1.5M player-game boxscore entries and 18M play-by-play records, with additional tables for shots, passes, lineups, matchups, standings, and CBA data. It supports SQL-driven answers and visualizations, including shot charts. Data comes from the `nba_api` that manages access to official NBA data.</p>
 
   <section class="fv-chart-example" data-shot-chart data-source="{{ '/assets/data/jalen-brunson-2026-finals-shot-chart.csv' | relative_url }}">
@@ -45,6 +47,7 @@ category: flagship
         <button type="button" data-zoom-in aria-label="Zoom in">+</button>
         <button type="button" data-reset aria-label="Reset zoom and pan">↺</button>
       </div>
+      <button type="button" class="fv-select-area" data-region aria-pressed="false">Select area</button>
     </div>
     <div class="fv-chart-workbench">
       <div class="fv-chart-court">
@@ -62,12 +65,34 @@ category: flagship
       </aside>
     </div>
   </section>
+  </details>
 
-  <h2>MLB assistant</h2>
+  <details class="fv-collapsible" open>
+  <summary><h2>MLB assistant</h2></summary>
   <p>The MLB chatbot covers approximately 220K games since 1901, including 34M pitches, 16M runner records, 14M fielding credits, and 12 million plays, alongside player, team, and leaderboard tables. It supports SQL-driven answers and visualizations, including spray charts and pitcher charts. Data comes from the official MLB stats endpoint and Basevall Savant.</p>
 
-  <h2>NCAA basketball assistant</h2>
+  <section class="fv-mlb-examples" aria-label="MLB assistant interactive examples">
+    <div class="fv-mlb-example" data-mlb-chart="spray" data-source="{{ '/assets/data/shohei-ohtani-2026-through-august-spray-chart.csv' | relative_url }}">
+      <div class="fv-chart-example__head"><div><p class="fv-chart-kicker">Interactive example · fixed data snapshot</p><h3>Shohei Ohtani · 2026 spray chart</h3><p>Every mapped batted ball from the regular season through August 31.</p></div><div class="fv-chart-summary" data-mlb-summary aria-live="polite"></div></div>
+      <div class="fv-chart-controls" aria-label="Spray chart controls"><label>Outcome <select data-mlb-filter></select></label><div class="fv-zoom-controls"><button type="button" data-zoom-out aria-label="Zoom out">−</button><button type="button" data-zoom-in aria-label="Zoom in">+</button><button type="button" data-reset aria-label="Reset zoom and pan">↺</button></div><button type="button" class="fv-select-area" data-region aria-pressed="false">Select area</button></div>
+      <div class="fv-mlb-legend" data-mlb-legend aria-label="Spray chart legend"></div>
+      <div class="fv-mlb-chart-wrap"><svg class="fv-mlb-chart" viewBox="-20 -20 290 270" role="img" aria-label="Shohei Ohtani 2026 spray chart through August 31"></svg><div class="fv-shot-tooltip" data-mlb-tooltip role="status" aria-live="polite" hidden></div></div>
+    </div>
+
+    <div class="fv-mlb-example" data-mlb-chart="pitch" data-source="{{ '/assets/data/shohei-ohtani-2026-through-august-pitch-chart.csv' | relative_url }}">
+      <div class="fv-chart-example__head"><div><p class="fv-chart-kicker">Interactive example · fixed data snapshot</p><h3>Shohei Ohtani · 2026 pitcher chart</h3><p>Every tracked pitch from the regular season through August 31.</p></div><div class="fv-chart-summary" data-mlb-summary aria-live="polite"></div></div>
+      <div class="fv-chart-controls" aria-label="Pitcher chart controls"><label>Pitch type <select data-mlb-filter></select></label><div class="fv-zoom-controls"><button type="button" data-zoom-out aria-label="Zoom out">−</button><button type="button" data-zoom-in aria-label="Zoom in">+</button><button type="button" data-reset aria-label="Reset zoom and pan">↺</button></div><button type="button" class="fv-select-area" data-region aria-pressed="false">Select area</button></div>
+      <div class="fv-mlb-legend" data-mlb-legend aria-label="Pitch type legend"></div>
+      <div class="fv-mlb-chart-wrap fv-mlb-chart-wrap--pitch"><svg class="fv-mlb-chart" viewBox="-3 0 6 5" role="img" aria-label="Shohei Ohtani 2026 pitch location chart through August 31"></svg><div class="fv-shot-tooltip" data-mlb-tooltip role="status" aria-live="polite" hidden></div></div>
+    </div>
+
+  </section>
+  </details>
+
+  <details class="fv-collapsible" open>
+  <summary><h2>NCAA basketball assistant</h2></summary>
   <p>The NCAA chatbot is restricted to Division I basketball, and covers approximately 240K games, 2M player-game boxscore entries and 30M play-by-play records, with additional tables for shots, lineups, conferences, standings, draft and ratings. It supports SQL-driven answers and visualizations, including shot charts. Data comes from the College Basketball Data API as its upstream source and supports both development and production environments.</p>
+  </details>
 
   <h2>Accuracy by design</h2>
   <p>Each assistant follows the same layered pattern. Prefect flows pull open-source data on a schedule or on demand, land the raw responses, build cleaned production-ready tables in BigQuery, and sync a read-only DuckDB database for fast, predictable tool calls that sits in a VM within the GCP ecosystem. The chat service runs in FastAPI on GCP.</p>

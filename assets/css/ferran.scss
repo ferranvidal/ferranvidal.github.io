@@ -229,7 +229,7 @@ body {
 }
 
 .fv-work-item:hover {
-  border-color: var(--fv-coral);
+  border-color: var(--fv-accent);
   box-shadow: 0 8px 24px rgba(20, 72, 76, 0.08);
   transform: translateY(-2px);
   color: var(--global-text-color);
@@ -307,6 +307,59 @@ body {
 
 .fv-page h2 {
   margin-top: 2.8rem;
+}
+
+.fv-video-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-top: 1.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--fv-accent-soft);
+}
+
+.fv-video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.fv-page details.fv-collapsible {
+  margin-top: 2.8rem;
+}
+
+.fv-page details.fv-collapsible + details.fv-collapsible {
+  margin-top: 1.5rem;
+}
+
+.fv-page details.fv-collapsible summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.fv-page details.fv-collapsible summary::-webkit-details-marker {
+  display: none;
+}
+
+.fv-page details.fv-collapsible summary h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.fv-page details.fv-collapsible summary h2::before {
+  content: "▸";
+  display: inline-block;
+  color: var(--fv-accent);
+  transition: transform 0.15s ease;
+}
+
+.fv-page details.fv-collapsible[open] summary h2::before {
+  transform: rotate(90deg);
 }
 
 .fv-publications {
@@ -522,7 +575,12 @@ body {
   position: relative;
 }
 .fv-double-range::before {
-  background: var(--fv-border);
+  background: linear-gradient(
+    to right,
+    var(--fv-border) 0 var(--fv-range-start, 0%),
+    var(--fv-accent) var(--fv-range-start, 0%) var(--fv-range-end, 100%),
+    var(--fv-border) var(--fv-range-end, 100%) 100%
+  );
   border-radius: 2px;
   content: "";
   height: 4px;
@@ -583,6 +641,14 @@ body {
   max-height: 520px;
   min-height: 300px;
   width: 100%;
+}
+.fv-shot-chart--selecting {
+  cursor: crosshair;
+}
+.fv-select-area[aria-pressed="true"] {
+  background: var(--fv-accent);
+  border-color: var(--fv-accent);
+  color: #fff;
 }
 .fv-shot-mark {
   cursor: pointer;
@@ -655,6 +721,77 @@ body {
   color: var(--fv-muted);
   font-size: 0.84rem;
   margin: 0.9rem 0 0;
+}
+
+.fv-mlb-examples {
+  display: grid;
+  gap: 2.4rem;
+  margin: 2rem 0 0;
+}
+
+.fv-mlb-example {
+  border-top: 1px solid var(--fv-border);
+  padding-top: 1.5rem;
+}
+
+.fv-mlb-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.32rem 0.6rem;
+  margin: 0.85rem 0;
+}
+
+.fv-mlb-legend button {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  color: var(--fv-muted);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: 0.76rem;
+  gap: 0.32rem;
+  padding: 0.18rem 0.3rem;
+}
+
+.fv-mlb-legend button[aria-pressed="true"] {
+  background: var(--fv-accent-soft);
+  color: var(--global-text-color);
+}
+
+.fv-mlb-legend i {
+  border-radius: 99px;
+  display: block;
+  height: 0.62rem;
+  width: 0.62rem;
+}
+
+.fv-mlb-chart-wrap {
+  background: #f7f8fa;
+  border: 1px solid var(--fv-border);
+  cursor: grab;
+  max-width: 640px;
+  overflow: hidden;
+  position: relative;
+}
+
+.fv-mlb-chart-wrap:active {
+  cursor: grabbing;
+}
+
+.fv-mlb-chart-wrap--pitch {
+  max-width: 520px;
+}
+
+.fv-mlb-chart {
+  display: block;
+  min-height: 300px;
+  width: 100%;
+}
+
+.fv-mlb-chart-wrap--pitch .fv-mlb-chart {
+  min-height: 420px;
 }
 
 .fv-summary {

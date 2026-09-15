@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Reading playbooks without labels
+title: Digitizing NFL playbooks
 description: Synthetic data and semantic segmentation for converting play diagrams into structured objects.
-period: 2023 – 2024
+period: 2025 – 2026
 img:
 permalink: /projects/playbook-digitization/
 importance: 2

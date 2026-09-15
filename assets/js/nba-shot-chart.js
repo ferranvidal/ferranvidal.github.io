@@ -91,7 +91,31 @@
       minClock = 0,
       maxClock = 12,
       lateOnly = false,
-      preset = "all";
+      preset = "all",
+      regionMode = false,
+      region = null,
+      regionDraft = null,
+      courtGroup = null;
+    const toBox = (draft) =>
+      draft && {
+        xMin: Math.min(draft.x0, draft.x1),
+        xMax: Math.max(draft.x0, draft.x1),
+        yMin: Math.min(draft.y0, draft.y1),
+        yMax: Math.max(draft.y0, draft.y1),
+      };
+    const insideRegion = (shot) => !region || (shot.x >= region.xMin && shot.x <= region.xMax && shot.y >= region.yMin && shot.y <= region.yMax);
+    const eventToCourt = (event) => {
+      if (!courtGroup || !courtGroup.getScreenCTM) return null;
+      const matrix = courtGroup.getScreenCTM();
+      if (!matrix) return null;
+      const point = new DOMPoint(event.clientX, event.clientY).matrixTransform(matrix.inverse());
+      return { x: clamp(point.x, -250, 250), y: clamp(point.y, -50, 330) };
+    };
+    const setRangeFill = (min, max, limit) => {
+      const track = min.closest(".fv-double-range");
+      track.style.setProperty("--fv-range-start", `${(+min.value / limit) * 100}%`);
+      track.style.setProperty("--fv-range-end", `${(+max.value / limit) * 100}%`);
+    };
     const sync = () => {
       minDistanceInput.value = minDistance;
       maxDistanceInput.value = maxDistance;
@@ -106,6 +130,12 @@
       root.querySelector("[data-zoom-in]").disabled = scale >= ZOOM_MAX;
       root.querySelector("[data-zoom-out]").disabled = scale <= ZOOM_MIN;
       root.querySelector("[data-reset]").disabled = scale === 1 && pan.x === 0 && pan.y === 0;
+      const regionButton = root.querySelector("[data-region]");
+      regionButton.setAttribute("aria-pressed", String(regionMode || !!region));
+      regionButton.textContent = region ? "Clear area" : regionMode ? "Drawing…" : "Select area";
+      svg.classList.toggle("fv-shot-chart--selecting", regionMode);
+      setRangeFill(minDistanceInput, maxDistanceInput, distanceMax);
+      setRangeFill(minClockInput, maxClockInput, REGULATION_MINUTES);
     };
     const show = () =>
       data.filter(
@@ -117,7 +147,8 @@
           r.distance <= maxDistance &&
           r.clockValue >= minClock &&
           r.clockValue <= maxClock &&
-          (!lateOnly || r.periodNumber >= 4)
+          (!lateOnly || r.periodNumber >= 4) &&
+          insideRegion(r)
       );
     const hideTooltip = () => {
       tooltip.hidden = true;
@@ -125,11 +156,14 @@
     const showTooltip = (event, r) => {
       const homeScore = r.scoreHomePreShot || r.scoreHome;
       const awayScore = r.scoreAwayPreShot || r.scoreAway;
-      const score = homeScore || awayScore ? `Away ${awayScore} – Home ${homeScore}` : "";
-      const game = r.awayTeam || r.homeTeam ? `<div><dt>Game</dt><dd>${escape(r.awayTeam)} @ ${escape(r.homeTeam)}</dd></div>` : "";
+      const home = r.homeTeamTricode || r.homeTeam;
+      const away = r.awayTeamTricode || r.awayTeam;
+      const score = homeScore || awayScore ? `${away || "Away"} ${awayScore} – ${home || "Home"} ${homeScore}` : "";
+      const game = away || home ? `<div><dt>Game</dt><dd>${escape(away)} @ ${escape(home)}</dd></div>` : "";
       const scoreRow = score ? `<div><dt>Score</dt><dd>${escape(score)}</dd></div>` : "";
       const team = r.shotTeam ? `<div><dt>Team</dt><dd>${escape(r.shotTeam)}</dd></div>` : "";
-      const opponent = r.opponent ? `<div><dt>Opponent</dt><dd>${escape(r.opponent)}</dd></div>` : "";
+      const opponentValue = r.opponentTeam || r.opponent;
+      const opponent = opponentValue ? `<div><dt>Opponent</dt><dd>${escape(opponentValue)}</dd></div>` : "";
       const description = r.description ? `<p class="fv-shot-tooltip__description">${escape(r.description)}</p>` : "";
       tooltip.innerHTML = `<strong class="${r.made ? "is-made" : "is-missed"}">${r.made ? "Made" : "Missed"} · ${escape(r.playType || r.shotType || "shot")}</strong><dl><div><dt>Player</dt><dd>${escape(r.playerName)}</dd></div>${team}${opponent}${game}<div><dt>Date</dt><dd>${escape(r.gameDate)}</dd></div><div><dt>Quarter</dt><dd>${period(r.period)}</dd></div><div><dt>Clock</dt><dd>${escape(r.clock)}</dd></div><div><dt>Distance</dt><dd>${r.distance.toFixed(1)} ft</dd></div>${scoreRow}${r.made && r.assistPlayerName ? `<div><dt>Assist</dt><dd>${escape(r.assistPlayerName)}</dd></div>` : ""}${!r.made && r.blockPlayerName ? `<div><dt>Blocked by</dt><dd>${escape(r.blockPlayerName)}</dd></div>` : ""}</dl>${description}`;
       tooltip.hidden = false;
@@ -145,6 +179,7 @@
       summary.innerHTML = `<strong>${made}/${shown.length}</strong>${shown.length ? ((100 * made) / shown.length).toFixed(1) : "0.0"}% FG`;
       svg.replaceChildren();
       const court = svgEl("g", { transform: `translate(${pan.x / scale} ${pan.y / scale}) scale(${scale})` });
+      courtGroup = court;
       svg.append(court);
       [
         ["rect", { x: -250, y: -50, width: 500, height: 780, fill: "#f8fafc", stroke: "#94a3b8", "stroke-width": 2 }],
@@ -186,6 +221,23 @@
         mark.addEventListener("blur", hideTooltip);
         court.append(mark);
       });
+      const activeBox = toBox(regionDraft) || region;
+      if (activeBox)
+        court.append(
+          svgEl("rect", {
+            x: activeBox.xMin,
+            y: activeBox.yMin,
+            width: activeBox.xMax - activeBox.xMin,
+            height: activeBox.yMax - activeBox.yMin,
+            fill: "#0e6573",
+            "fill-opacity": regionDraft ? 0.08 : 0.14,
+            stroke: "#0e6573",
+            "stroke-width": 1.75,
+            "stroke-dasharray": "5 3",
+            "vector-effect": "non-scaling-stroke",
+            "pointer-events": "none",
+          })
+        );
       sync();
     };
     PRESETS.forEach((p) => {
@@ -243,6 +295,9 @@
       maxClock = 12;
       lateOnly = false;
       preset = "all";
+      region = null;
+      regionDraft = null;
+      regionMode = false;
       draw();
     });
     root.querySelector("[data-zoom-in]").addEventListener("click", () => {
@@ -256,6 +311,12 @@
     root.querySelector("[data-reset]").addEventListener("click", () => {
       scale = 1;
       pan = { x: 0, y: 0 };
+      draw();
+    });
+    root.querySelector("[data-region]").addEventListener("click", () => {
+      if (region) region = null;
+      else regionMode = !regionMode;
+      regionDraft = null;
       draw();
     });
     svg.addEventListener(
@@ -275,19 +336,42 @@
       { passive: false }
     );
     svg.addEventListener("pointerdown", (e) => {
+      if (regionMode && e.button === 0) {
+        const point = eventToCourt(e);
+        if (!point) return;
+        regionDraft = { x0: point.x, y0: point.y, x1: point.x, y1: point.y };
+        svg.setPointerCapture(e.pointerId);
+        draw();
+        return;
+      }
       drag = { x: e.clientX, y: e.clientY, pan: { ...pan } };
       svg.setPointerCapture(e.pointerId);
     });
     svg.addEventListener("pointermove", (e) => {
+      if (regionDraft) {
+        const point = eventToCourt(e);
+        if (!point) return;
+        regionDraft = { ...regionDraft, x1: point.x, y1: point.y };
+        draw();
+        return;
+      }
       if (!drag) return;
       pan = { x: drag.pan.x + e.clientX - drag.x, y: drag.pan.y + e.clientY - drag.y };
       draw();
     });
     svg.addEventListener("pointerup", () => {
+      if (regionDraft) {
+        const box = toBox(regionDraft);
+        region = box && box.xMax - box.xMin >= 8 && box.yMax - box.yMin >= 8 ? box : null;
+        regionDraft = null;
+        regionMode = false;
+        draw();
+        return;
+      }
       drag = null;
     });
     svg.addEventListener("pointerleave", () => {
-      drag = null;
+      if (!regionDraft) drag = null;
       hideTooltip();
     });
     draw();

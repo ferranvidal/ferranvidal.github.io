@@ -22,9 +22,9 @@ latest_posts:
 <div class="fv-home">
   <div class="fv-hero">
     <div>
-      <div class="fv-eyebrow">Data scientist · ML engineer · MIT PhD</div>
-      <h1>I build production AI and data systems for complex, high-stakes domains.</h1>
-      <p class="fv-lede">Nine years across research and engineering, including production work for FIFA, Google, the English Premier League, the Golden State Warriors, FC Internazionale, and US Soccer. I turn difficult data and modeling problems into systems people can trust and use.</p>
+      <div class="fv-eyebrow">Data scientist · AI/ML engineer · MIT PhD</div>
+      <h1>I build production AI, data systems and models for complex, high-stakes domains.</h1>
+      <p class="fv-lede">My career spans nine years across research and engineering, including production work for FIFA, Google, the English Premier League, the Golden State Warriors, FC Internazionale, and US Soccer. I turn difficult data and modeling problems into systems people can trust and use.</p>
     </div>
     <figure class="fv-portrait">
       <span class="fv-portrait-label">FVC / 01</span>
@@ -47,23 +47,23 @@ latest_posts:
     <div class="fv-work-list">
       <a class="fv-work-item" href="{{ '/projects/saot-technology-validation/' | relative_url }}">
         <span class="fv-work-number">01</span>
-        <span><span class="fv-work-title">Making SAOT match-ready <small class="fv-work-period">{{ saot_project.period }}</small></span><span class="fv-work-copy">Live data collection, latency assessment, and quality validation for the sensing systems behind FIFA’s offside technology.</span></span>
+        <span><span class="fv-work-title">Technical Validation of FIFA's SAOT <small class="fv-work-period">{{ saot_project.period }}</small></span><span class="fv-work-copy">Live data collection, latency assessment, and quality validation for the sensing systems behind FIFA’s novel offside technology.</span></span>
         <span class="fv-work-result">80+ matches<br>GCP · RabbitMQ<br>FIFA World Cup 2022</span>
       </a>
       <a class="fv-work-item" href="{{ '/projects/fifa-auto-eventing/' | relative_url }}">
         <span class="fv-work-number">02</span>
-        <span><span class="fv-work-title">From tracking data to match events <small class="fv-work-period">{{ eventing_project.period }}</small></span><span class="fv-work-copy">A provider-agnostic system that converted player and ball tracking data into structured football events.</span></span>
-        <span class="fv-work-result">&gt;90% detection<br>&gt;95% set pieces<br>Deployed at the 2022 World Cup</span>
+        <span><span class="fv-work-title">Extracting match events from tracking data <small class="fv-work-period">{{ eventing_project.period }}</small></span><span class="fv-work-copy">A provider-agnostic system that automatically detected and extracted structured events from player and ball tracking data.</span></span>
+        <span class="fv-work-result">450+ matches<br>90%+ detection rate<br>Deployed at the 2022 World Cup</span>
       </a>
       <a class="fv-work-item" href="{{ '/projects/playbook-digitization/' | relative_url }}">
         <span class="fv-work-number">03</span>
-        <span><span class="fv-work-title">Reading playbooks without labels <small class="fv-work-period">{{ playbook_project.period }}</small></span><span class="fv-work-copy">Synthetic-data generation, semantic segmentation, and route tracing for proprietary play diagrams.</span></span>
-        <span class="fv-work-result">Zero real training labels<br>&gt;80% real-world IoU</span>
+        <span><span class="fv-work-title">Digitizing NFL playbooks <small class="fv-work-period">{{ playbook_project.period }}</small></span><span class="fv-work-copy">Synthetic-data generation, semantic segmentation, and route tracing for football playcards.</span></span>
+        <span class="fv-work-result">Zero real training labels<br> Multi-GPU Tensorflow<br>&gt;80% real-world IoU</span>
       </a>
       <a class="fv-work-item" href="{{ '/projects/sports-analytics-assistants/' | relative_url }}">
         <span class="fv-work-number">04</span>
-        <span><span class="fv-work-title">Trustworthy sports analytics in plain language <small class="fv-work-period">{{ assistants_project.period }}</small></span><span class="fv-work-copy">Natural-language analysis grounded in accurate, structured NBA, MLB, and NCAA basketball data.</span></span>
-        <span class="fv-work-result">Prefect · BigQuery<br>DuckDB · LangGraph · OpenAI</span>
+        <span><span class="fv-work-title">Conversational sports analytics<small class="fv-work-period">{{ assistants_project.period }}</small></span><span class="fv-work-copy">Natural-language analysis grounded in accurate structured data for NBA, MLB, and NCAA basketball.</span></span>
+        <span class="fv-work-result">Prefect · Firebase<br>BigQuery · DuckDB<br>RAG · LangChain · OpenAI</span>
       </a>
     </div>
   </section>
@@ -71,11 +71,11 @@ latest_posts:
   <section class="fv-section fv-two-column">
     <div>
       <h2>Across the stack</h2>
-      <p>I’m happiest when I can follow a problem end to end: get the data from wherever it lives, make it dependable, build the model or workflow, and give people a clear way to use it. I’ve worked in each of those layers, so I can usually spot where a handoff will get painful before it does.</p>
+      <p>I’m happiest when I can follow a problem end to end: get the data from wherever it lives, validate it and make sure it’s consistent, build the model or workflow, and extract insights and value for the stakeholders who need them. I’ve done the work at every layer of the data value chain, so I know exactly where handoffs tend to break down.</p>
     </div>
     <div>
       <h2>How I work</h2>
-      <p>I start small and put the work in front of the people who need it early. Then I stay close to the rough edges: the data that does not line up, the cases a model misses, and the workflow nobody will adopt. A useful result matters more to me than a tidy demo.</p>
+      <p>I start with a thorough understanding of the problem and its requirements, then build small and put the work in front of the people who need it early. From there I stay close to the rough edges: the data that exhibits inconsistencies, the cases a model misses, and the general messiness that accompanies real systems. That is where attention to detail matters most, and where I spend real time translating what the data means for stakeholders who may not be technical.</p>
     </div>
   </section>
 
