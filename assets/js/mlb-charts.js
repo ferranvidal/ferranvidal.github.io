@@ -75,7 +75,7 @@
     const rows =
       type === "spray"
         ? `<div><dt>Result</dt><dd>${esc(eventLabel(data))}</dd></div><div><dt>Exit velo</dt><dd>${data.launchSpeed ? `${(+data.launchSpeed).toFixed(1)} mph` : "—"}</dd></div><div><dt>Angle</dt><dd>${data.launchAngle ? `${(+data.launchAngle).toFixed(0)}°` : "—"}</dd></div><div><dt>Distance</dt><dd>${data.totalDistance ? `${(+data.totalDistance).toFixed(0)} ft` : "—"}</dd></div><div><dt>Pitcher</dt><dd>${esc(data.pitcherName)}</dd></div>`
-        : `<div><dt>Result</dt><dd>${esc(eventLabel(data))}</dd></div><div><dt>Batter</dt><dd>${esc(data.batterName)}</dd></div><div><dt>Velocity</dt><dd>${data.startSpeed ? `${(+data.startSpeed).toFixed(1)} mph` : "—"}</dd></div><div><dt>Spin</dt><dd>${data.spinRate ? `${Math.round(+data.spinRate).toLocaleString()} rpm` : "—"}</dd></div><div><dt>Count</dt><dd>${esc(data.balls)}–${esc(data.strikes)}</dd></div>`;
+        : `<div><dt>Result</dt><dd>${esc(eventLabel(data))}</dd></div><div><dt>Batter</dt><dd>${esc(data.batterName)} (${esc(data.batSide)})</dd></div><div><dt>Velocity</dt><dd>${data.startSpeed ? `${(+data.startSpeed).toFixed(1)} mph` : "—"}</dd></div><div><dt>Spin</dt><dd>${data.spinRate ? `${Math.round(+data.spinRate).toLocaleString()} rpm` : "—"}</dd></div><div><dt>Count</dt><dd>${esc(data.preBalls)}–${esc(data.preStrikes)}</dd></div><div><dt>Outs</dt><dd>${esc(data.outs)}</dd></div>`;
     box.innerHTML = `<strong>${esc(type === "spray" ? outcome(data) : data.pitchType)}</strong><dl><div><dt>Date</dt><dd>${esc(data.gameDate)}</dd></div><div><dt>Game</dt><dd>${esc(data.away)} @ ${esc(data.home)}</dd></div><div><dt>Inning</dt><dd>${esc(data.halfInning)} ${esc(data.inning)}</dd></div>${score}${rows}</dl>`;
     box.hidden = false;
   };
@@ -89,13 +89,34 @@
     const kind = root.dataset.mlbChart,
       raw = csv(await (await fetch(root.dataset.source)).text());
     const data = raw
-      .map((r) => ({
+      .map((r, index) => ({
         ...r,
+        _index: index,
         x: +(kind === "spray" ? r.hitCoordX : r.plateX),
         y: +(kind === "spray" ? r.hitCoordY : r.plateZ),
         speed: +(kind === "spray" ? r.launchSpeed : r.startSpeed),
       }))
       .filter((r) => Number.isFinite(r.x) && Number.isFinite(r.y));
+    if (kind === "pitch") {
+      const atBats = new Map();
+      data.forEach((r) => {
+        const key = `${r.gamePk}:${r.atBatNumber}`;
+        if (!atBats.has(key)) atBats.set(key, []);
+        atBats.get(key).push(r);
+      });
+      atBats.forEach((pitches) => {
+        let balls = 0,
+          strikes = 0;
+        pitches
+          .sort((a, b) => +a.pitchNumber - +b.pitchNumber)
+          .forEach((r) => {
+            r.preBalls = balls;
+            r.preStrikes = strikes;
+            balls = +r.balls;
+            strikes = +r.strikes;
+          });
+      });
+    }
     const chart = root.querySelector("svg"),
       wrap = root.querySelector(".fv-mlb-chart-wrap"),
       summary = root.querySelector("[data-mlb-summary]"),
@@ -127,6 +148,7 @@
       region = null,
       draft = null,
       selecting = false,
+      filterState = { outs: new Set(), balls: new Set(), strikes: new Set(), pitchHand: new Set(), batSide: new Set(), bases: new Set() },
       group;
     const categories = [...new Set(data.map((r) => (kind === "spray" ? outcome(r) : r.pitchType)).filter(Boolean))].sort();
     const setRange = (name) => {
@@ -169,6 +191,58 @@
         render();
       });
     }
+    const pillDefinitions = {
+      outs: { label: "Outs", values: () => [...new Set(data.map((r) => r.outs).filter((v) => v !== ""))].sort((a, b) => +a - +b), display: (v) => v },
+      balls: {
+        label: "Balls",
+        values: () => [...new Set(data.map((r) => r.preBalls).filter(Number.isFinite))].sort((a, b) => a - b),
+        display: (v) => v,
+      },
+      strikes: {
+        label: "Strikes",
+        values: () => [...new Set(data.map((r) => r.preStrikes).filter(Number.isFinite))].sort((a, b) => a - b),
+        display: (v) => v,
+      },
+      pitchHand: {
+        label: "Pitcher handedness",
+        values: () => [...new Set(data.map((r) => r.pitchHand).filter(Boolean))].sort(),
+        display: (v) => (v === "L" ? "Left" : "Right"),
+      },
+      batSide: {
+        label: "Batter handedness",
+        values: () => [...new Set(data.map((r) => r.batSide).filter(Boolean))].sort(),
+        display: (v) => (v === "L" ? "Left" : "Right"),
+      },
+    };
+    const drawPillGroups = () => {
+      Object.entries(pillDefinitions).forEach(([key, definition]) => {
+        const container = root.querySelector(`[data-pill-group="${key}"]`);
+        if (!container || !definition.values().length) return;
+        const active = filterState[key];
+        container.innerHTML = `<strong>${definition.label}</strong><div>${definition
+          .values()
+          .map(
+            (value) =>
+              `<button type="button" data-filter-value="${esc(value)}" aria-pressed="${active.has(String(value))}">${esc(definition.display(value))}</button>`
+          )
+          .join("")}</div>`;
+        container.querySelectorAll("button").forEach((button) =>
+          button.addEventListener("click", () => {
+            const value = button.dataset.filterValue;
+            active.has(value) ? active.delete(value) : active.add(value);
+            render();
+          })
+        );
+      });
+      root.querySelectorAll("[data-base-filter]").forEach((button) => {
+        const base = button.dataset.baseFilter;
+        button.setAttribute("aria-pressed", String(filterState.bases.has(base)));
+        button.onclick = () => {
+          filterState.bases.has(base) ? filterState.bases.delete(base) : filterState.bases.add(base);
+          render();
+        };
+      });
+    };
     const match = (r) =>
       (!selected || (kind === "spray" ? outcome(r) : r.pitchType) === selected) &&
       (!resultType || pitchResult(r) === resultType) &&
@@ -176,12 +250,20 @@
       (!inputs.angleMin || (+r.launchAngle >= +inputs.angleMin.value && +r.launchAngle <= +inputs.angleMax.value)) &&
       (!inputs.spinMin || (+r.spinRate >= +inputs.spinMin.value && +r.spinRate <= +inputs.spinMax.value)) &&
       (!inputs.inningMin || (+r.inning >= +inputs.inningMin.value && +r.inning <= +inputs.inningMax.value)) &&
+      (!filterState.outs.size || filterState.outs.has(r.outs)) &&
+      (!filterState.balls.size || filterState.balls.has(String(r.preBalls))) &&
+      (!filterState.strikes.size || filterState.strikes.has(String(r.preStrikes))) &&
+      (!filterState.pitchHand.size || filterState.pitchHand.has(r.pitchHand)) &&
+      (!filterState.batSide.size || filterState.batSide.has(r.batSide)) &&
+      (!filterState.bases.has("1st") || r.onFirstId) &&
+      (!filterState.bases.has("2nd") || r.onSecondId) &&
+      (!filterState.bases.has("3rd") || r.onThirdId) &&
       (!region || (r.x >= region.x0 && r.x <= region.x1 && r.y >= region.y0 && r.y <= region.y1));
     const point = (event) => {
       const matrix = group?.getScreenCTM();
       if (!matrix) return null;
       const p = new DOMPoint(event.clientX, event.clientY).matrixTransform(matrix.inverse());
-      return kind === "spray" ? { x: clamp(p.x, 0, 250), y: clamp(p.y, 0, 230) } : { x: clamp(p.x, -3, 3), y: clamp(p.y, 0, 5) };
+      return kind === "spray" ? { x: clamp(p.x, 0, 250), y: clamp(p.y, 0, 230) } : { x: clamp(p.x, -3.5, 3.5), y: clamp(5.5 - p.y, -0.5, 6) };
     };
     const regionBounds = (d) => ({ x0: Math.min(d.x0, d.x1), x1: Math.max(d.x0, d.x1), y0: Math.min(d.y0, d.y1), y1: Math.max(d.y0, d.y1) });
     const render = () => {
@@ -222,9 +304,21 @@
           svg("circle", { cx: 125, cy: 203, r: 3, fill: "#fff", stroke: "#333" })
         );
       } else {
+        const zoneTopValues = data.map((r) => +r.strikeZoneTop).filter(Number.isFinite),
+          zoneBottomValues = data.map((r) => +r.strikeZoneBottom).filter(Number.isFinite),
+          zoneTop = zoneTopValues.length ? zoneTopValues.reduce((sum, value) => sum + value, 0) / zoneTopValues.length : 3.5,
+          zoneBottom = zoneBottomValues.length ? zoneBottomValues.reduce((sum, value) => sum + value, 0) / zoneBottomValues.length : 1.5;
         group.append(
-          svg("rect", { x: -0.83, y: 1.5, width: 1.66, height: 2, fill: "#f8fafc", stroke: "#334155", "stroke-width": 0.04 }),
-          svg("line", { x1: 0, y1: 0, x2: 0, y2: 5, stroke: "#e2e8f0", "stroke-width": 0.02 })
+          svg("rect", {
+            x: -0.83,
+            y: 5.5 - zoneTop,
+            width: 1.66,
+            height: zoneTop - zoneBottom,
+            fill: "none",
+            stroke: "#334155",
+            "stroke-width": 0.04,
+          }),
+          svg("polygon", { points: "-0.71,5.65 0.71,5.65 0.71,5.85 0,6.05 -0.71,5.85", fill: "#fff", stroke: "#334155", "stroke-width": 0.03 })
         );
       }
       visible.forEach((r) => {
@@ -238,7 +332,7 @@
               })
             : svg("circle", {
                 cx: r.x,
-                cy: kind === "spray" ? r.y : 5 - r.y,
+                cy: kind === "spray" ? r.y : 5.5 - r.y,
                 r: kind === "spray" ? 3.2 : 0.065,
                 fill: color,
                 stroke: "#fff",
@@ -246,7 +340,7 @@
               });
         const target = svg("circle", {
           cx: r.x,
-          cy: kind === "spray" ? r.y : 5 - r.y,
+          cy: kind === "spray" ? r.y : 5.5 - r.y,
           r: kind === "spray" ? 7 : 0.13,
           fill: "transparent",
           "pointer-events": "all",
@@ -266,7 +360,7 @@
         group.append(
           svg("rect", {
             x: active.x0,
-            y: kind === "spray" ? active.y0 : 5 - active.y1,
+            y: kind === "spray" ? active.y0 : 5.5 - active.y1,
             width: active.x1 - active.x0,
             height: active.y1 - active.y0,
             fill: "#0e6573",
@@ -288,6 +382,7 @@
           render();
         })
       );
+      if (kind === "pitch") drawPillGroups();
       const regionButton = root.querySelector("[data-region]");
       regionButton.setAttribute("aria-pressed", String(selecting || !!region));
       regionButton.textContent = region ? "Clear area" : selecting ? "Drawing…" : "Select area";
@@ -316,6 +411,7 @@
       resultType = "";
       region = null;
       selecting = false;
+      Object.values(filterState).forEach((values) => values.clear());
       ["speed", "angle", "spin", "inning"].forEach((name) => {
         if (inputs[`${name}Min`]) {
           inputs[`${name}Min`].value = bounds[name].min;

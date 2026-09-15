@@ -12,7 +12,7 @@ category: flagship
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
 
 <div class="fv-page">
-  <p class="fv-lede">A client needed to convert proprietary American football play diagrams into structured objects but had no annotated dataset. I designed a computer-vision pipeline that learned to identify and extract routes entirely from synthetic examples.</p>
+  <p class="fv-lede">This project revolved around training a model that was able to detect routes from NFL playbooks and transforming them into structured objects. The main challenge was that there was no annotated dataset. I designed a computer-vision pipeline that learned to identify and extract routes entirely from synthetic examples.</p>
   <p class="fv-project-period">Project period · {{ page.period }}</p>
 
   <div class="fv-metric-row">
