@@ -326,6 +326,95 @@ body {
   font-weight: 600;
 }
 
+.fv-chart-example {
+  border: 1px solid var(--fv-border);
+  margin: 2rem 0 3rem;
+  padding: 1.35rem;
+}
+
+.fv-chart-example__head {
+  align-items: start;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: space-between;
+}
+
+.fv-chart-example h3 {
+  margin: 0.2rem 0 0.55rem;
+}
+.fv-chart-example__head p {
+  color: var(--fv-muted);
+  margin: 0;
+}
+.fv-chart-kicker {
+  color: var(--fv-accent) !important;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.fv-chart-summary {
+  font-size: 0.92rem;
+  min-width: 8rem;
+  text-align: right;
+}
+.fv-chart-summary strong {
+  display: block;
+  font-size: 1.25rem;
+}
+.fv-chart-controls {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 1.25rem 0;
+}
+.fv-chart-controls button,
+.fv-chart-controls select {
+  background: var(--fv-surface);
+  border: 1px solid var(--fv-border);
+  border-radius: 4px;
+  color: var(--global-text-color);
+  font: inherit;
+  padding: 0.38rem 0.58rem;
+}
+.fv-chart-controls button[aria-pressed="true"] {
+  background: var(--fv-accent);
+  border-color: var(--fv-accent);
+  color: #fff;
+}
+.fv-chart-controls label {
+  color: var(--fv-muted);
+  font-size: 0.85rem;
+}
+.fv-shot-chart-wrap {
+  background: linear-gradient(180deg, var(--fv-accent-soft), transparent);
+  cursor: grab;
+  overflow: hidden;
+}
+.fv-shot-chart-wrap:active {
+  cursor: grabbing;
+}
+.fv-shot-chart {
+  display: block;
+  height: auto;
+  max-height: 520px;
+  min-height: 300px;
+  width: 100%;
+}
+.fv-shot-mark {
+  cursor: pointer;
+}
+.fv-shot-mark:focus {
+  outline: none;
+  stroke: var(--fv-accent);
+  stroke-width: 3;
+}
+.fv-chart-note {
+  color: var(--fv-muted);
+  font-size: 0.84rem;
+  margin: 0.9rem 0 0;
+}
+
 .fv-summary {
   color: var(--fv-muted);
   font-size: 0.95rem;
@@ -491,6 +580,13 @@ body {
   .fv-timeline-item,
   .fv-recognition {
     grid-template-columns: 1fr;
+  }
+
+  .fv-chart-example__head {
+    flex-direction: column;
+  }
+  .fv-chart-summary {
+    text-align: left;
   }
 
   .fv-section-head {

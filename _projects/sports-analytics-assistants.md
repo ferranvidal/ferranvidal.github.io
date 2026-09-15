@@ -10,6 +10,7 @@ category: flagship
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
+<script src="{{ '/assets/js/nba-shot-chart.js' | relative_url }}" defer></script>
 
 <div class="fv-page">
   <p class="fv-lede">I designed and built production chatbots that let users explore sports data through natural language without giving up analytical accuracy. The systems turn questions into validated queries over structured NBA, MLB, and NCAA basketball data, then return answers and visualizations tied to the underlying records.</p>
@@ -23,6 +24,29 @@ category: flagship
 
   <h2>NBA assistant</h2>
   <p>The NBA chatbot covers approximately 70K games, 1.5M player-game boxscore entries and 18M play-by-play records, with additional tables for shots, passes, lineups, matchups, standings, and CBA data. It supports SQL-driven answers and visualizations, including shot charts. Data comes from the `nba_api` that manages access to official NBA data.</p>
+
+  <section class="fv-chart-example" data-shot-chart data-source="{{ '/assets/data/jalen-brunson-2026-finals-shot-chart.csv' | relative_url }}">
+    <div class="fv-chart-example__head">
+      <div>
+        <p class="fv-chart-kicker">Interactive example · fixed data snapshot</p>
+        <h3>Jalen Brunson · 2026 NBA Finals</h3>
+        <p>Explore the mapped shot attempts returned by the NBA assistant. Filters and zoom work entirely within this saved dataset.</p>
+      </div>
+      <div class="fv-chart-summary" aria-live="polite"></div>
+    </div>
+    <div class="fv-chart-controls" aria-label="Shot chart controls">
+      <button type="button" data-outcome="all" aria-pressed="true">All shots</button>
+      <button type="button" data-outcome="made" aria-pressed="false">Made</button>
+      <button type="button" data-outcome="missed" aria-pressed="false">Missed</button>
+      <label>Shot type <select data-shot-type><option value="">All types</option></select></label>
+      <label>Period <select data-period><option value="">All periods</option></select></label>
+      <button type="button" data-zoom-out aria-label="Zoom out">−</button>
+      <button type="button" data-zoom-in aria-label="Zoom in">+</button>
+      <button type="button" data-reset>Reset view</button>
+    </div>
+    <div class="fv-shot-chart-wrap"><svg class="fv-shot-chart" viewBox="-250 -25 500 350" role="img" aria-label="Jalen Brunson shot chart from the 2026 NBA Finals"></svg></div>
+    <p class="fv-chart-note">Snapshot created September 14, 2026. Hover or focus a mark for shot details; use the mouse wheel or controls to zoom, then drag to pan.</p>
+  </section>
 
   <h2>MLB assistant</h2>
   <p>The MLB chatbot covers approximately 220K games since 1901, including 34M pitches, 16M runner records, 14M fielding credits, and 12 million plays, alongside player, team, and leaderboard tables. It supports SQL-driven answers and visualizations, including spray charts and pitcher charts. Data comes from the official MLB stats endpoint and Basevall Savant.</p>
