@@ -1,19 +1,22 @@
 ---
 layout: page
-title: Shipping AI products end to end
+title: Shipping AI Products End to End
 description: Full-stack products spanning application design, LLM workflows, payments, and deployment.
 period: May 2025 – present
 img:
 permalink: /projects/ai-products/
 importance: 6
-category: products
+featured: false
+summary: "A full-stack AI meal-planning product and a retrieval-augmented assistant that answers questions about my career."
+results:
+  - "Next.js · Stripe · MongoDB"
+  - "LLM workflows"
+  - "RAG career assistant"
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
 
 <div class="fv-page">
-  {% include project_bubbles.liquid %}
-
   <p class="fv-lede">Personal projects give me room to experiment and learn with the technologies as well as the models and data behind it.</p>
   <p class="fv-project-period">Project period · {{ page.period }}</p>
 

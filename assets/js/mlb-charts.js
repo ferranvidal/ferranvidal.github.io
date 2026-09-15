@@ -1,16 +1,24 @@
 (() => {
   const NS = "http://www.w3.org/2000/svg";
-  const colors = { "Home Run": "#b45309", Triple: "#9333ea", Double: "#2563eb", Single: "#65a30d", Out: "#dc2626", Other: "#94a3b8" };
+  // Mark colors are CSS custom properties (see ferran.scss) so both themes get a legible palette.
+  const colors = {
+    "Home Run": "var(--fv-hit-hr)",
+    Triple: "var(--fv-hit-triple)",
+    Double: "var(--fv-hit-double)",
+    Single: "var(--fv-hit-single)",
+    Out: "var(--fv-hit-out)",
+    Other: "var(--fv-chart-line)",
+  };
   const pitchColors = {
-    "Four-Seam Fastball": "#ef8b3c",
-    Sinker: "#b45309",
-    Cutter: "#0d9488",
-    Changeup: "#0e7490",
-    Splitter: "#115e59",
-    Slider: "#1e40af",
-    Sweeper: "#e11d76",
-    Curveball: "#9d174d",
-    "Knuckle Curve": "#a855f7",
+    "Four-Seam Fastball": "var(--fv-pitch-ff)",
+    Sinker: "var(--fv-pitch-si)",
+    Cutter: "var(--fv-pitch-fc)",
+    Changeup: "var(--fv-pitch-ch)",
+    Splitter: "var(--fv-pitch-fs)",
+    Slider: "var(--fv-pitch-sl)",
+    Sweeper: "var(--fv-pitch-st)",
+    Curveball: "var(--fv-pitch-cu)",
+    "Knuckle Curve": "var(--fv-pitch-kc)",
   };
   const esc = (v) => String(v ?? "").replace(/[&<>\"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
   const svg = (tag, attrs = {}) => {
@@ -308,6 +316,7 @@
           .join("");
       }
       chart.replaceChildren();
+      let zoneOverlay = [];
       group = svg("g", { transform: `translate(${pan.x / scale} ${pan.y / scale}) scale(${scale})` });
       chart.append(group);
       if (kind === "spray") {
@@ -319,46 +328,45 @@
         group.append(
           svg("path", {
             d: `M ${home.x},${home.y} L ${lx.toFixed(1)},${fy.toFixed(1)} A ${rad},${rad} 0 0 1 ${rx.toFixed(1)},${fy.toFixed(1)} Z`,
-            fill: "#eff6ef",
-            stroke: "#5a8f5a",
+            style: "fill: var(--fv-chart-field); stroke: var(--fv-chart-field-line)",
             "stroke-width": 2,
           }),
-          svg("polygon", { points: "125,203 157,171 125,139 93,171", fill: "#c9975c", stroke: "#fff" }),
-          svg("circle", { cx: 125, cy: 203, r: 3, fill: "#fff", stroke: "#333" })
+          svg("polygon", { points: "125,203 157,171 125,139 93,171", style: "fill: var(--fv-chart-infield); stroke: var(--fv-chart-surface)" }),
+          svg("circle", { cx: 125, cy: 203, r: 3, style: "fill: var(--fv-chart-surface); stroke: var(--fv-chart-ink)" })
         );
       } else {
         const zoneTopValues = data.map((r) => +r.strikeZoneTop).filter(Number.isFinite),
           zoneBottomValues = data.map((r) => +r.strikeZoneBottom).filter(Number.isFinite),
           zoneTop = zoneTopValues.length ? zoneTopValues.reduce((sum, value) => sum + value, 0) / zoneTopValues.length : 3.5,
           zoneBottom = zoneBottomValues.length ? zoneBottomValues.reduce((sum, value) => sum + value, 0) / zoneBottomValues.length : 1.5;
-        group.append(
+        // Strike zone and plate go on top of the marks, otherwise dense pitch clouds hide them.
+        zoneOverlay = [
           svg("rect", {
             x: -0.83,
             y: 5.5 - zoneTop,
             width: 1.66,
             height: zoneTop - zoneBottom,
             fill: "none",
-            stroke: "#334155",
+            style: "stroke: var(--fv-chart-ink)",
             "stroke-width": 0.04,
           }),
-          svg("polygon", { points: "-0.71,5.65 0.71,5.65 0.71,5.85 0,6.05 -0.71,5.85", fill: "#fff", stroke: "#334155", "stroke-width": 0.03 })
-        );
+          svg("polygon", { points: "-0.71,5.65 0.71,5.65 0.71,5.85 0,6.05 -0.71,5.85", style: "fill: var(--fv-chart-surface); stroke: var(--fv-chart-ink)", "stroke-width": 0.03 }),
+        ];
       }
       visible.forEach((r) => {
-        const color = kind === "spray" ? colors[outcome(r)] : pitchColors[r.pitchType] || "#94a3b8";
+        const color = kind === "spray" ? colors[outcome(r)] : pitchColors[r.pitchType] || "var(--fv-chart-line)";
         const mark =
           kind === "spray" && outcome(r) === "Out"
             ? svg("path", {
                 d: `M ${r.x - 2.5} ${r.y - 2.5} L ${r.x + 2.5} ${r.y + 2.5} M ${r.x + 2.5} ${r.y - 2.5} L ${r.x - 2.5} ${r.y + 2.5}`,
-                stroke: color,
+                style: `stroke: ${color}`,
                 "stroke-width": 1.2,
               })
             : svg("circle", {
                 cx: r.x,
                 cy: kind === "spray" ? r.y : 5.5 - r.y,
                 r: kind === "spray" ? 3.2 : 0.065,
-                fill: color,
-                stroke: "#fff",
+                style: `fill: ${color}; stroke: var(--fv-chart-surface)`,
                 "stroke-width": kind === "spray" ? 0.7 : 0.012,
               });
         const target = svg("circle", {
@@ -378,6 +386,7 @@
         });
         group.append(mark, target);
       });
+      group.append(...zoneOverlay.map((el) => Object.assign(el, { style: `${el.getAttribute("style")}; pointer-events: none` })));
       const active = draft ? regionBounds(draft) : region;
       if (active)
         group.append(
@@ -386,9 +395,8 @@
             y: kind === "spray" ? active.y0 : 5.5 - active.y1,
             width: active.x1 - active.x0,
             height: active.y1 - active.y0,
-            fill: "#0e6573",
+            style: "fill: var(--fv-accent); stroke: var(--fv-accent)",
             "fill-opacity": 0.1,
-            stroke: "#0e6573",
             "stroke-dasharray": "3 2",
             "vector-effect": "non-scaling-stroke",
           })
@@ -396,7 +404,7 @@
       legend.innerHTML = categories
         .map(
           (c) =>
-            `<button type="button" data-key="${esc(c)}" aria-pressed="${String(selected === c)}"><i style="background:${kind === "spray" ? colors[c] : pitchColors[c] || "#94a3b8"}"></i>${esc(c)}</button>`
+            `<button type="button" data-key="${esc(c)}" aria-pressed="${String(selected === c)}"><i style="background:${kind === "spray" ? colors[c] : pitchColors[c] || "var(--fv-chart-line)"}"></i>${esc(c)}</button>`
         )
         .join("");
       legend.querySelectorAll("button").forEach((b) =>

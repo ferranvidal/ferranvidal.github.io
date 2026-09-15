@@ -1,0 +1,21 @@
+{% comment %}
+  Numbered project list shared by the homepage and /projects/.
+  Pass featured_only=true to show only projects with `featured: true`.
+  Numbers follow `importance`, so they match the "n of N" count on project pages.
+{% endcomment %}
+{% assign sorted_projects = site.projects | sort: 'importance' %}
+<div class="fv-work-list">
+  {% for project in sorted_projects %}
+    {% if include.featured_only and project.featured != true %}
+      {% continue %}
+    {% endif %}
+    <a class="fv-work-item" href="{{ project.url | relative_url }}">
+      <span class="fv-work-number">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+      <span>
+        <span class="fv-work-title">{{ project.title }}<small class="fv-work-period">{{ project.period }}</small></span>
+        <span class="fv-work-copy">{{ project.summary }}</span>
+      </span>
+      <span class="fv-work-result">{{ project.results | join: '<br>' }}</span>
+    </a>
+  {% endfor %}
+</div>

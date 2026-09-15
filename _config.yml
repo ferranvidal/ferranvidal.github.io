@@ -11,6 +11,7 @@ contact_note: >
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Ferran Vidal-Codina is an MIT-trained data scientist and machine learning engineer who builds production AI, analytics, and data systems.
 footer_text: >
+  <span class="fv-footer-contact"><a href="mailto:vc.ferran@gmail.com">Email</a> · <a href="https://www.linkedin.com/in/ferranvc">LinkedIn</a> · <a href="https://scholar.google.com/citations?user=GsF2GmAAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a> · <a href="/assets/pdf/Ferran_Vidal_Codina_Resume.pdf">Résumé (PDF)</a></span>
   Built with <a href="https://github.com/alshedivat/al-folio" target="_blank">al-folio</a> and hosted on GitHub Pages.
 keywords: data science, machine learning, artificial intelligence, sports analytics, data engineering, MIT # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
@@ -108,9 +109,9 @@ max_width: 1000px
 # -----------------------------------------------------------------------------
 # Display links to the page with a preview object on social media.
 # see https://schema.org/docs/faq.html for more information
-serve_og_meta: false # Include Open Graph meta tags in the HTML head
+serve_og_meta: true # Include Open Graph meta tags in the HTML head
 serve_schema_org: false # Include Schema.org in the HTML head
-og_image: # The site-wide (default for all links) Open Graph preview image
+og_image: /assets/img/headshot.jpg # The site-wide (default for all links) Open Graph preview image
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification

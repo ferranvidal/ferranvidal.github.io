@@ -4,6 +4,7 @@ permalink: /cv/
 title: résumé
 nav: true
 nav_order: 4
+nav_url: /assets/pdf/Ferran_Vidal_Codina_Resume.pdf
 description: Download Ferran Vidal-Codina's résumé.
 ---
 

@@ -1,12 +1,17 @@
 ---
 layout: page
-title: Conversational sports analytics
+title: Conversational Sports Analytics
 description: RAG-based natural-language chatbots for NBA, MLB, and NCAA basketball.
 period: 2025 – present
 img:
 permalink: /projects/sports-analytics-assistants/
 importance: 4
-category: flagship
+featured: true
+summary: "Natural-language analysis grounded in accurate structured data for NBA, MLB, and NCAA basketball."
+results:
+  - "3 production assistants"
+  - "100M+ records"
+  - "LangGraph · BigQuery · DuckDB"
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
@@ -14,20 +19,39 @@ category: flagship
 <script src="{{ '/assets/js/mlb-charts.js' | relative_url }}" defer></script>
 
 <div class="fv-page">
-  {% include project_bubbles.liquid %}
-
   <p class="fv-lede">I designed and built production chatbots that let users explore sports data through natural language without giving up analytical accuracy. The systems turn questions into validated queries over structured NBA, MLB, and NCAA basketball data, then return answers and visualizations tied to the underlying records.</p>
   <p class="fv-project-period">Project period · {{ page.period }}</p>
 
   <div class="fv-metric-row">
-    <div><strong>Grounded</strong><span>answers tied to records</span></div>
-    <div><strong>Natural language</strong><span>questions to analytics</span></div>
-    <div><strong>End to end</strong><span>ingestion through evaluation</span></div>
+    <div><strong>3</strong><span>production assistants: NBA, MLB, NCAA</span></div>
+    <div><strong>530K+</strong><span>games covered</span></div>
+    <div><strong>100M+</strong><span>structured records queryable</span></div>
   </div>
 
-  <details class="fv-collapsible" open>
-  <summary><h2>NBA assistant</h2></summary>
-  <p>The NBA chatbot covers approximately 70K games, 1.5M player-game boxscore entries and 18M play-by-play records, with additional tables for shots, passes, lineups, matchups, standings, and CBA data. It supports SQL-driven answers and visualizations, including shot charts. Data comes from the `nba_api` that manages access to official NBA data.</p>
+  <h2>Architecture</h2>
+  <ol class="fv-flow" aria-label="Assistant architecture, from data ingestion to monitoring">
+    <li><span class="fv-flow-step">Ingest</span><strong>Prefect flows</strong><small>Scheduled or on-demand pulls from public sports APIs</small></li>
+    <li><span class="fv-flow-step">Model</span><strong>BigQuery</strong><small>Raw responses landed, cleaned into production tables</small></li>
+    <li><span class="fv-flow-step">Serve</span><strong>DuckDB</strong><small>Read-only replica on a GCP VM for fast, predictable tool calls</small></li>
+    <li><span class="fv-flow-step">Reason</span><strong>LangGraph agent</strong><small>SQL and domain tools, self-validation, FastAPI on GCP</small></li>
+    <li><span class="fv-flow-step">Observe</span><strong>Logs → dashboard</strong><small>Firebase Auth, Firestore history, BigQuery analytics</small></li>
+  </ol>
+
+  <h3>Accuracy by design</h3>
+  <p>Each assistant follows the same layered pattern. Prefect flows pull open-source data on a schedule or on demand, land the raw responses, build cleaned production-ready tables in BigQuery, and sync a read-only DuckDB database for fast, predictable tool calls that sits in a VM within the GCP ecosystem. The chat service runs in FastAPI on GCP.</p>
+  <p>A LangGraph ReAct agent combines a small set of SQL and domain tools with a system prompt containing schema, guardrails, and worked examples. The agent validates its own query and answer, discloses filters, and generates deterministic charts or tables from the returned rows instead of asking the model to invent visualizations.</p>
+  <p>Firebase Authentication protects the applications, Firestore stores durable conversation history, and structured request logs plus GCS visualization artifacts feed a BigQuery-backed analytics dashboard. This makes it possible to evaluate not only whether an answer looks plausible, but which prompt, model, query path, latency, and user feedback produced it.</p>
+
+  <h3>Grounding and evaluation</h3>
+  <p>Sports questions often require several operations—filtering a long event history, joining game context, comparing cohorts, or following relationships across tables. I designed the data and retrieval layers around those operations rather than asking the language model to reconstruct facts from prose.</p>
+  <p>Evaluation workflows tested whether responses were supported by the underlying records, whether the requested slice had been applied correctly, and whether the assistant declined questions outside its evidence.</p>
+
+  <h2>The assistants</h2>
+  <p>Each assistant shares the architecture above. Open one to see its data coverage and an interactive chart built from a saved answer.</p>
+
+  <details class="fv-collapsible">
+  <summary><h3>NBA assistant <span class="fv-summary-hint">interactive shot chart</span></h3></summary>
+  <p>The NBA assistant covers approximately 70K games, 1.5M player-game boxscore entries and 18M play-by-play records, with additional tables for shots, passes, lineups, matchups, standings, and CBA data. It supports SQL-driven answers and visualizations, including shot charts. Data comes from <code>nba_api</code>, which provides access to official NBA data.</p>
 
   <section class="fv-chart-example" data-shot-chart data-source="{{ '/assets/data/jalen-brunson-2026-finals-shot-chart.csv' | relative_url }}">
     <div class="fv-chart-example__head">
@@ -69,9 +93,9 @@ category: flagship
   </section>
   </details>
 
-  <details class="fv-collapsible" open>
-  <summary><h2>MLB assistant</h2></summary>
-  <p>The MLB chatbot covers approximately 220K games since 1901, including 34M pitches, 16M runner records, 14M fielding credits, and 12 million plays, alongside player, team, and leaderboard tables. It supports SQL-driven answers and visualizations, including spray charts and pitcher charts. Data comes from the official MLB stats endpoint and Basevall Savant.</p>
+  <details class="fv-collapsible">
+  <summary><h3>MLB assistant <span class="fv-summary-hint">spray and pitch charts</span></h3></summary>
+  <p>The MLB assistant covers approximately 220K games since 1901, including 34M pitches, 16M runner records, 14M fielding credits, and 12 million plays, alongside player, team, and leaderboard tables. It supports SQL-driven answers and visualizations, including spray charts and pitcher charts. Data comes from the official MLB Stats API and Baseball Savant.</p>
 
   <section class="fv-mlb-examples" aria-label="MLB assistant interactive examples">
     <div class="fv-mlb-example" data-mlb-chart="spray" data-source="{{ '/assets/data/shohei-ohtani-2026-through-august-spray-chart.csv' | relative_url }}">
@@ -91,19 +115,10 @@ category: flagship
   </section>
   </details>
 
-  <details class="fv-collapsible" open>
-  <summary><h2>NCAA basketball assistant</h2></summary>
-  <p>The NCAA chatbot is restricted to Division I basketball, and covers approximately 240K games, 2M player-game boxscore entries and 30M play-by-play records, with additional tables for shots, lineups, conferences, standings, draft and ratings. It supports SQL-driven answers and visualizations, including shot charts. Data comes from the College Basketball Data API.</p>
+  <details class="fv-collapsible">
+  <summary><h3>NCAA basketball assistant</h3></summary>
+  <p>The NCAA assistant is restricted to Division I basketball, and covers approximately 240K games, 2M player-game boxscore entries and 30M play-by-play records, with additional tables for shots, lineups, conferences, standings, draft and ratings. It supports SQL-driven answers and visualizations, including shot charts. Data comes from the College Basketball Data API.</p>
   </details>
-
-  <h2>Accuracy by design</h2>
-  <p>Each assistant follows the same layered pattern. Prefect flows pull open-source data on a schedule or on demand, land the raw responses, build cleaned production-ready tables in BigQuery, and sync a read-only DuckDB database for fast, predictable tool calls that sits in a VM within the GCP ecosystem. The chat service runs in FastAPI on GCP.</p>
-  <p>A LangGraph ReAct agent combines a small set of SQL and domain tools with a system prompt containing schema, guardrails, and worked examples. The agent validates its own query and answer, discloses filters, and generates deterministic charts or tables from the returned rows instead of asking the model to invent visualizations.</p>
-  <p>Firebase Authentication protects the applications, Firestore stores durable conversation history, and structured request logs plus GCS visualization artifacts feed a BigQuery-backed analytics dashboard. This makes it possible to evaluate not only whether an answer looks plausible, but which prompt, model, query path, latency, and user feedback produced it.</p>
-
-  <h2>Grounding and evaluation</h2>
-  <p>Sports questions often require several operations—filtering a long event history, joining game context, comparing cohorts, or following relationships across tables. I designed the data and retrieval layers around those operations rather than asking the language model to reconstruct facts from prose.</p>
-  <p>Evaluation workflows tested whether responses were supported by the underlying records, whether the requested slice had been applied correctly, and whether the assistant declined questions outside its evidence.</p>
 
 {% include project_navigation.liquid %}
 

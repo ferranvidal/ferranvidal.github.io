@@ -1,19 +1,22 @@
 ---
 layout: page
-title: Digitizing NFL playbooks
+title: Digitizing NFL Playbooks
 description: Synthetic data and semantic segmentation for converting play diagrams into structured objects.
 period: 2025 – 2026
 img:
 permalink: /projects/playbook-digitization/
-importance: 2
-category: flagship
+importance: 3
+featured: true
+summary: "Synthetic-data generation, semantic segmentation, and route tracing for football playcards."
+results:
+  - "Zero real training labels"
+  - "Multi-GPU TensorFlow"
+  - "&gt;80% real-world IoU"
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
 
 <div class="fv-page">
-  {% include project_bubbles.liquid %}
-
   <p class="fv-lede">This project revolved around training a model that was able to detect routes from NFL playbooks and transforming them into structured objects. The main challenge was that there was no annotated dataset. I designed a computer-vision pipeline that learned to identify and extract routes entirely from synthetic examples.</p>
   <p class="fv-project-period">Project period · {{ page.period }}</p>
 

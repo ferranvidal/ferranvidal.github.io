@@ -69,6 +69,25 @@ nav_order: 2
     <div><h3>Polytechnic University of Catalonia</h3><p>BSc in Civil Engineering.</p></div>
   </div>
 
+  <h2>Honors and fellowships</h2>
+
+  <div class="fv-timeline-item">
+    <div class="fv-timeline-date">2022</div>
+    <div><h3>Paper of the Year</h3><p>International Sports Engineering Association and Springer Sports Engineering, for <em>Automatic event detection in football using tracking data</em>.</p></div>
+  </div>
+  <div class="fv-timeline-item">
+    <div class="fv-timeline-date">2021</div>
+    <div><h3>d'Arbeloff Fund for Excellence in Education</h3><p>MIT award to create a curriculum linking a first-year communication class with a capstone in sports technology, valued at $28,000.</p></div>
+  </div>
+  <div class="fv-timeline-item">
+    <div class="fv-timeline-date">2011 — 2013</div>
+    <div><h3>La Caixa Foundation Fellowship</h3><p>$150,000 fellowship supporting graduate study at MIT.</p></div>
+  </div>
+  <div class="fv-timeline-item">
+    <div class="fv-timeline-date">2011</div>
+    <div><h3>CFIS Honorary Degree in Interdisciplinary Education</h3><p>Awarded for successful completion of the CFIS dual-degree program at UPC-BarcelonaTech.</p></div>
+  </div>
+
   <h2>Technical focus</h2>
   <p><strong>Languages:</strong> Python, SQL, JavaScript</p>
   <p><strong>AI and ML:</strong> retrieval-augmented generation, agentic workflows, LangChain, TensorFlow, PyTorch, computer vision, deep learning</p>

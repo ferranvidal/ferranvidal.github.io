@@ -1,19 +1,22 @@
 ---
 layout: page
-title: Extracting match events from tracking data
+title: Extracting Match Events from Tracking Data
 description: Turning player and ball tracking data into structured football events.
 period: July 2019 – June 2023
 img:
 permalink: /projects/fifa-auto-eventing/
-importance: 1
-category: flagship
+importance: 2
+featured: true
+summary: "A provider-agnostic system that automatically detected and extracted structured events from player and ball tracking data."
+results:
+  - "450+ matches"
+  - "90%+ detection rate"
+  - "Deployed at the 2022 World Cup"
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
 
 <div class="fv-page">
-  {% include project_bubbles.liquid %}
-
   <p class="fv-lede">I developed a provider-agnostic system that automatically detects football events from player and ball tracking data. The work moved from applied research to post-match deployment at the 2022 FIFA World Cup.</p>
   <p class="fv-project-period">Project period · {{ page.period }}</p>
 
@@ -27,7 +30,7 @@ category: flagship
   <p>Traditional football event data is manually collected, and is thus expensive, unreliable and often inconsistent across competitions and providers. Tracking feeds offer richer context as they have already been heavily processed, but when we started in 2019 there were no research avenues to bridge the gap between the tracking data and the event data, neither in academia nor in industry.</p>
 
   <h2>The approach</h2>
-  <p>I leveraged my deep knowledge of football and algorithms to design a decision tree algorithm that was extracting events from tracking data from any provider, by exploiting changes in ball possession: first determine when a player is in possession and how it changes, then combine those signals with football rules and spatial configurations to identify in-play events and set pieces.</p>
+  <p>I leveraged my deep knowledge of football and algorithms to design a decision-tree algorithm that extracts events from any provider’s tracking data, by exploiting changes in ball possession: first determine when a player is in possession and how it changes, then combine those signals with football rules and spatial configurations to identify in-play events and set pieces.</p>
   <p>The model included tunable tolerances for player proximity, ball displacement, speed, and direction. I used held-out matches and Bayesian optimization to calibrate those parameters, while keeping evaluation separated by provider, event type, and match phase to ensure the shortcomings of the model were visible.</p>
     <p>Throughout this project, we partnered with data companies, football clubs (FC Barcelona) and competition organizers (Bundesliga, English Premier League) to source data from multiple leagues, formats and providers to further validate the approach.</p>
 
@@ -37,7 +40,7 @@ category: flagship
     <p>The efforts we spearheaded paved the path towards all major football tracking data companies today offering similar automated event data products.</p>
 
   <figure class="fv-figure">
-    <img src="{{ '/assets/img/isea_infographic.png' | relative_url }}" alt="ISEA infographic summarizing the automatic event detection research">
+    <img src="{{ '/assets/img/isea_infographic.jpg' | relative_url }}" alt="ISEA infographic summarizing the automatic event detection research">
     <figcaption>ISEA infographic summarizing the Paper of the Year research.</figcaption>
   </figure>
 

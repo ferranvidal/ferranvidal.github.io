@@ -182,12 +182,13 @@
       courtGroup = court;
       svg.append(court);
       [
-        ["rect", { x: -250, y: -50, width: 500, height: 780, fill: "#f8fafc", stroke: "#94a3b8", "stroke-width": 2 }],
-        ["rect", { x: -80, y: -50, width: 160, height: 190, fill: "none", stroke: "#94a3b8", "stroke-width": 2 }],
-        ["circle", { cx: 0, cy: 142.5, r: 60, fill: "none", stroke: "#94a3b8", "stroke-width": 2 }],
-        ["path", { d: "M -220,-50 L -220,89.5 A 237.5,237.5 0 0,0 220,89.5 L 220,-50", fill: "none", stroke: "#94a3b8", "stroke-width": 2.5 }],
-        ["rect", { x: -30, y: -7.5, width: 60, height: 2, fill: "#475569" }],
-        ["circle", { cx: 0, cy: 0, r: 7.5, fill: "none", stroke: "#475569", "stroke-width": 2.5 }],
+        // Colors come from CSS custom properties (see ferran.scss) so the court follows the light/dark theme.
+        ["rect", { x: -250, y: -50, width: 500, height: 780, style: "fill: var(--fv-chart-surface); stroke: var(--fv-chart-line)", "stroke-width": 2 }],
+        ["rect", { x: -80, y: -50, width: 160, height: 190, fill: "none", style: "stroke: var(--fv-chart-line)", "stroke-width": 2 }],
+        ["circle", { cx: 0, cy: 142.5, r: 60, fill: "none", style: "stroke: var(--fv-chart-line)", "stroke-width": 2 }],
+        ["path", { d: "M -220,-50 L -220,89.5 A 237.5,237.5 0 0,0 220,89.5 L 220,-50", fill: "none", style: "stroke: var(--fv-chart-line)", "stroke-width": 2.5 }],
+        ["rect", { x: -30, y: -7.5, width: 60, height: 2, style: "fill: var(--fv-chart-ink)" }],
+        ["circle", { cx: 0, cy: 0, r: 7.5, fill: "none", style: "stroke: var(--fv-chart-ink)", "stroke-width": 2.5 }],
       ].forEach(([tag, attrs]) => court.append(svgEl(tag, attrs)));
       shown.forEach((r) => {
         const mark = svgEl("g", {
@@ -199,10 +200,10 @@
         const symbol = svgEl(
           r.made ? "circle" : "path",
           r.made
-            ? { cx: r.x, cy: r.y, r: 4.6, fill: "#16805a", stroke: "#fff", "stroke-width": 1 }
+            ? { cx: r.x, cy: r.y, r: 4.6, style: "fill: var(--fv-chart-made); stroke: var(--fv-chart-surface)", "stroke-width": 1 }
             : {
                 d: `M ${r.x - 4} ${r.y - 4} L ${r.x + 4} ${r.y + 4} M ${r.x + 4} ${r.y - 4} L ${r.x - 4} ${r.y + 4}`,
-                stroke: "#c84343",
+                style: "stroke: var(--fv-chart-missed)",
                 "stroke-width": 1.9,
                 "stroke-linecap": "round",
               }
@@ -229,9 +230,8 @@
             y: activeBox.yMin,
             width: activeBox.xMax - activeBox.xMin,
             height: activeBox.yMax - activeBox.yMin,
-            fill: "#0e6573",
+            style: "fill: var(--fv-accent); stroke: var(--fv-accent)",
             "fill-opacity": regionDraft ? 0.08 : 0.14,
-            stroke: "#0e6573",
             "stroke-width": 1.75,
             "stroke-dasharray": "5 3",
             "vector-effect": "non-scaling-stroke",
