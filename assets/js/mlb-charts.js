@@ -12,7 +12,7 @@
     Curveball: "#9d174d",
     "Knuckle Curve": "#a855f7",
   };
-  const esc = (v) => String(v || "").replace(/[&<>\"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  const esc = (v) => String(v ?? "").replace(/[&<>\"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
   const svg = (tag, attrs = {}) => {
     const el = document.createElementNS(NS, tag);
     Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
@@ -191,16 +191,17 @@
         render();
       });
     }
+    const countValue = (r, key) => (kind === "pitch" ? r[`pre${key[0].toUpperCase()}${key.slice(1)}`] : r[key]);
     const pillDefinitions = {
       outs: { label: "Outs", values: () => [...new Set(data.map((r) => r.outs).filter((v) => v !== ""))].sort((a, b) => +a - +b), display: (v) => v },
       balls: {
         label: "Balls",
-        values: () => [...new Set(data.map((r) => r.preBalls).filter(Number.isFinite))].sort((a, b) => a - b),
+        values: () => [...new Set(data.map((r) => countValue(r, "balls")).filter((v) => v !== "" && Number.isFinite(+v)))].sort((a, b) => +a - +b),
         display: (v) => v,
       },
       strikes: {
         label: "Strikes",
-        values: () => [...new Set(data.map((r) => r.preStrikes).filter(Number.isFinite))].sort((a, b) => a - b),
+        values: () => [...new Set(data.map((r) => countValue(r, "strikes")).filter((v) => v !== "" && Number.isFinite(+v)))].sort((a, b) => +a - +b),
         display: (v) => v,
       },
       pitchHand: {
@@ -251,8 +252,8 @@
       (!inputs.spinMin || (+r.spinRate >= +inputs.spinMin.value && +r.spinRate <= +inputs.spinMax.value)) &&
       (!inputs.inningMin || (+r.inning >= +inputs.inningMin.value && +r.inning <= +inputs.inningMax.value)) &&
       (!filterState.outs.size || filterState.outs.has(r.outs)) &&
-      (!filterState.balls.size || filterState.balls.has(String(r.preBalls))) &&
-      (!filterState.strikes.size || filterState.strikes.has(String(r.preStrikes))) &&
+      (!filterState.balls.size || filterState.balls.has(String(countValue(r, "balls")))) &&
+      (!filterState.strikes.size || filterState.strikes.has(String(countValue(r, "strikes")))) &&
       (!filterState.pitchHand.size || filterState.pitchHand.has(r.pitchHand)) &&
       (!filterState.batSide.size || filterState.batSide.has(r.batSide)) &&
       (!filterState.bases.has("1st") || r.onFirstId) &&
@@ -270,7 +271,7 @@
       const visible = data.filter(match),
         average = visible.length ? visible.reduce((a, r) => a + r.speed, 0) / visible.length : 0;
       summary.innerHTML = `<strong>${visible.length.toLocaleString()}</strong><span>${kind === "spray" ? "batted balls" : "pitches"} · ${average.toFixed(1)} mph avg</span>`;
-      if (metrics) {
+      if (metrics && kind === "spray") {
         const hits = visible.filter((r) => ["Single", "Double", "Triple", "Home Run"].includes(outcome(r))).length;
         const hardHit = visible.filter((r) => r.speed >= 95).length;
         const homers = visible.filter((r) => outcome(r) === "Home Run").length;
@@ -280,6 +281,28 @@
           ["Hard-Hit%", visible.length ? `${((hardHit / visible.length) * 100).toFixed(1)}%` : "--", "95+ mph exit velo"],
           ["Avg exit velo", visible.length ? `${average.toFixed(1)} mph` : "--", "batted ball speed"],
           ["Home runs", homers, visible.length ? `${((homers / visible.length) * 100).toFixed(1)}% of batted balls` : "none in view"],
+        ]
+          .map(([label, value, note]) => `<div><span>${label}</span><strong>${value}</strong><small>${note}</small></div>`)
+          .join("");
+      } else if (metrics) {
+        const strikes = visible.filter((r) => pitchResult(r) !== "Ball").length;
+        const swings = visible.filter((r) => ["Swinging Strike", "Foul", "In Play (Out)", "In Play (Not Out)"].includes(pitchResult(r)));
+        const whiffs = swings.filter((r) => pitchResult(r) === "Swinging Strike").length;
+        const spinValues = visible.map((r) => +r.spinRate).filter(Number.isFinite);
+        metrics.innerHTML = [
+          ["Pitches", visible.length, visible.length === data.length ? "in view" : `of ${data.length} total`],
+          ["Strike%", visible.length ? `${((strikes / visible.length) * 100).toFixed(1)}%` : "--", "of these pitches"],
+          [
+            "Whiff%",
+            swings.length ? `${((whiffs / swings.length) * 100).toFixed(1)}%` : "--",
+            swings.length ? `on ${swings.length} swings` : "no swings",
+          ],
+          ["Avg velo", visible.length ? `${average.toFixed(1)} mph` : "--", "all pitches"],
+          [
+            "Avg spin",
+            spinValues.length ? `${Math.round(spinValues.reduce((sum, value) => sum + value, 0) / spinValues.length).toLocaleString()} rpm` : "--",
+            "all pitches",
+          ],
         ]
           .map(([label, value, note]) => `<div><span>${label}</span><strong>${value}</strong><small>${note}</small></div>`)
           .join("");
@@ -382,7 +405,7 @@
           render();
         })
       );
-      if (kind === "pitch") drawPillGroups();
+      drawPillGroups();
       const regionButton = root.querySelector("[data-region]");
       regionButton.setAttribute("aria-pressed", String(selecting || !!region));
       regionButton.textContent = region ? "Clear area" : selecting ? "Drawing…" : "Select area";

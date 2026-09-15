@@ -398,6 +398,16 @@ body {
   font-weight: 600;
 }
 
+.fv-pub-award {
+  background: var(--fv-accent-soft);
+  border-radius: 99px;
+  color: var(--fv-accent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.12rem 0.55rem;
+  white-space: nowrap;
+}
+
 .fv-chart-example {
   border: 1px solid var(--fv-border);
   margin: 2rem 0 3rem;
@@ -956,6 +966,61 @@ body {
 
 .fv-timeline-item h3 {
   margin-top: 0;
+}
+
+.fv-project-bubbles {
+  margin: 0 0 1.6rem;
+}
+
+.fv-project-bubbles ol {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  row-gap: 0.5rem;
+}
+
+.fv-project-bubbles li {
+  align-items: center;
+  display: flex;
+}
+
+.fv-project-bubbles li:not(:last-child)::after {
+  background: var(--fv-border);
+  content: "";
+  height: 1px;
+  margin: 0 0.4rem;
+  width: 1.3rem;
+}
+
+.fv-project-bubbles a {
+  align-items: center;
+  border: 1.5px solid var(--fv-border);
+  border-radius: 50%;
+  color: var(--fv-muted);
+  display: flex;
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  height: 1.9rem;
+  justify-content: center;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  width: 1.9rem;
+}
+
+.fv-project-bubbles a:hover {
+  border-color: var(--fv-accent);
+  color: var(--fv-accent);
+}
+
+.fv-project-bubbles a.is-current {
+  background: var(--fv-accent);
+  border-color: var(--fv-accent);
+  color: #fff;
 }
 
 .fv-project-nav {

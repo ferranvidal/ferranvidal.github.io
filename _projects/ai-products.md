@@ -12,6 +12,8 @@ category: products
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
 
 <div class="fv-page">
+  {% include project_bubbles.liquid %}
+
   <p class="fv-lede">Personal projects give me room to own the product surface as well as the models and data behind it.</p>
   <p class="fv-project-period">Project period · {{ page.period }}</p>
 

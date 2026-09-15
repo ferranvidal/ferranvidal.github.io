@@ -12,6 +12,8 @@ category: engineering
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
 
 <div class="fv-page">
+  {% include project_bubbles.liquid %}
+
   <p class="fv-lede">Two generations of the same live-ingestion system, both on GCP, show how I evolve infrastructure as requirements grow: a RabbitMQ pipeline that carried FIFA certification events from 2021 to 2023, and the gRPC service that replaced it from 2024 onward.</p>
   <p class="fv-project-period">Project period · {{ page.period }}</p>
 

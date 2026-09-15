@@ -18,26 +18,26 @@ nav_order: 2
     <div class="fv-timeline-date">2022 — present</div>
     <div>
       <h3>Lead AI and Data Scientist · TTY Analytics and Consulting</h3>
-      <p>Lead data engineering, data science, machine learning, and AI delivery across a two-person consultancy. I have supported sports and technology organizations including the Golden State Warriors, Google, MIT Sports Lab, FIFA, FC Internazionale, Football DataCo, US Soccer, StatusPro, and StreamLayer.</p>
-      <p class="fv-meta">LLM applications · computer vision · data platforms · cloud architecture · technical evaluation · real-time systems</p>
+      <p>Lead data engineering, data science, machine learning, and AI delivery across a two-person consultancy. I have supported sports and technology organizations including the Golden State Warriors, Google, MIT Sports Lab, FIFA, FC Internazionale, the English Premier League, US Soccer and a few sports tech startups.</p>
+      <p class="fv-meta">LLM applications · data engineering · computer vision · data platforms · cloud architecture · technical evaluation · real-time data collection</p>
     </div>
   </div>
 
-  <div class="fv-timeline-item">
+  <!-- <div class="fv-timeline-item">
     <div class="fv-timeline-date">2025 — present</div>
     <div>
       <h3>Independent product builder</h3>
       <p>Designed and built an AI-assisted meal-planning application for toddlers, from the product experience through authentication, subscriptions, payments, email, and deployment.</p>
       <p class="fv-meta">Next.js · React · MongoDB · Auth.js · Stripe · OpenAI · DeepSeek</p>
     </div>
-  </div>
+  </div> -->
 
   <div class="fv-timeline-item">
     <div class="fv-timeline-date">2019 — 2023</div>
     <div>
       <h3>Research Scientist · MIT Sports Lab</h3>
-      <p>Led applied data science and machine learning research for FIFA. Developed production analytics for elite soccer competitions, created the auto-eventing algorithm deployed after matches at the 2022 FIFA World Cup, and validated sensing systems behind Semi-Automated Offside Technology.</p>
-      <p class="fv-meta">FIFA-sponsored · tracking data · event detection · technology validation</p>
+      <p>Led applied data science and machine learning research for FIFA. Developed production analytics for elite football competitions, created the auto-eventing algorithm deployed after matches at the 2022 FIFA World Cup, and validated sensing systems behind Semi-Automated Offside Technology.</p>
+      <p class="fv-meta">FIFA-sponsored · tracking data · skeletal data · event detection · technology validation</p>
     </div>
   </div>
 
@@ -45,7 +45,7 @@ nav_order: 2
     <div class="fv-timeline-date">2017 — 2019</div>
     <div>
       <h3>Postdoctoral Associate · MIT</h3>
-      <p>Continued computational-electromagnetics research while transitioning into sports data science. Developed numerical methods with substantially lower computational cost and led a San Antonio Spurs-sponsored project connecting video tracking with athlete load.</p>
+      <p>Continued computational-electromagnetics research stemming from my PhD while transitioning into sports data science. Led a San Antonio Spurs-sponsored project connecting video tracking with athlete load and mentored six teams of students undertaking sports-related data projects.</p>
       <p class="fv-meta">Aerospace Computational Design Lab · Sports Lab · numerical methods</p>
     </div>
   </div>
@@ -58,11 +58,15 @@ nav_order: 2
   </div>
   <div class="fv-timeline-item">
     <div class="fv-timeline-date">2011 — 2013</div>
-    <div><h3>MIT · SM in Computation for Design and Optimization</h3></div>
+    <div><h3>MIT · SM in Computation for Design and Optimization</h3><p>Thesis: <em>A reduced-basis method for input-output uncertainty propagation in stochastic PDEs</em>.</p></div>
+  </div>
+  <div class="fv-timeline-item">
+    <div class="fv-timeline-date">2008 — 2010</div>
+    <div><h3>Polytechnic University of Catalonia</h3><p>BSc in Mathematics, sponsored by CFIS.</p></div>
   </div>
   <div class="fv-timeline-item">
     <div class="fv-timeline-date">2005 — 2011</div>
-    <div><h3>Polytechnic University of Catalonia</h3><p>Dual BSc in Civil Engineering and Mathematics.</p></div>
+    <div><h3>Polytechnic University of Catalonia</h3><p>BSc in Civil Engineering.</p></div>
   </div>
 
   <h2>Technical focus</h2>

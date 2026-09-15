@@ -83,12 +83,14 @@ latest_posts:
     <h2>Recognition</h2>
     <div class="fv-recognition">
       <div><span class="fv-recognition-year">2022</span><h3>Paper of the Year</h3><p>International Sports Engineering Association and Springer Sports Engineering, for <em>Automatic event detection in football using tracking data</em>.</p></div>
+      <div><span class="fv-recognition-year">2021</span><h3>d'Arbeloff Fund for Excellence in Education</h3><p>MIT award to create a curriculum linking a first-year communication class with a capstone in sports technology, valued at $28,000.</p></div>
       <div><span class="fv-recognition-year">2011–2013</span><h3>La Caixa Foundation Fellowship</h3><p>$150,000 fellowship supporting graduate study at MIT.</p></div>
+      <div><span class="fv-recognition-year">2011</span><h3>CFIS Honorary Degree in Interdisciplinary Education</h3><p>Awarded for successful completion of the CFIS dual-degree program at UPC-BarcelonaTech.</p></div>
     </div>
   </section>
 
   <section class="fv-section">
     <h2>Contact</h2>
-    <p>Based in Hawai‘i and working remotely across US time zones. Reach me at <a href="mailto:vc.ferran@gmail.com">vc.ferran@gmail.com</a> or on <a href="https://www.linkedin.com/in/ferranvc">LinkedIn</a>. Research record: <a href="https://orcid.org/0000-0002-8501-2910">ORCID</a>.</p>
+    <p>Based in Hawai‘i and working remotely across US time zones. Reach me at <a href="mailto:vc.ferran@gmail.com">vc.ferran@gmail.com</a> or on <a href="https://www.linkedin.com/in/ferranvc">LinkedIn</a>. Research record: <a href="https://scholar.google.com/citations?user=GsF2GmAAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a> · <a href="https://orcid.org/0000-0002-8501-2910">ORCID</a>.</p>
   </section>
 </div>

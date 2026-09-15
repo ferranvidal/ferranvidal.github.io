@@ -12,6 +12,8 @@ category: flagship
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
 
 <div class="fv-page">
+  {% include project_bubbles.liquid %}
+
   <p class="fv-lede">I developed a provider-agnostic system that automatically detects football events from player and ball tracking data. The work moved from applied research to post-match deployment at the 2022 FIFA World Cup.</p>
   <p class="fv-project-period">Project period · {{ page.period }}</p>
 

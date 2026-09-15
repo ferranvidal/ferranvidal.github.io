@@ -1,0 +1,18 @@
+{% assign sorted_projects = site.projects | sort: 'importance' %}
+
+<nav class="fv-project-bubbles" aria-label="Jump to project">
+  <ol>
+    {% for project in sorted_projects %}
+      <li>
+        <a
+          href="{{ project.url | relative_url }}"
+          class="{% if project.url == page.url %}is-current{% endif %}"
+          title="{{ project.title }}"
+          aria-label="{{ project.title }}"
+          {% if project.url == page.url %}aria-current="page"{% endif %}
+          >{{ forloop.index }}</a
+        >
+      </li>
+    {% endfor %}
+  </ol>
+</nav>
