@@ -16,7 +16,7 @@ capability: "Computer vision"
 role: "Two-person engagement; I built the synthetic data pipeline, model, and route tracing"
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url | bust_css_cache }}">
 
 <div class="fv-page">
   <p class="fv-lede">This project revolved around training a model that was able to detect routes from NFL playbooks and transforming them into structured objects. The main challenge was that there was no annotated dataset. I designed a computer-vision pipeline that learned to identify and extract routes entirely from synthetic examples.</p>

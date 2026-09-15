@@ -8,7 +8,7 @@ nav_url: /assets/pdf/Ferran_Vidal_Codina_Resume.pdf
 description: Download Ferran Vidal-Codina's résumé.
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url | bust_css_cache }}">
 
 <div class="fv-page">
   <p class="fv-lede">A two-page overview of my professional experience, selected projects, education, and technical skills.</p>

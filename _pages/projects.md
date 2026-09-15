@@ -7,7 +7,7 @@ nav: true
 nav_order: 1
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url | bust_css_cache }}">
 
 <div class="fv-page">
   <p class="fv-lede">Production AI, machine learning, and data-platform work. Each project is written up as problem → approach → measurable result.</p>

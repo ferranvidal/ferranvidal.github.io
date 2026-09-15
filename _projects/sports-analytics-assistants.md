@@ -16,9 +16,9 @@ capability: "LLM systems"
 role: "Designed and built jointly with one colleague, from data platform to chat interface"
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
-<script src="{{ '/assets/js/nba-shot-chart.js' | relative_url }}" defer></script>
-<script src="{{ '/assets/js/mlb-charts.js' | relative_url }}" defer></script>
+<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url | bust_css_cache }}">
+<script src="{{ '/assets/js/nba-shot-chart.js' | relative_url | bust_file_cache }}" defer></script>
+<script src="{{ '/assets/js/mlb-charts.js' | relative_url | bust_file_cache }}" defer></script>
 
 <div class="fv-page">
   <p class="fv-lede">I designed and built production chatbots that let users explore sports data through natural language without giving up analytical accuracy. The systems turn questions into validated queries over structured NBA, MLB, and NCAA basketball data, then return answers and visualizations tied to the underlying records.</p>
