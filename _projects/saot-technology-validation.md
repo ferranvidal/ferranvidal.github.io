@@ -1,6 +1,6 @@
 ---
 layout: page
-title: echnical Validation of FIFA's SAOT
+title: Technical Validation of FIFA's SAOT
 description: Live data collection, quality assessment, and synchronization protocols for FIFA's semi-automated offside technology.
 period: January 2021 – June 2022
 img:
@@ -28,7 +28,7 @@ category: flagship
   <p>I developed a live data-collection platform using <a href="{{ '/projects/data-platforms/' | relative_url }}">RabbitMQ and Google Cloud Platform</a>, measured latency from collection to reception, and performed statistical analyses of data quality and consistency across providers. I also analyzed the synchronization between connected-ball and skeletal-tracking data so the two sources could support a reliable officiating workflow.</p>
 
   <div class="fv-video-embed">
-    <iframe src="https://www.youtube.com/embed/FEPKAeGzwPU?start=26" title="Semi-Automated Offside Technology" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/rPCovGdxsVM" title="Semi-Automated Offside Technology" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   </div>
 
   <h2>Impact</h2>
