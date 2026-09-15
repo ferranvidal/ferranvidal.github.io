@@ -63,7 +63,7 @@ latest_posts:
       <a class="fv-work-item" href="{{ '/projects/sports-analytics-assistants/' | relative_url }}">
         <span class="fv-work-number">04</span>
         <span><span class="fv-work-title">Conversational sports analytics<small class="fv-work-period">{{ assistants_project.period }}</small></span><span class="fv-work-copy">Natural-language analysis grounded in accurate structured data for NBA, MLB, and NCAA basketball.</span></span>
-        <span class="fv-work-result">Prefect · Firebase<br>BigQuery · DuckDB<br>RAG · LangChain · OpenAI</span>
+        <span class="fv-work-result">Prefect · Firebase<br>BigQuery · DuckDB<br>LangChain · OpenAI</span>
       </a>
     </div>
   </section>
@@ -91,6 +91,6 @@ latest_posts:
 
   <section class="fv-section">
     <h2>Contact</h2>
-    <p>Based in Hawai‘i and working remotely across US time zones. Reach me at <a href="mailto:vc.ferran@gmail.com">vc.ferran@gmail.com</a> or on <a href="https://www.linkedin.com/in/ferranvc">LinkedIn</a>. Research record: <a href="https://scholar.google.com/citations?user=GsF2GmAAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a> · <a href="https://orcid.org/0000-0002-8501-2910">ORCID</a>.</p>
+    <p>Reach me at <a href="mailto:vc.ferran@gmail.com">vc.ferran@gmail.com</a> or on <a href="https://www.linkedin.com/in/ferranvc">LinkedIn</a>. Research record: <a href="https://scholar.google.com/citations?user=GsF2GmAAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a> · <a href="https://orcid.org/0000-0002-8501-2910">ORCID</a>.</p>
   </section>
 </div>

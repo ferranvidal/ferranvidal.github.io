@@ -93,7 +93,7 @@ category: flagship
 
   <details class="fv-collapsible" open>
   <summary><h2>NCAA basketball assistant</h2></summary>
-  <p>The NCAA chatbot is restricted to Division I basketball, and covers approximately 240K games, 2M player-game boxscore entries and 30M play-by-play records, with additional tables for shots, lineups, conferences, standings, draft and ratings. It supports SQL-driven answers and visualizations, including shot charts. Data comes from the College Basketball Data API as its upstream source and supports both development and production environments.</p>
+  <p>The NCAA chatbot is restricted to Division I basketball, and covers approximately 240K games, 2M player-game boxscore entries and 30M play-by-play records, with additional tables for shots, lineups, conferences, standings, draft and ratings. It supports SQL-driven answers and visualizations, including shot charts. Data comes from the College Basketball Data API.</p>
   </details>
 
   <h2>Accuracy by design</h2>
