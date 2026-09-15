@@ -372,6 +372,9 @@ body {
 .fv-zoom-controls {
   display: inline-flex;
 }
+.fv-zoom-controls {
+  gap: 0.4rem;
+}
 .fv-chart-controls button,
 .fv-chart-controls select {
   background: var(--fv-surface);
@@ -398,6 +401,13 @@ body {
 .fv-outcome-toggle button:last-child,
 .fv-zoom-controls button:last-child {
   border-radius: 0 4px 4px 0;
+}
+.fv-zoom-controls button,
+.fv-zoom-controls button:first-child,
+.fv-zoom-controls button:last-child {
+  border-radius: 4px;
+  margin-left: 0;
+  min-width: 2.45rem;
 }
 .fv-filter-button span:first-child {
   display: inline-block;
