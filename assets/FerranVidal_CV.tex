@@ -1,0 +1,404 @@
+\documentclass[10pt,letter paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{multicol}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\renewcommand\labelitemi{--}
+
+% moderncv themes
+\moderncvstyle{banking}                             % style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{black}                               % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+
+% character encoding
+%\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+
+% adjust the page margins
+ \usepackage[left=.8in,top=1in,right=.8in,bottom=1in]{geometry} % Document margins%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+% personal data
+\name{Ferran}{Vidal-Codina}
+\vspace{0.2cm}
+%\title{Resumé title}                               % optional, remove / comment the line if not wanted
+%\address{Remote}{}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
+\phone[mobile]{+1-(857)-600-7838}                   % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
+%\phone[fixed]{+2~(345)~678~901}
+%\phone[fax]{+3~(456)~789~012}
+\email{vc.ferran@gmail.com}                               % optional, remove / comment the line if not wanted
+\social[linkedin]{ferranvc}                        % optional, remove / comment the line if not wantd
+\extrainfo{\href{https://huggingface.co/spaces/ferranvidal/career\_conversation}{\textbf{Chat with me!}}}
+
+%\social[twitter]{jdoe}                             % optional, remove / comment the line if not wanted
+%\social[github]{https://huggingface.co/spaces/ferranvidal/career_conversation}                              % optional, remove / comment the line if not wanted
+%\extrainfo{additional information}                 % optional, remove / comment the line if not wanted
+%\photo[64pt][0.4pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+%\quote{Some quote}                                 % optional, remove / comment the line if not wanted
+% to show numerical labels in the bibliography (default is to show no labels); only useful if you make citations in your resume
+%\makeatletter
+%\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+%\makeatother
+%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}% CONSIDER REPLACING THE ABOVE BY THIS
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+\vspace*{-3.25mm}
+
+\section{EXPERIENCE}
+\vspace{0.2cm}
+
+\subsection{Data, AI, cloud computing
+}
+\vspace{0.2cm}
+
+\cventry{September 2022 - Present}{
+\begin{itemize}
+\item Assisted multiple sports organizations in leveraging the power of their data through AI and cloud computing. Current and former clients include: GSW, Google, MIT Sports Lab, FIFA, FC Internazionale, Football DataCo, Dataskrive, US Soccer, StatusPro, StreamLayer. 
+\item Sample projects include:
+\begin{itemize}
+\item Managed and executed a project that required: collecting real-time and postprocessed player skeletal data from three different providers from one of Europe's top 5 leagues; performing an academic assessment of the data for each provider; communicating the findings to key stakeholders.
+\item Built an NBA stats chatbot powered by Prefect, BigQuery, DuckDB and LangChain.
+\item Created ETL pipelines to ingest football tracking data from the data provider to a AWS Redshift serverless instance using AWS Lambda, Glue and Step Functions.
+\item Performed multiple audits of cloud and data ecosystems for sports organizations.
+\item Built a Neo4j-powered RAG chatbot to answer NFL-related questions.
+\item Implemented quality control logic for daily ingest of sports data in Airflow.
+\item Assisted in the migration of several ETL pipelines between platforms (Nexla, Prefect, Airflow, AWS Step Functions).
+\item Developed the backend implementation of a Gemini-powered coach to assist players in a sports VR game.
+\item Implemented dashboarding solutions to extract relevant metrics of viewership and fan engagement for the Augusta Masters 2023 at scale.
+\end{itemize} \end{itemize} }{Data engineering - Data scientist - ML engineering}{TTY}{}{}
+
+\cventry{May 2025 - Present}{\begin{itemize}
+\item Developed a meal planner website app for toddlers in Javascript. 
+\item Tech stack includes: Next.js, React, TailwindCSS, DaisyUI, MongoDB, Auth.js, Resend, Stripe.
+\item Integration with OpenAI and DeepSeek chat models for AI-powered utilities within the app, such as meal \& ingredient generation and nutritional value calculations. 
+\item App was coded by leveraging LLMs for component design on top of a boilerplate code to ensure reliability and security.
+\end{itemize}}{App Design}{Personal Project}{}{}
+
+
+
+\cventry{July 2019 - June 2023}{\begin{itemize}
+\item Developed an algorithm for automatic event detection in soccer using ball and player tracking data from optical Electronic Performance Tracking Systems:
+\begin{itemize}
+\item Algorithm is decision-tree based, requires no learning and runs in $<3$ mins on a laptop.
+\item Detection rate is +90\% of in-game events and +95\% set pieces on +450 matches. 
+\item Algorithm was put into production for post-match auto-eventing in the 2022 FIFA World Cup.
+\item Data contributors included FIFA, English Premier League, FC Barcelona, DFB.
+\end{itemize} 
+\item Validated the optical skeletal tracking and connected ball technologies towards \href{https://www.fifa.com/technical/media-releases/semi-automated-offside-technology-to-be-used-at-fifa-world-cup-2022-tm}{Semi-Automatic Offside Technology}, including:
+\begin{itemize} 
+\item Develop a live data collection platform using RabbitMQ and Google Cloud Platform.
+\item Assessed latency of technologies from collection to reception.
+\item Analyzed syncing between connected ball and skeletal tracking data technologies for use in officiating.
+\item Performed statistical analyses on overall data quality and consistency for more than 80 matches and testing sessions.
+\end{itemize}
+\end{itemize} }{Research Scientist at MIT Sports Lab (Sponsored by FIFA)}{MIT}{}{}
+
+ \cventry{Jan.-Mar. 2018}{\begin{itemize} 
+\item The solution for the challenge consisted of simple machine learning model that used few highly explanatory features to predict cancer probability on 100 patient dataset (train 30, test 70).
+\item Tasks included team coordination, feature engineering, model and feature selection.
+\item Ranked 5/107, only top-10 solution that did not involve deep learning and full-time dedication.
+ \end{itemize}}{Data Science Challenge: Lung Nodule Malignancy Prediction based on Sequential CT Scans
+}{UPC-Barcelona Tech}{}{}
+
+
+%\cventry{Spring 2018 - Spring 2019}{\begin{itemize} 
+%%\item Technical advisor for MIT course Sports and Technology: Engineering and Innovation
+%\item Advised three teams of 5--7 students for a semester in data-centric projects.
+%\item Tasks included problem definition, data exploration and interpretation and project planning.
+%\item Projects sponsored by FC Barcelona (2 projects) and San Antonio Spurs.
+% \end{itemize}}{Technical advisor for MIT course 2.980, Sports and Technology: Engineering and Innovation (unpaid)
+%}{MIT}{}{}
+
+
+\cventry{Fall 2017}{\begin{itemize} 
+\item Technical lead of a three-student team on MIT course 2.980, Sports and Technology: Engineering and Innovation.
+\item Class project sponsored by San Antonio Spurs (NBA).
+\item Created a model to predict 3D external load from 2D external load obtained from accelerometer data.
+\item Created a model to approximate 2D external load from video tracking data.
+\item Created a framework to extract 3D external load from video tracking data combining the above models, and worked with the Spurs to integrate it in their system.
+ \end{itemize}}
+{Athlete external load: converting 2D position data into 3D athlete load}{MIT Sports Lab}{}{}
+
+\vspace{0.2cm}
+
+\subsection{Research in numerical modeling and simulation}
+\vspace{0.2cm}
+
+\cventry{July 2019 - August 2022}{Developed a research code to simulate nonlinear and quantum plasmonics phenomena based on the hybridizable discontinuous Galerkin method.}{Research Scientist at Aerospace Computational Design Lab (ACDL)}{MIT}{}{}
+
+\cventry{June 2017 - June 2019}{Main projects included the development of several methods and models:\begin{itemize}%
+\item Numerical method to simulate second harmonic generation (a nonlinear phenomena) in 3d plasmonic nanostructures. 
+\item Nested hybridizable discontinuous Galerkin method, which drastically reduces the memory footprint and achieves 100-fold reductions in computational requirements when solving plasmonic phenomena.
+\item Performed simulations for periodic coaxial nanogap structures and compared the results with experimental data, concluding that nonlocality is responsible for the large resonance blue-shifts observed on sub-5 nm gaps instead of surface roughness.
+\item Performed an extensive computational study of nonlocal plasmonics phenomena for a 2d metallic slit.  %Methods are key for robust design, outperforming standard competitors by several orders of magnitude for wave propagation problems
+% \item Supervisors: N.-C.~Nguyen and J.~Peraire
+\end{itemize}}{Postdoctoral Associate at Aerospace Computational Design Lab (ACDL)}{MIT}{}{}
+
+\cventry{2011-2017}{Main projects included the development of several methods and models:\begin{itemize}%
+\item Numerical method to perform 3d simulation of nonlocal phenomena in plasmonic nanostructures using the hybridizable discontinuous Galerkin method.
+\item Reduced order model to compute approximate solutions of parametrized 3d plasmonic nanogap structures. 
+\item Advanced multiscale method for stochastic simulation and robust design of photonic crystals.
+\item Combining model and variance reduction techniques to efficiently evaluate statistical outputs of stochastic PDEs. %Methods are key for robust design, outperforming standard competitors by several orders of magnitude for wave propagation problems
+% \item Supervisors: N.-C.~Nguyen and J.~Peraire
+\end{itemize}}{Research Assistant at Aerospace Computational Design Lab (ACDL)}{MIT}{}{}
+
+\cventry{2009-2011}{\begin{itemize}%
+\item Designed a MATLAB software to compute bounds of load factor inducing collapse for 3d structures, combining limit analysis with linear programming.% to predict $\sim$15\% less conservative results than commercial software.
+% \item Principal researchers: J.~Bonet, A.~Huerta, J.~Peraire
+\end{itemize}}{Research Assistant at Laboratori de C\`{a}lcul Num\`{e}ric (LaC\`{a}N)}{UPC-BarcelonaTech}{}{}
+
+\vspace{0.2cm}
+
+
+%\cventry{Spring 2019}{\begin{itemize} 
+%%\item Technical advisor for MIT course Sports and Technology: Engineering and Innovation
+%\item Evaluated player data acquisition in one basketball game with two different wearable fitness devices.% for a six-student team
+%\item Final product consisted of a recommendation and a MATLAB program to evaluate future games. 
+% \end{itemize}}{Player performance system analysis (Sponsored by San Antonio Spurs) -- Technical advisor 
+%}{MIT}{}{}
+%
+%\cventry{Fall 2018}{\begin{itemize} 
+%%\item Technical advisor for a six-student team on MIT course Sports and Technology
+%\item Developed an ODE model to simulate 1 vs 1 dribbling scenarios in soccer
+%\item Dribbling trajectories were accurately reproduced through parameter tuning with real player tracking data
+% \end{itemize}}{Statistics of dribbling (Sponsored by FC Barcelona) -- Technical advisor}{MIT}{}{}
+% 
+%
+%\cventry{Spring 2018}{\begin{itemize} 
+%%\item Technical advisor for MIT course Sports and Technology: Engineering and Innovation
+%\item Tasks included problem definition, data exploration, feature engineering, model selection and analysis.% for a six-student team
+%\item Final model consisted of clustering attacks of all 20 La Liga teams and assessing similarity in attacking patterns across teams, using data of football events for an entire season of games.
+% \end{itemize}}{Classifying opponent attacking tendencies within La Liga (Sponsored by FC Barcelona) -- Technical advisor 
+%}{MIT}{}{}
+
+
+%\cventry{Fall 2017}{Sponsored by the San Antonio Spurs}{Athlete health and performance}{MIT}{}{}
+
+%\cventry{Summer 2009}{Assistant in calculation of structures and reinforcements}{STRESCON Engineering Consultancy}{Accra, Ghana}{}{}
+
+%\cventry{Summer 2008}{Assistant of Project Manager in the urbanization plan of 'El Bruguer'}{Grupo Mecanotubo S.A.}{Vic, Spain}{}{}
+%
+\vspace{0.2cm}
+\subsection{Teaching}
+\vspace{0.2cm}
+
+\cventry{2019 - 2021}{\begin{itemize} 
+%\item Technical advisor for MIT course Sports and Technology: Engineering and Innovation
+\item Co-designed three workshops focused on effective communication within sports organizations.
+\item Formulated several semester-long projects based on specific needs from sports industry stakeholders (FIFA, San Jose Earthquakes, New York Islanders, Adidas, MLB).% for a six-student team
+\item Coordinated and mentored teams of students to successfully execute the projects and deliver results to stakeholders.
+%\item Projects required data analysis and development of computational methods. Project topics: data quality assessment (FIFA), quantifying player's decision making skills in dribbling situations (San Jose Earthquakes) and boosting fan engagement (New York Islanders).
+ \end{itemize}}{Instructor for MIT course 2.980, Sports and Technology: Engineering and Innovation
+}{MIT}{}{}
+
+
+\cventry{2009-2011}{\begin{itemize}%
+\item Conceived +100 calculus problems with WIRIS Quizzes as a part of the  'Enginycat' program for innovation in teaching.
+ \item Instructed recitations, graded problem sets and exams and designed recitation material for classes of 50 undergraduate  students.
+\end{itemize}}{Teaching assistant for calculus}{UPC-BarcelonaTech}{}{}
+
+\cventry{2006-2009}{\begin{itemize} 
+\item Created and lectured review courses (6h/week) in calculus, differential geometry and differential equations for classes of 25 students.
+\end{itemize}}{Lecturer for undergraduates in Engineering degrees 
+}{Academia ASES}{}{}
+
+\vspace{0.2cm}
+\subsection{Internships}
+\vspace{0.2cm}
+\cventry{Summer 2013}{\begin{itemize}%
+\item Developed an interactive MATLAB tool to analyze geological data from inversion.
+\item Tool is perfectly integrated into existing software and fully functional nowadays.
+\end{itemize}}{Intern in Modeling and Inversion Techniques Lab}{Schlumberger-Doll Research}{}{}
+
+
+\section{EDUCATION}
+% \cventry{2013-2017}{Ph.D. in Computational Science and Engineering, minor in Machine Learning}{MIT}{}{}{}
+% \cventry{2011-2013}{S.M. in Computation for Design and Optimization}{MIT}{}{}{}
+% \cventry{2005-2011}{Bachelor's Degree in Civil Engineering}{UPC-BarcelonaTech}{}{}{}
+% \cventry{2008-2010}{Bachelor's Degree in Mathematics}{UPC-BarcelonaTech}{}{}{}
+\cventry{2013-2017}{MIT}{Ph.D. in Computational Science and Engineering, minor in Machine Learning}{}{}{}
+\cventry{2011-2013}{MIT}{S.M. in Computation for Design and Optimization}{}{}{}
+\cventry{2005-2011}{Polytechnic University of Catalonia - BarcelonaTech (UPC)}{Bachelor's Degree in Civil Engineering}{}{}{}
+\cventry{2008-2010}{Polytechnic University of Catalonia - BarcelonaTech (UPC)}{Bachelor's Degree in Mathematics}{}{}{}
+\vspace{0.25cm}
+
+
+\subsection{Theses}
+\cvpubli{2017}{F.~Vidal-Codina}{\href{https://www.dropbox.com/s/k1mbvbw3fftz1rp/SM\%20Thesis.pdf?dl=0}{Simulation methods for plasmonic structures}}{}{}{MIT Computational Science and Engineering Ph.D. Thesis. Supervisors: J.~Peraire, N.-C.~Nguyen}
+
+\cvpubli{2013}{F.~Vidal-Codina}{\href{https://www.dropbox.com/s/k1mbvbw3fftz1rp/SM\%20Thesis.pdf?dl=0}{A reduced-basis method for input-output uncertainty propagation in stochastic PDEs}}{}{}{MIT Computation for Design and Optimization S.M. Thesis. Supervisors: J.~Peraire, N.-C.~Nguyen}
+
+\cvpubli{2011}{F.~Vidal-Codina}{\href{http://upcommons.upc.edu/pfc/bitstream/2099.1/12458/1/Optimal\%20collapse\%20simulator\%20for\%20three-dimensional\%20structures.pdf}{Optimal collapse simulator for three-dimensional structures}}{}{}{UPC-BarcelonaTech Degree Thesis. Supervisors: A.~Huerta, J.~Sa\`{a}-Seoane}
+
+\cvpubli{2011}{F.~Vidal-Codina}{\href{https://www.dropbox.com/s/98n4p9ldndnjfs4/Project\%20of\%20Wastewater\%20Treatment\%20Plant\%20-\%20Slides.mov?dl=0}{Construction project of an industrial wastewater treatment plant and collection system in Or\'{i}s, Osona}}{}{}{UPC-BarcelonaTech Degree Thesis. Supervisor: A.~Huerta}
+\vspace{0.4cm}
+
+%\subsection{Relevant Ph.D. level coursework}
+%
+%\cvpubli{Fall 2016}{Instructor: A.~Torralba}{6.819/6.869: Advances in Computer Vision}{}{}{}
+%
+%\cvpubli{Fall 2014}{Instructor: D.~Shah}{6.438: Algorithms for Inference}{}{}{}
+%
+%\cvpubli{Fall 2014}{Instructor: L.~Rosasco, T.~Poggio}{9.520: Statistical Learning Theory and Applications}{}{}{}
+%
+%\cvpubli{Fall 2013}{Instructor: T.~Jaakkola}{6.867: Machine Learning}{}{}{}
+%
+%\cvpubli{Spring 2013}{Instructor: N.-C.~Nguyen, X.~Roca, J.~Peraire}{16.930: Advanced Topics in Numerical Methods for Partial Differential Equations}{}{}{}
+%
+%\cvpubli{Spring 2012}{Instructor: P.~Parrilo}{6.256: Algebraic Techniques and Semidefinite Optimization}{}{}{}
+%
+%
+%\cvpubli{Spring 2012}{Instructor: Y.~Marzouk}{16.940: Numerical Methods for Stochastic Modeling and Inference}{}{}{}
+%
+%\cvpubli{Fall 2011}{Instructor: L.~Daniel, A.~T.~Patera, Q.~ Wang, J.~White}{2.097/6.339/16.920  Numerical Methods for Partial Differential Equations}{}{}{}
+%\vspace{0.4cm}
+
+
+\section{PUBLICATIONS}
+\vspace{0.2cm}
+\subsection{Published in peer-reviewed journal papers}
+\vspace{0.2cm}
+
+\cvpubli{2023}{\textnormal{F.~Vidal-Codina}, L.~Brink, SK.~Ha, J.~Snowdon, [and 6 others, including A.~Hosoi]}{Measuring skill via player dynamics in football dribbling}{}{}{Nature Scientific Reports 2023, 13.1, 19004}
+
+\cvpubli{2023}{\textnormal{F.~Vidal-Codina}, C.~Cirac\`{i}, N.-C.~Nguyen, S.-H.~Oh and J.~Peraire}{A hybridizable discontinuous Galerkin method for computing quantum hydrodynamic effects in three-dimensional metallic nanostructures}{}{}{Journal of Computational Physics 489, 112260}
+
+\cvpubli{2023}{D.~A.~D\'{i}az-Faes, \textnormal{F.~Vidal-Codina}, A.~Segura-Montagut, N.~Pereda}{How the COVID-19 pandemic hit crime in Barcelona: Analysis of variation in crime trends}{}{}{European Journal of Criminology 2023, 14773708231156326}
+
+\cvpubli{2022}{T.~Ha, D.~Yoo, C.~ Heo, \textnormal{F.~Vidal-Codina}, [and 8 others, including J.~Peraire and S.-H.~Oh]}{Sub-wavelength THz resonance imaging (STRING) for molecular fingerprinting}{}{}{Nano Letters 2022, 22, 24, 10200--10207}
+
+\cvpubli{2022}{J.~Shi, D.~Yoo, \textnormal{F.~Vidal-Codina}, [and 10 others, including V.~Bulovi\'{c} and K.~Nelson]}{A room-temperature polarization sensitive CMOS terahertz camera based on quantum-dot-enhanced terahertz-to-visible photon upconversion}{}{}{Nature Nanotechnology 2022, 1--6, https://doi.org/10.1038/s41565-022-01243-9}
+
+\cvpubli{2022}{\textnormal{F.~Vidal-Codina}, N.~Evans, B.~El~Fakir, J.~Billingham}{Automatic event detection in football using tracking data}{}{}{Sports Engineering 25(1), 1--15}
+
+\cvpubli{2021}{\textnormal{F.~Vidal-Codina}, N.-C.~Nguyen, C.~Cirac\`{i}, S.-H.~Oh and J.~Peraire}{A nested hybridizable discontinuous Galerkin method for computing second-harmonic generation in three-dimensional metallic nanostructures}{}{}{Journal of Computational Physics 429, 110000}
+
+\cvpubli{2020}{C.~Cirac\`{i}, \textnormal{F.~Vidal-Codina}, D.~Yoo, J.~Peraire, S.-H.~Oh and D.~Smith}{Impact of surface roughness in nanogap plasmonic systems}{}{}{ACS Photonics 7 (4), 908--913}
+
+\cvpubli{2020}{\textnormal{F.~Vidal-Codina}, Luis Mart\'{i}n-Moreno, C.~Cirac\`{i}, D.~Yoo, N.-C.~Nguyen, S.-H.~Oh and J.~Peraire}{Terahertz and mid-infrared nonlocality and field saturation in extreme-scale nanoslits}{}{}{Optics Express 28(6), 8701--8715}
+
+\cvpubli{2019}{D.~Yoo, \textnormal{F.~Vidal-Codina}, C.~Cirac\`{i}, N.-C.~Nguyen, D.~R.~Smith, J.~Peraire and S.-H.~Oh}{Modeling and observation of mid-infrared nonlocality in effective epsilon-near-zero ultranarrow coaxial apertures}{}{}{Nature Communications 10(1), 1--9}
+
+\cvpubli{2019}{\textnormal{F.~Vidal-Codina}, J.~Sa\`{a}-Seoane, N.-C.~Nguyen and J.~Peraire}{A multiscale continuous Galerkin method for stochastic simulation and robust design of wave propagation through heterogeneous materials}{}{}{Journal of Computational Physics: X 2, 100016}
+
+\cvpubli{2018}{D.~Yoo, D.~A.~Mohr, \textnormal{F.~Vidal-Codina}, [and 11 others, including J.~Peraire and S.-H.~Oh]}{High-contrast infrared absorption spectroscopy via mass-produced coaxial zero-mode resonators with sub-10 nm gaps
+}{}{}{Nano Letters 18(3), 1930--1936}
+
+\cvpubli{2018}{\textnormal{F.~Vidal-Codina}, N.-C.~Nguyen and J.~Peraire}{Computing parametrized solutions for three-dimensional plasmonic structures}{}{}{J. Computational Physics 366, 89--106}
+
+\cvpubli{2018}{\textnormal{F.~Vidal-Codina}, N.-C.~Nguyen, S.-H.~Oh and J.~Peraire}{A hybridizable discontinuous Galerkin method for computing nonlocal
+electromagnetic effects in three-dimensional metallic nanostructures}{}{}{J. Computational Physics 355, 548--565}
+
+\cvpubli{2016}{\textnormal{F.~Vidal-Codina}, N.-C.~Nguyen, M.~Giles and J.~Peraire}{\href{http://epubs.siam.org/doi/abs/10.1137/15M1016783}{An empirical interpolation and model-variance reduction method for computing statistical outputs of parametrized stochastic partial differential equations}}{}{}{SIAM/ASA J. Uncertainty Quantification 4(1), 244--265}
+
+\cvpubli{2015}{\textnormal{F.~Vidal-Codina}, N.-C.~Nguyen, M.~Giles and J.~Peraire}{\href{http://arxiv.org/pdf/1409.1526v1.pdf}{A model and variance reduction method for computing statistical outputs of stochastic elliptic partial differential equations}}{}{}{J. Computational Physics 297, 700--720}
+\vspace{0.2cm}
+
+\vspace{0.4cm}
+
+\section{CONFERENCES}
+\vspace{0.2cm}
+
+\cvpublit{October 2022}{\textnormal{F.~Vidal-Codina}, R.~BenSaid}{Automatic event detection, a journey from research to application}{Zurich, CH}{}{Football Quality Programme, Conference \& Research Symposium}{13.5}
+
+
+\cvpublit{October 2021}{\textnormal{F.~Vidal-Codina}}{Leveraging automatic event detection to extract football insights}{Zurich, CH (Online)}{}{Football Quality Programme, Conference \& Research Symposium}{13.5}
+
+\cvpublit{September 2021}{\textnormal{F.~Vidal-Codina}, L.~Brink, SK~Ha, B.~Rauch, J.~Snowdon, F.~Wang, D.~Wu, M.~L\'{o}pez-Felip, C.~Clanet, A.~Hosoi}{Measuring player-specific dribbling attributes in football}{Mainz, DE (Online)}{}{ICCSS 2021}{13.5}
+
+\cvpublit{June 2021}{\textnormal{F.~Vidal-Codina}, N.~Evans}{El futuro del dato en el deporte}{Mexico City, MX (Online)}{}{Summit Liga MX 2021}{13.5}
+
+\cvpublit{January 2021}{\textnormal{F.~Vidal-Codina}}{Automatic event detection in football using tracking data}{Cambridge, MA (Online)}{}{MIT Sports Summit 2021}{13.5}
+
+\cvpublit{October 2020}{\textnormal{F.~Vidal-Codina}}{Automatic event detection in football using tracking data}{Zurich, CH (Online)}{}{Football Quality Programme, Conference \& Research Symposium}{13.5}
+
+\cvpublit{July 2019}{K.~Gallagher, \textnormal{F.~Vidal-Codina}, M.~L\'{o}pez-Felip, J.~Joseph, J.~Peraire}{Using machine learning to infer individual athlete movement models from video}{Prague, CZ}{}{European College of Sports Science}{13.5}
+
+\cvpublit{June 2019}{L.~Brink, SK~Ha, B.~Rauch, J.~Snowdon, F.~Wang, D.~Wu, M.~L\'{o}pez-Felip, \textnormal{F.~Vidal-Codina}, C.~Clanet, A.~Hosoi}{Mathematical analysis and modeling of FC Barcelona dribble dynamics}{Melbourne, AU}{}{World Congress of Science and Football}{13.5}
+
+\cvpublit{Apr. 2018}{CFIS-UPC team consisting of undergrads, grads and postdocs (total 20)}{Predicting lung nodule malignancy
+with radiomics}{Washington, D.~C.}{}{Challenge: Lung Nodule Malignancy Prediction based on Sequential CT Scans (ISBI 2018)}{13.5}
+
+\cvpublit{Feb. 2017}{\textnormal{F.~Vidal-Codina}, N.-C.~Nguyen, S.-H.~Oh and J.~Peraire}{Parametrized hybridizable discontinuous Galerkin method for plasmonics}{Benasque, ES}{}{Quantum nanophotonics 2017}{13.5}
+
+\cvpublit{Jul. 2016}{\textnormal{F.~Vidal-Codina}, N.-C.~Nguyen and J.~Peraire}{A multiscale reduced basis method for wave propagation in heterogeneous materials}{Boston, MA, US}{}{SIAM Annual Meeting}{13.5}
+
+\cvpublit{Apr. 2016}{\textnormal{F.~Vidal-Codina}, N.-C.~Nguyen, M.~Giles and J.~Peraire}{A multiscale model and variance reduction method for wave propagation in heterogeneous materials}{Lausanne, CH}{}{SIAM Conference on Uncertainty Quantification}{13.5}
+
+\cvpublit{Mar. 2015}{\textnormal{F.~Vidal-Codina}, N.-C.~Nguyen, M.~Giles and J.~Peraire}{An empirical interpolation model and variance reduction method for computing statistical outputs of stochastic PDEs}{Salt Lake City, UT, US}{}{SIAM Conference on Computational Science \& Engineering}{13.5}
+
+\cvpublit{Jul. 2014}{\textnormal{F.~Vidal-Codina}, N.-C.~Nguyen, M.~Giles and J.~Peraire}{A model and variance reduction method for computing statistical outputs of stochastic PDEs}{Barcelona, ES}{}{World Congress of Computational Mechanics XI}{13.5}
+
+\cvpublit{Jun. 2014}{\textnormal{F.~Vidal-Codina}, N.-C.~Nguyen, M.~Giles and J.~Peraire}{A model and variance reduction method for computing statistical outputs of stochastic PDEs}{Salt Lake City, UT, US}{}{ICOSAHOM 2014}{13.5}
+
+\cvpublit{Jan. 2013}{\textnormal{F.~Vidal-Codina}, Y.~M.~Marzouk, M.~Giles and J.~Peraire}{A non-intrusive method for input-output uncertainty propagation in stochastic PDEs}{Singapore, SG}{}{Singapore-MIT Alliance Symposium}{13.5}
+
+% \cvpublit{Dec. 2012}{\textnormal{F.~Vidal-Codina}, Y.~M.~Marzouk, M.~Giles and J.~Peraire}{A non-intrusive method for input-output uncertainty propagation in stochastic PDEs}{Cambridge, MA}{}{ACDL Seminar}{13.5}
+
+% \cvpublit{Nov. 2011}{J.~Sa\`{a}-Seoane, \textnormal{F.~Vidal-Codina}, J.~Sarrate, A.~Huerta, J.~Bonet and J.~Peraire}{Optimal Collapse Simulator for Three-Dimensional Frames}{Barcelona, Spain}{}{Research and Innovation Colloquium, UPC-BarcelonaTech}{13.5}
+
+
+\vspace{0.1cm}
+\section{HONORS AND AWARDS}
+\cventry{Jan. 2023}{Awarded to the article \textit{Automatic event detection in football using tracking data}.}{Paper of the Year Award by Springer in co-operation with the International Sports Engineering Assocation}{}{}{}
+\cventry{Sept. 2021}{Awarded to create a curriculum linking a first-year communication class with a capstone in sports technology, valued at \$28,000.}{d'Arbeloff Fund for Excellence in Education 2021-2022 (MIT)}{}{}{}
+\cventry{2011-2013}{Awarded to pursue graduate studies in the US. Acceptance rate 7.5\%, valued at \$150,000.}{Obra Social 'la Caixa' Fellowship}{}{}{}
+\cventry{Dec. 2011}{Awarded for successful completion of CFIS dual-degree program, UPCBarcelona-Tech}{Honorary Degree in Interdisciplinary Education}{}{}{}
+\cventry{Apr. 2010}{Awarded to best construction projects in Civil Engineering, UPCBarcelona-Tech.}{3rd prize in 2010 BASF$\textsuperscript{\textregistered}$ Construction Chemicals Awards}{}{}{}
+\cventry{Dec. 2009}{Awarded to conduct research projects with Dept. of Applied Math, UPCBarcelona-Tech.}{Spanish Ministry of Education Scholarship}{}{}{}
+\cventry{Jul. 2005}{Awarded to top students accessing university.}{Special distinction for outstanding performance in Catalan College Access Tests}{}{}{}
+
+
+\section{SKILLS}
+% \section{Other skills}
+% \subsection{Languages}
+% \cvitem{}{Spanish (Native), Catalan (Native), English (Fluent)}
+% \subsection{Operating systems}
+% \cvitem{}{OSX, Ubuntu, Windows, iOS, Android.}
+% \subsection{Software}
+% \cvitem{}{MATLAB, MS Office, IPE, Moodle, AutoCAD, Wiris, Maple, SAP2000, HEC (RAS, HMS).}
+% \subsection{Programming languages}
+% \cvitem{}{MATLAB, \LaTeX, C++, HTML, XML, R.}
+% \subsection{Computer}
+\cvitem{}{Python, SQL, Cypher, Neo4j, Google Cloud Platform (BigQuery, Google Cloud Storage, Dataflow), AWS (Lambda, Step Functions, Glue), Javascript, MATLAB, \LaTeX, MS Office}
+
+
+%\section{Languages}
+%\cvitemwithcomment{Spanish:}{Native}{}
+%\cvitemwithcomment{Catalan:}{Native}{}
+%\cvitemwithcomment{English:}{Fluent}{}
+%
+%\section{Computer skills}
+%\subsection{Operating systems}
+%\cvdoubleitem{Expert in}{OSX, Ubuntu, Windows}{Experience with}{iOS, Android}
+%\subsection{Software}
+%\cvdoubleitem{Expert in}{MATLAB, MS Office, IPE, Moodle}{Experience with}{AutoCAD, Wiris, Maple, SAP2000, HEC (RAS, HMS)}
+%\subsection{Programming languages}
+%\cvdoubleitem{Expert in}{MATLAB, \LaTeX}{Experience with}{C++, HTML, XML, R}
+
+                     % 'publications' is the name of a BibTeX file
+
+% Publications from a BibTeX file using the multibib package
+%\section{Publications}
+%\nocitebook{book1,book2}
+%\bibliographystylebook{plain}
+%\bibliographybook{publications}                   % 'publications' is the name of a BibTeX file
+%\nocitemisc{misc1,misc2,misc3}
+%\bibliographystylemisc{plain}
+%\bibliographymisc{publications}                   % 'publications' is the name of a BibTeX file
+
+\end{document}
+
+
+%% end of file `template.tex'.
