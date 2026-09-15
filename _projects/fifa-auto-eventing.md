@@ -2,6 +2,8 @@
 layout: page
 title: From tracking data to match events
 description: Turning player and ball tracking data into structured football events at World Cup scale.
+period: July 2019 – June 2023
+img:
 permalink: /projects/fifa-auto-eventing/
 importance: 1
 category: flagship
@@ -11,6 +13,7 @@ category: flagship
 
 <div class="fv-page">
   <p class="fv-lede">I developed a provider-agnostic system that automatically detected football events from player and ball tracking data. The work moved from applied research to post-match deployment at the 2022 FIFA World Cup.</p>
+  <p class="fv-project-period">Project period · {{ page.period }}</p>
 
   <div class="fv-metric-row">
     <div><strong>450+</strong><span>professional matches</span></div>

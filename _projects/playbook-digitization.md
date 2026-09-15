@@ -2,6 +2,8 @@
 layout: page
 title: Reading playbooks without labels
 description: Synthetic data and semantic segmentation for converting play diagrams into structured objects.
+period: 2023 – 2024
+img:
 permalink: /projects/playbook-digitization/
 importance: 2
 category: flagship
@@ -11,6 +13,7 @@ category: flagship
 
 <div class="fv-page">
   <p class="fv-lede">A client needed to convert proprietary American football play diagrams into structured objects but had no annotated dataset. I designed a computer-vision pipeline that learned to identify and extract routes entirely from synthetic examples.</p>
+  <p class="fv-project-period">Project period · {{ page.period }}</p>
 
   <div class="fv-metric-row">
     <div><strong>0</strong><span>real training labels</span></div>

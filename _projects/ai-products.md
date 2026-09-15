@@ -2,6 +2,8 @@
 layout: page
 title: Shipping AI products end to end
 description: Full-stack products spanning application design, LLM workflows, payments, and deployment.
+period: May 2025 – present
+img:
 permalink: /projects/ai-products/
 importance: 6
 category: products
@@ -11,6 +13,7 @@ category: products
 
 <div class="fv-page">
   <p class="fv-lede">Personal projects give me room to own the product surface as well as the models and data behind it.</p>
+  <p class="fv-project-period">Project period · {{ page.period }}</p>
 
   <h2>AI meal-planning platform</h2>
   <p>I independently built and shipped a full-stack product using Next.js, React, MongoDB, Tailwind CSS, Auth.js, Stripe, and Resend, with language models powering recipe generation, meal planning, and nutritional analysis.</p>

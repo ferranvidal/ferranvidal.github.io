@@ -2,6 +2,8 @@
 layout: page
 title: Making SAOT match-ready
 description: Live data collection, quality assessment, and synchronization protocols for FIFA's semi-automated offside technology.
+period: July 2019 – June 2023
+img:
 permalink: /projects/saot-technology-validation/
 importance: 3
 category: flagship
@@ -11,6 +13,7 @@ category: flagship
 
 <div class="fv-page">
   <p class="fv-lede">At the MIT Sports Lab, I worked with FIFA, Hawkeye Innovations and Kinexon to validate the optical skeletal-tracking and connected-ball systems that underpin Semi-Automated Offside Technology (SAOT).</p>
+  <p class="fv-project-period">Project period · {{ page.period }}</p>
 
   <div class="fv-metric-row">
     <div><strong>80+</strong><span>matches and test sessions</span></div>

@@ -1,7 +1,9 @@
 ---
 layout: page
-title: Conversational sports analytics assistants
+title: Trustworthy sports analytics in plain language
 description: Natural-language sports analysis grounded in accurate, structured NBA, MLB, and NCAA basketball data.
+period: 2022 – present
+img:
 permalink: /projects/sports-analytics-assistants/
 importance: 4
 category: flagship
@@ -11,6 +13,7 @@ category: flagship
 
 <div class="fv-page">
   <p class="fv-lede">I designed and built production chatbots that let users explore sports data through natural language without giving up analytical accuracy. The systems turn questions into validated queries over structured NBA, MLB, and NCAA basketball data, then return answers and visualizations tied to the underlying records.</p>
+  <p class="fv-project-period">Project period · {{ page.period }}</p>
 
   <div class="fv-metric-row">
     <div><strong>Grounded</strong><span>answers tied to records</span></div>

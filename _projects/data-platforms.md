@@ -2,6 +2,8 @@
 layout: page
 title: From live tracking to the warehouse
 description: Cloud infrastructure for live sports data and multi-provider analytical workloads.
+period: 2022 – present
+img:
 permalink: /projects/data-platforms/
 importance: 5
 category: engineering
@@ -11,6 +13,7 @@ category: engineering
 
 <div class="fv-page">
   <p class="fv-lede">Two infrastructure engagements illustrate the range of systems I build: a low-latency live ingestion service on GCP and a multi-provider analytical warehouse on AWS.</p>
+  <p class="fv-project-period">Project period · {{ page.period }}</p>
 
   <div class="fv-metric-row">
     <div><strong>10 MB/s</strong><span>live tracking throughput</span></div>

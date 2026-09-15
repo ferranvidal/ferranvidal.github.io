@@ -40,25 +40,29 @@ latest_posts:
 
   <section class="fv-section">
     <div class="fv-section-head"><h2>Selected projects</h2><span class="fv-section-note">Problem → approach → measurable result</span></div>
+    {% assign saot_project = site.projects | where: "permalink", "/projects/saot-technology-validation/" | first %}
+    {% assign eventing_project = site.projects | where: "permalink", "/projects/fifa-auto-eventing/" | first %}
+    {% assign playbook_project = site.projects | where: "permalink", "/projects/playbook-digitization/" | first %}
+    {% assign assistants_project = site.projects | where: "permalink", "/projects/sports-analytics-assistants/" | first %}
     <div class="fv-work-list">
       <a class="fv-work-item" href="{{ '/projects/saot-technology-validation/' | relative_url }}">
         <span class="fv-work-number">01</span>
-        <span><span class="fv-work-title">Making SAOT match-ready</span><span class="fv-work-copy">Live data collection, latency assessment, and quality validation for the sensing systems behind FIFA’s offside technology.</span></span>
+        <span><span class="fv-work-title">Making SAOT match-ready <small class="fv-work-period">{{ saot_project.period }}</small></span><span class="fv-work-copy">Live data collection, latency assessment, and quality validation for the sensing systems behind FIFA’s offside technology.</span></span>
         <span class="fv-work-result">80+ matches<br>GCP · RabbitMQ<br>FIFA World Cup 2022</span>
       </a>
       <a class="fv-work-item" href="{{ '/projects/fifa-auto-eventing/' | relative_url }}">
         <span class="fv-work-number">02</span>
-        <span><span class="fv-work-title">From tracking data to match events</span><span class="fv-work-copy">A provider-agnostic system that converted player and ball tracking data into structured football events.</span></span>
+        <span><span class="fv-work-title">From tracking data to match events <small class="fv-work-period">{{ eventing_project.period }}</small></span><span class="fv-work-copy">A provider-agnostic system that converted player and ball tracking data into structured football events.</span></span>
         <span class="fv-work-result">&gt;90% detection<br>&gt;95% set pieces<br>Deployed at the 2022 World Cup</span>
       </a>
       <a class="fv-work-item" href="{{ '/projects/playbook-digitization/' | relative_url }}">
         <span class="fv-work-number">03</span>
-        <span><span class="fv-work-title">Reading playbooks without labels</span><span class="fv-work-copy">Synthetic-data generation, semantic segmentation, and route tracing for proprietary play diagrams.</span></span>
+        <span><span class="fv-work-title">Reading playbooks without labels <small class="fv-work-period">{{ playbook_project.period }}</small></span><span class="fv-work-copy">Synthetic-data generation, semantic segmentation, and route tracing for proprietary play diagrams.</span></span>
         <span class="fv-work-result">Zero real training labels<br>&gt;80% real-world IoU</span>
       </a>
       <a class="fv-work-item" href="{{ '/projects/sports-analytics-assistants/' | relative_url }}">
         <span class="fv-work-number">04</span>
-        <span><span class="fv-work-title">Trustworthy sports analytics in plain language</span><span class="fv-work-copy">Natural-language analysis grounded in accurate, structured NBA, MLB, and NCAA basketball data.</span></span>
+        <span><span class="fv-work-title">Trustworthy sports analytics in plain language <small class="fv-work-period">{{ assistants_project.period }}</small></span><span class="fv-work-copy">Natural-language analysis grounded in accurate, structured NBA, MLB, and NCAA basketball data.</span></span>
         <span class="fv-work-result">Prefect · BigQuery<br>DuckDB · LangGraph · OpenAI</span>
       </a>
     </div>

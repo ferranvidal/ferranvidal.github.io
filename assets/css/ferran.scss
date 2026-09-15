@@ -248,6 +248,15 @@ body {
   margin-bottom: 0.35rem;
 }
 
+.fv-work-period {
+  color: var(--fv-accent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-left: 0.45rem;
+  white-space: nowrap;
+}
+
 .fv-work-copy,
 .fv-work-result {
   color: var(--fv-muted);
@@ -327,6 +336,14 @@ body {
 .fv-meta {
   color: var(--fv-muted);
   font-size: 0.92rem;
+}
+
+.fv-project-period {
+  color: var(--fv-accent);
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: -0.55rem 0 1.8rem;
 }
 
 .fv-metric-row {
