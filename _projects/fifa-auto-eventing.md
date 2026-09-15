@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Automatic event detection for FIFA
+title: From tracking data to match events
 description: Turning player and ball tracking data into structured football events at World Cup scale.
 permalink: /projects/fifa-auto-eventing/
 importance: 1

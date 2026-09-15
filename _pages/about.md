@@ -26,7 +26,10 @@ latest_posts:
       <h1>I build production AI and data systems for complex, high-stakes domains.</h1>
       <p class="fv-lede">Nine years across research and engineering, including production work for FIFA, Google, the English Premier League, the Golden State Warriors, FC Internazionale, and US Soccer. I turn difficult data and modeling problems into systems people can trust and use.</p>
     </div>
-    <img class="fv-headshot" src="{{ '/assets/img/headshot.jpg' | relative_url }}" alt="Ferran Vidal-Codina">
+    <figure class="fv-portrait">
+      <span class="fv-portrait-label">FVC / 01</span>
+      <img class="fv-headshot" src="{{ '/assets/img/headshot.jpg' | relative_url }}" alt="Ferran Vidal-Codina">
+    </figure>
   </div>
 
   <div class="fv-actions">
@@ -36,26 +39,26 @@ latest_posts:
   </div>
 
   <section class="fv-section">
-    <div class="fv-section-head"><h2>Selected work</h2><span class="fv-section-note">Problem → approach → measurable result</span></div>
+    <div class="fv-section-head"><h2>Selected projects</h2><span class="fv-section-note">Problem → approach → measurable result</span></div>
     <div class="fv-work-list">
       <a class="fv-work-item" href="{{ '/projects/saot-technology-validation/' | relative_url }}">
         <span class="fv-work-number">01</span>
-        <span><span class="fv-work-title">Validating Semi-Automated Offside Technology (SAOT)</span><span class="fv-work-copy">Live data collection, latency assessment, and quality validation for the sensing systems behind FIFA’s offside technology.</span></span>
+        <span><span class="fv-work-title">Making SAOT match-ready</span><span class="fv-work-copy">Live data collection, latency assessment, and quality validation for the sensing systems behind FIFA’s offside technology.</span></span>
         <span class="fv-work-result">80+ matches<br>GCP · RabbitMQ<br>FIFA World Cup 2022</span>
       </a>
       <a class="fv-work-item" href="{{ '/projects/fifa-auto-eventing/' | relative_url }}">
         <span class="fv-work-number">02</span>
-        <span><span class="fv-work-title">Automatic event detection at the FIFA World Cup</span><span class="fv-work-copy">A provider-agnostic system that converted player and ball tracking data into structured football events.</span></span>
+        <span><span class="fv-work-title">From tracking data to match events</span><span class="fv-work-copy">A provider-agnostic system that converted player and ball tracking data into structured football events.</span></span>
         <span class="fv-work-result">&gt;90% detection<br>&gt;95% set pieces<br>Deployed at the 2022 World Cup</span>
       </a>
       <a class="fv-work-item" href="{{ '/projects/playbook-digitization/' | relative_url }}">
         <span class="fv-work-number">03</span>
-        <span><span class="fv-work-title">Digitizing football playbooks without labeled data</span><span class="fv-work-copy">Synthetic-data generation, semantic segmentation, and route tracing for proprietary play diagrams.</span></span>
+        <span><span class="fv-work-title">Reading playbooks without labels</span><span class="fv-work-copy">Synthetic-data generation, semantic segmentation, and route tracing for proprietary play diagrams.</span></span>
         <span class="fv-work-result">Zero real training labels<br>&gt;80% real-world IoU</span>
       </a>
       <a class="fv-work-item" href="{{ '/projects/sports-analytics-assistants/' | relative_url }}">
         <span class="fv-work-number">04</span>
-        <span><span class="fv-work-title">Three open-source sports analytics assistants</span><span class="fv-work-copy">NBA, MLB, and NCAA basketball chatbots with a shared data and agent architecture.</span></span>
+        <span><span class="fv-work-title">Trustworthy sports analytics in plain language</span><span class="fv-work-copy">Natural-language analysis grounded in accurate, structured NBA, MLB, and NCAA basketball data.</span></span>
         <span class="fv-work-result">Prefect · BigQuery<br>DuckDB · LangGraph · OpenAI</span>
       </a>
     </div>

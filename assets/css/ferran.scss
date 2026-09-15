@@ -2,26 +2,36 @@
 ---
 
 :root {
-  --fv-accent: #145c72;
-  --fv-accent-soft: #e4f1f4;
-  --fv-border: #dce3e8;
-  --fv-surface: #ffffff;
-  --fv-muted: #5c6975;
+  --fv-accent: #0e6573;
+  --fv-accent-soft: #e4f2f0;
+  --fv-coral: #d9684b;
+  --fv-border: #d9e0dd;
+  --fv-surface: #fffdf8;
+  --fv-muted: #5c6970;
+  --fv-paper: #f7f5ef;
   --global-theme-color: var(--fv-accent);
-  --global-hover-color: #0f4658;
+  --global-hover-color: #084b57;
 }
 
 html[data-theme="dark"] {
   --fv-accent: #67c4da;
-  --fv-accent-soft: #12343e;
-  --fv-border: #2b3642;
-  --fv-surface: #151b23;
+  --fv-accent-soft: #153a3d;
+  --fv-coral: #f38a69;
+  --fv-border: #2c3a3c;
+  --fv-surface: #182124;
   --fv-muted: #a2aebb;
+  --fv-paper: #11191b;
   --global-theme-color: var(--fv-accent);
   --global-hover-color: #8bd5e6;
 }
 
 body {
+  background-color: var(--fv-paper);
+  background-image:
+    radial-gradient(rgba(14, 101, 115, 0.1) 0.7px, transparent 0.7px), linear-gradient(120deg, rgba(255, 255, 255, 0.35), transparent 42%);
+  background-size:
+    18px 18px,
+    100% 100%;
   font-size: 1rem;
   line-height: 1.65;
 }
@@ -34,23 +44,55 @@ body {
 }
 
 .fv-home {
-  padding-top: 1rem;
+  padding-top: 2rem;
 }
 
 .fv-hero {
   align-items: center;
   display: grid;
-  gap: 3rem;
-  grid-template-columns: minmax(0, 1fr) 150px;
+  gap: clamp(2rem, 7vw, 6rem);
+  grid-template-columns: minmax(0, 1fr) 230px;
+}
+
+.fv-portrait {
+  background: var(--fv-accent-soft);
+  border: 1px solid color-mix(in srgb, var(--fv-accent) 35%, var(--fv-border));
+  border-radius: 18px;
+  justify-self: end;
+  margin: 0;
+  padding: 11px 11px 15px;
+  position: relative;
+  transform: rotate(2deg);
+  width: 230px;
+}
+
+.fv-portrait::after {
+  border: 1px solid var(--fv-coral);
+  border-radius: 18px;
+  content: "";
+  inset: 8px -8px -8px 8px;
+  opacity: 0.75;
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
 }
 
 .fv-headshot {
-  aspect-ratio: 1;
-  border: 1px solid var(--fv-border);
-  border-radius: 50%;
+  aspect-ratio: 4 / 5;
+  border-radius: 10px;
   object-fit: cover;
   object-position: center top;
-  width: 150px;
+  width: 100%;
+}
+
+.fv-portrait-label {
+  color: var(--fv-accent);
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin: 0.4rem 0 0;
+  text-align: right;
 }
 
 .fv-eyebrow {
@@ -87,7 +129,7 @@ body {
 
 .fv-button {
   border: 1px solid var(--fv-border);
-  border-radius: 5px;
+  border-radius: 999px;
   color: var(--global-text-color);
   display: inline-flex;
   font-weight: 500;
@@ -171,19 +213,25 @@ body {
 }
 
 .fv-work-item {
-  background: var(--fv-surface);
+  background: color-mix(in srgb, var(--fv-surface) 92%, transparent);
   border: 1px solid var(--fv-border);
-  border-radius: 5px;
+  border-radius: 12px;
   color: var(--global-text-color);
   display: grid;
   gap: 1rem;
   grid-template-columns: 2.3rem minmax(0, 1fr) 10rem;
   padding: 1.35rem;
   text-decoration: none;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
 }
 
 .fv-work-item:hover {
-  border-color: var(--fv-accent);
+  border-color: var(--fv-coral);
+  box-shadow: 0 8px 24px rgba(20, 72, 76, 0.08);
+  transform: translateY(-2px);
   color: var(--global-text-color);
   text-decoration: none;
 }
@@ -258,8 +306,11 @@ body {
 }
 
 .fv-publications li {
+  background: color-mix(in srgb, var(--fv-surface) 72%, transparent);
+  border-left: 2px solid var(--fv-accent-soft);
+  border-radius: 0 8px 8px 0;
   margin-bottom: 1rem;
-  padding-left: 0.25rem;
+  padding: 0.55rem 0.75rem 0.65rem 0.8rem;
 }
 
 .fv-publications a {
@@ -382,11 +433,16 @@ body {
   .fv-hero {
     align-items: flex-start;
     gap: 1.5rem;
-    grid-template-columns: minmax(0, 1fr) 88px;
+    grid-template-columns: minmax(0, 1fr) 128px;
   }
 
-  .fv-headshot {
-    width: 88px;
+  .fv-portrait {
+    padding: 7px 7px 10px;
+    width: 128px;
+  }
+
+  .fv-portrait-label {
+    font-size: 0.58rem;
   }
 
   .fv-proof {

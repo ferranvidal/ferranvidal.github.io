@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Independent AI product engineering
+title: Shipping AI products end to end
 description: Full-stack products spanning application design, LLM workflows, payments, and deployment.
 permalink: /projects/ai-products/
 importance: 6

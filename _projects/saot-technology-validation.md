@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Validating the technology behind SAOT
+title: Making SAOT match-ready
 description: Live data collection, quality assessment, and synchronization protocols for FIFA's semi-automated offside technology.
 permalink: /projects/saot-technology-validation/
 importance: 3

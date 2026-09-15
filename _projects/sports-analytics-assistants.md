@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Three open-source sports analytics assistants
-description: Production chatbots for NBA, MLB, and NCAA basketball analysis, built over open-source data.
+title: Conversational sports analytics assistants
+description: Natural-language sports analysis grounded in accurate, structured NBA, MLB, and NCAA basketball data.
 permalink: /projects/sports-analytics-assistants/
 importance: 4
 category: flagship
@@ -10,11 +10,11 @@ category: flagship
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
 
 <div class="fv-page">
-  <p class="fv-lede">I designed and built three production chatbots—one for the NBA, one for MLB, and one for NCAA basketball—that let users ask natural-language questions over open-source sports data while keeping answers grounded in structured evidence.</p>
+  <p class="fv-lede">I designed and built production chatbots that let users explore sports data through natural language without giving up analytical accuracy. The systems turn questions into validated queries over structured NBA, MLB, and NCAA basketball data, then return answers and visualizations tied to the underlying records.</p>
 
   <div class="fv-metric-row">
-    <div><strong>3</strong><span>live assistants</span></div>
-    <div><strong>Open source</strong><span>sports data</span></div>
+    <div><strong>Grounded</strong><span>answers tied to records</span></div>
+    <div><strong>Natural language</strong><span>questions to analytics</span></div>
     <div><strong>End to end</strong><span>ingestion through evaluation</span></div>
   </div>
 
@@ -27,7 +27,7 @@ category: flagship
   <h2>NCAA basketball assistant</h2>
   <p>The NCAA chatbot is restricted to Division I basketball, and covers approximately 240K games, 2M player-game boxscore entries and 30M play-by-play records, with additional tables for shots, lineups, conferences, standings, draft and ratings. It supports SQL-driven answers and visualizations, including shot charts. Data comes from the College Basketball Data API as its upstream source and supports both development and production environments.</p>
 
-  <h2>Common architecture</h2>
+  <h2>Accuracy by design</h2>
   <p>Each assistant follows the same layered pattern. Prefect flows pull open-source data on a schedule or on demand, land the raw responses, build cleaned production-ready tables in BigQuery, and sync a read-only DuckDB database for fast, predictable tool calls that sits in a VM within the GCP ecosystem. The chat service runs in FastAPI on GCP.</p>
   <p>A LangGraph ReAct agent combines a small set of SQL and domain tools with a system prompt containing schema, guardrails, and worked examples. The agent validates its own query and answer, discloses filters, and generates deterministic charts or tables from the returned rows instead of asking the model to invent visualizations.</p>
   <p>Firebase Authentication protects the applications, Firestore stores durable conversation history, and structured request logs plus GCS visualization artifacts feed a BigQuery-backed analytics dashboard. This makes it possible to evaluate not only whether an answer looks plausible, but which prompt, model, query path, latency, and user feedback produced it.</p>

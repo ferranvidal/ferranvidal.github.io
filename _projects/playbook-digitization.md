@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Football playbook digitization without labeled data
+title: Reading playbooks without labels
 description: Synthetic data and semantic segmentation for converting play diagrams into structured objects.
 permalink: /projects/playbook-digitization/
 importance: 2

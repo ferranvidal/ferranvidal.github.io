@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Real-time and analytical data platforms
+title: From live tracking to the warehouse
 description: Cloud infrastructure for live sports data and multi-provider analytical workloads.
 permalink: /projects/data-platforms/
 importance: 5
