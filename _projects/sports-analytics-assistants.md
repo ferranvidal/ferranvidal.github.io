@@ -40,26 +40,27 @@ category: flagship
         <button type="button" data-outcome="made" aria-pressed="false">Made</button>
         <button type="button" data-outcome="missed" aria-pressed="false">Missed</button>
       </div>
-      <button type="button" class="fv-filter-button" data-filter-toggle aria-expanded="false">
-        <span aria-hidden="true">▽</span> Filters <span class="fv-filter-badge" data-filter-count hidden>0</span>
-      </button>
       <div class="fv-zoom-controls" aria-label="Chart zoom">
         <button type="button" data-zoom-out aria-label="Zoom out">−</button>
         <button type="button" data-zoom-in aria-label="Zoom in">+</button>
         <button type="button" data-reset aria-label="Reset zoom and pan">↺</button>
       </div>
     </div>
-    <div class="fv-filter-drawer" data-filter-drawer hidden>
-      <div class="fv-filter-drawer__head"><strong>Filters</strong><button type="button" data-filter-reset>Reset filters</button></div>
-      <div class="fv-filter-grid">
-        <label>Shot type <select data-shot-type><option value="">All types</option></select></label>
-        <label>Quarter <select data-period><option value="">All quarters</option></select></label>
+    <div class="fv-chart-workbench">
+      <div class="fv-chart-court">
+        <div class="fv-shot-chart-wrap"><svg class="fv-shot-chart" viewBox="-258 -70 516 400" role="img" aria-label="Jalen Brunson shot chart from the 2026 NBA Finals"></svg><div class="fv-shot-tooltip" data-shot-tooltip role="status" aria-live="polite" hidden></div></div>
+        <p class="fv-chart-note">Snapshot created September 14, 2026. Hover or focus a mark for shot details; use the mouse wheel or controls to zoom, then drag to pan.</p>
       </div>
-      <fieldset class="fv-filter-group"><legend>Time remaining</legend><div class="fv-filter-pills" data-clock-presets></div><button type="button" class="fv-custom-range" data-clock-custom>Custom range…</button><div class="fv-range-group" data-clock-range hidden><div><span data-clock-min-label></span><span data-clock-max-label></span></div><div class="fv-double-range"><input type="range" data-clock-min min="0" max="12" step="0.25"><input type="range" data-clock-max min="0" max="12" step="0.25"></div></div></fieldset>
-      <fieldset class="fv-filter-group"><legend>Shot distance</legend><div class="fv-range-group"><div><span data-distance-min-label></span><span data-distance-max-label></span></div><div class="fv-double-range"><input type="range" data-distance-min min="0" step="0.1"><input type="range" data-distance-max min="0" step="0.1"></div></div></fieldset>
+      <aside class="fv-filter-drawer" data-filter-drawer aria-label="Shot chart filters">
+        <div class="fv-filter-drawer__head"><strong>Filters</strong><button type="button" data-filter-reset>Reset filters</button></div>
+        <div class="fv-filter-grid">
+          <label>Shot type <select data-shot-type><option value="">All types</option></select></label>
+          <label>Quarter <select data-period><option value="">All quarters</option></select></label>
+        </div>
+        <fieldset class="fv-filter-group"><legend>Time remaining</legend><div class="fv-filter-pills" data-clock-presets></div><button type="button" class="fv-custom-range" data-clock-custom>Custom range…</button><div class="fv-range-group" data-clock-range hidden><div><span data-clock-min-label></span><span data-clock-max-label></span></div><div class="fv-double-range"><input type="range" data-clock-min min="0" max="12" step="0.25"><input type="range" data-clock-max min="0" max="12" step="0.25"></div></div></fieldset>
+        <fieldset class="fv-filter-group"><legend>Shot distance</legend><div class="fv-range-group"><div><span data-distance-min-label></span><span data-distance-max-label></span></div><div class="fv-double-range"><input type="range" data-distance-min min="0" step="0.1"><input type="range" data-distance-max min="0" step="0.1"></div></div></fieldset>
+      </aside>
     </div>
-    <div class="fv-shot-chart-wrap"><svg class="fv-shot-chart" viewBox="-258 -70 516 400" role="img" aria-label="Jalen Brunson shot chart from the 2026 NBA Finals"></svg><div class="fv-shot-tooltip" data-shot-tooltip hidden></div></div>
-    <p class="fv-chart-note">Snapshot created September 14, 2026. Hover or focus a mark for shot details; use the mouse wheel or controls to zoom, then drag to pan.</p>
   </section>
 
   <h2>MLB assistant</h2>

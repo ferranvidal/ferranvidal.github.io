@@ -67,9 +67,6 @@
       summary = root.querySelector(".fv-chart-summary"),
       type = root.querySelector("[data-shot-type]"),
       quarter = root.querySelector("[data-period]"),
-      drawer = root.querySelector("[data-filter-drawer]"),
-      toggle = root.querySelector("[data-filter-toggle]"),
-      badge = root.querySelector("[data-filter-count]"),
       tooltip = root.querySelector("[data-shot-tooltip]");
     const minDistanceInput = root.querySelector("[data-distance-min]"),
       maxDistanceInput = root.querySelector("[data-distance-max]"),
@@ -109,13 +106,6 @@
       root.querySelector("[data-zoom-in]").disabled = scale >= ZOOM_MAX;
       root.querySelector("[data-zoom-out]").disabled = scale <= ZOOM_MIN;
       root.querySelector("[data-reset]").disabled = scale === 1 && pan.x === 0 && pan.y === 0;
-      const count =
-        +Boolean(type.value) +
-        +Boolean(quarter.value) +
-        +(minDistance !== 0 || maxDistance !== distanceMax) +
-        +(minClock !== 0 || maxClock !== 12 || lateOnly);
-      badge.hidden = !count;
-      badge.textContent = count;
     };
     const show = () =>
       data.filter(
@@ -138,7 +128,10 @@
       const score = homeScore || awayScore ? `Away ${awayScore} – Home ${homeScore}` : "";
       const game = r.awayTeam || r.homeTeam ? `<div><dt>Game</dt><dd>${escape(r.awayTeam)} @ ${escape(r.homeTeam)}</dd></div>` : "";
       const scoreRow = score ? `<div><dt>Score</dt><dd>${escape(score)}</dd></div>` : "";
-      tooltip.innerHTML = `<strong class="${r.made ? "is-made" : "is-missed"}">${r.made ? "Made" : "Missed"} · ${escape(r.playType || r.shotType || "shot")}</strong><dl><div><dt>Player</dt><dd>${escape(r.playerName)}</dd></div>${game}<div><dt>Date</dt><dd>${escape(r.gameDate)}</dd></div><div><dt>Quarter</dt><dd>${period(r.period)}</dd></div><div><dt>Clock</dt><dd>${escape(r.clock)}</dd></div><div><dt>Distance</dt><dd>${r.distance.toFixed(1)} ft</dd></div>${scoreRow}${r.made && r.assistPlayerName ? `<div><dt>Assist</dt><dd>${escape(r.assistPlayerName)}</dd></div>` : ""}${!r.made && r.blockPlayerName ? `<div><dt>Blocked by</dt><dd>${escape(r.blockPlayerName)}</dd></div>` : ""}</dl>${r.videoUrl ? `<a href="${escape(r.videoUrl)}" target="_blank" rel="noopener noreferrer">Watch the play ↗</a>` : "<small>No video for this shot</small>"}`;
+      const team = r.shotTeam ? `<div><dt>Team</dt><dd>${escape(r.shotTeam)}</dd></div>` : "";
+      const opponent = r.opponent ? `<div><dt>Opponent</dt><dd>${escape(r.opponent)}</dd></div>` : "";
+      const description = r.description ? `<p class="fv-shot-tooltip__description">${escape(r.description)}</p>` : "";
+      tooltip.innerHTML = `<strong class="${r.made ? "is-made" : "is-missed"}">${r.made ? "Made" : "Missed"} · ${escape(r.playType || r.shotType || "shot")}</strong><dl><div><dt>Player</dt><dd>${escape(r.playerName)}</dd></div>${team}${opponent}${game}<div><dt>Date</dt><dd>${escape(r.gameDate)}</dd></div><div><dt>Quarter</dt><dd>${period(r.period)}</dd></div><div><dt>Clock</dt><dd>${escape(r.clock)}</dd></div><div><dt>Distance</dt><dd>${r.distance.toFixed(1)} ft</dd></div>${scoreRow}${r.made && r.assistPlayerName ? `<div><dt>Assist</dt><dd>${escape(r.assistPlayerName)}</dd></div>` : ""}${!r.made && r.blockPlayerName ? `<div><dt>Blocked by</dt><dd>${escape(r.blockPlayerName)}</dd></div>` : ""}</dl>${description}${r.videoUrl ? `<a href="${escape(r.videoUrl)}" target="_blank" rel="noopener noreferrer">Watch the play ↗</a>` : "<small>No video for this shot</small>"}`;
       tooltip.hidden = false;
       const rect = wrap.getBoundingClientRect(),
         x = event.clientX - rect.left,
@@ -162,19 +155,27 @@
         ["circle", { cx: 0, cy: 0, r: 7.5, fill: "none", stroke: "#475569", "stroke-width": 2.5 }],
       ].forEach(([tag, attrs]) => court.append(svgEl(tag, attrs)));
       shown.forEach((r) => {
-        const mark = svgEl(
+        const mark = svgEl("g", {
+          class: "fv-shot-mark",
+          tabindex: 0,
+          role: "img",
+          "aria-label": `${r.made ? "Made" : "Missed"} ${r.distance.toFixed(1)} foot ${r.playType || r.shotType || "shot"}, ${period(r.period)} ${r.clock}`,
+        });
+        const symbol = svgEl(
           r.made ? "circle" : "path",
           r.made
-            ? { cx: r.x, cy: r.y, r: 4.6, fill: "#16805a", stroke: "#fff", "stroke-width": 1, class: "fv-shot-mark", tabindex: 0 }
+            ? { cx: r.x, cy: r.y, r: 4.6, fill: "#16805a", stroke: "#fff", "stroke-width": 1 }
             : {
                 d: `M ${r.x - 4} ${r.y - 4} L ${r.x + 4} ${r.y + 4} M ${r.x + 4} ${r.y - 4} L ${r.x - 4} ${r.y + 4}`,
                 stroke: "#c84343",
                 "stroke-width": 1.9,
                 "stroke-linecap": "round",
-                class: "fv-shot-mark",
-                tabindex: 0,
               }
         );
+        // The transparent target gives every point, especially a thin missed-shot
+        // cross, a dependable hover and keyboard focus area.
+        const hitArea = svgEl("circle", { cx: r.x, cy: r.y, r: 8, fill: "transparent", "pointer-events": "all" });
+        mark.append(symbol, hitArea);
         mark.addEventListener("pointerenter", (e) => showTooltip(e, r));
         mark.addEventListener("pointermove", (e) => showTooltip(e, r));
         mark.addEventListener("pointerleave", hideTooltip);
@@ -233,10 +234,6 @@
     customClock.addEventListener("click", () => {
       clockRange.hidden = !clockRange.hidden;
       customClock.textContent = clockRange.hidden ? "Custom range…" : "Hide custom range";
-    });
-    toggle.addEventListener("click", () => {
-      drawer.hidden = !drawer.hidden;
-      toggle.setAttribute("aria-expanded", String(!drawer.hidden));
     });
     root.querySelector("[data-filter-reset]").addEventListener("click", () => {
       type.value = quarter.value = "";

@@ -416,9 +416,16 @@ body {
 .fv-filter-drawer {
   background: color-mix(in srgb, var(--fv-surface) 94%, var(--fv-accent-soft));
   border: 1px solid var(--fv-border);
-  margin: -0.55rem 0 1.25rem;
-  max-width: 32rem;
   padding: 1rem;
+}
+.fv-chart-workbench {
+  align-items: start;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) minmax(15rem, 18rem);
+}
+.fv-chart-court {
+  min-width: 0;
 }
 .fv-filter-drawer__head {
   align-items: center;
@@ -628,6 +635,12 @@ body {
   display: block;
   margin-top: 0.45rem;
 }
+.fv-shot-tooltip__description {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0.45rem 0 0;
+  padding-top: 0.45rem;
+}
 .fv-chart-note {
   color: var(--fv-muted);
   font-size: 0.84rem;
@@ -806,6 +819,10 @@ body {
   }
   .fv-chart-summary {
     text-align: left;
+  }
+
+  .fv-chart-workbench {
+    grid-template-columns: 1fr;
   }
 
   .fv-section-head {
