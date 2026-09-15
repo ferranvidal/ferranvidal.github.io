@@ -12,6 +12,8 @@ results:
   - "~10 MB/s peak load"
   - "~50 ms p99 latency"
   - "RabbitMQ → gRPC on GCP"
+capability: "Data engineering"
+role: "Two-person engagement; I designed and ran both generations of the service"
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
@@ -19,6 +21,7 @@ results:
 <div class="fv-page">
   <p class="fv-lede">Two generations of the same live-ingestion system, both on GCP, show how I evolve infrastructure as requirements grow: a RabbitMQ pipeline that carried FIFA certification events from 2021 to 2023, and the gRPC service that replaced it from 2024 onward.</p>
   <p class="fv-project-period">Project period · {{ page.period }}</p>
+  <p class="fv-project-role"><span>Role</span> {{ page.role }}</p>
 
   <div class="fv-metric-row">
     <div><strong>10 MB/s</strong><span>live tracking throughput</span></div>

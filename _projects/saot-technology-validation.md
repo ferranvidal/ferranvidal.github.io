@@ -5,13 +5,15 @@ description: Live data collection, quality assessment, and synchronization proto
 period: January 2021 – June 2022
 img:
 permalink: /projects/saot-technology-validation/
-importance: 1
+importance: 2
 featured: true
 summary: "Live data collection, latency assessment, and quality validation for the sensing systems behind FIFA’s novel offside technology."
 results:
   - "80+ matches"
   - "GCP · RabbitMQ"
   - "FIFA World Cup 2022"
+capability: "Real-time data"
+role: "Research scientist at the MIT Sports Lab, working alongside two technology vendors"
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
@@ -19,6 +21,7 @@ results:
 <div class="fv-page">
   <p class="fv-lede">At the MIT Sports Lab, I worked with FIFA alongside Hawkeye Innovations and Kinexon to validate the optical skeletal-tracking and connected-ball systems that underpin Semi-Automated Offside Technology (SAOT).</p>
   <p class="fv-project-period">Project period · {{ page.period }}</p>
+  <p class="fv-project-role"><span>Role</span> {{ page.role }}</p>
 
   <div class="fv-metric-row">
     <div><strong>80+</strong><span>matches and test sessions</span></div>

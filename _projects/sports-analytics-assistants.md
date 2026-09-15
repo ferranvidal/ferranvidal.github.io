@@ -5,13 +5,15 @@ description: RAG-based natural-language chatbots for NBA, MLB, and NCAA basketba
 period: 2025 – present
 img:
 permalink: /projects/sports-analytics-assistants/
-importance: 4
+importance: 1
 featured: true
 summary: "Natural-language analysis grounded in accurate structured data for NBA, MLB, and NCAA basketball."
 results:
   - "3 production assistants"
   - "100M+ records"
   - "LangGraph · BigQuery · DuckDB"
+capability: "LLM systems"
+role: "Designed and built jointly with one colleague, from data platform to chat interface"
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
@@ -21,6 +23,7 @@ results:
 <div class="fv-page">
   <p class="fv-lede">I designed and built production chatbots that let users explore sports data through natural language without giving up analytical accuracy. The systems turn questions into validated queries over structured NBA, MLB, and NCAA basketball data, then return answers and visualizations tied to the underlying records.</p>
   <p class="fv-project-period">Project period · {{ page.period }}</p>
+  <p class="fv-project-role"><span>Role</span> {{ page.role }}</p>
 
   <div class="fv-metric-row">
     <div><strong>3</strong><span>production assistants: NBA, MLB, NCAA</span></div>
@@ -50,7 +53,7 @@ results:
   <p>Each assistant shares the architecture above. Open one to see its data coverage and an interactive chart built from a saved answer.</p>
 
   <details class="fv-collapsible">
-  <summary><h3>NBA assistant <span class="fv-summary-hint">interactive shot chart</span></h3></summary>
+  <summary><h3>NBA assistant <span class="fv-summary-hint">shot chart</span></h3></summary>
   <p>The NBA assistant covers approximately 70K games, 1.5M player-game boxscore entries and 18M play-by-play records, with additional tables for shots, passes, lineups, matchups, standings, and CBA data. It supports SQL-driven answers and visualizations, including shot charts. Data comes from <code>nba_api</code>, which provides access to official NBA data.</p>
 
   <section class="fv-chart-example" data-shot-chart data-source="{{ '/assets/data/jalen-brunson-2026-finals-shot-chart.csv' | relative_url }}">

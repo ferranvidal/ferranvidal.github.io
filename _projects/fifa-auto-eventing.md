@@ -5,13 +5,15 @@ description: Turning player and ball tracking data into structured football even
 period: July 2019 – June 2023
 img:
 permalink: /projects/fifa-auto-eventing/
-importance: 2
+importance: 3
 featured: true
 summary: "A provider-agnostic system that automatically detected and extracted structured events from player and ball tracking data."
 results:
   - "450+ matches"
   - "90%+ detection rate"
   - "Deployed at the 2022 World Cup"
+capability: "Applied ML"
+role: "Led the algorithm work from applied research through production deployment"
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
@@ -19,6 +21,7 @@ results:
 <div class="fv-page">
   <p class="fv-lede">I developed a provider-agnostic system that automatically detects football events from player and ball tracking data. The work moved from applied research to post-match deployment at the 2022 FIFA World Cup.</p>
   <p class="fv-project-period">Project period · {{ page.period }}</p>
+  <p class="fv-project-role"><span>Role</span> {{ page.role }}</p>
 
   <div class="fv-metric-row">
     <div><strong>450+</strong><span>professional matches</span></div>

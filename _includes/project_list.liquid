@@ -14,6 +14,7 @@
       <span>
         <span class="fv-work-title">{{ project.title }}<small class="fv-work-period">{{ project.period }}</small></span>
         <span class="fv-work-copy">{{ project.summary }}</span>
+        {% if project.capability %}<span class="fv-work-tag">{{ project.capability }}</span>{% endif %}
       </span>
       <span class="fv-work-result">{{ project.results | join: '<br>' }}</span>
     </a>
