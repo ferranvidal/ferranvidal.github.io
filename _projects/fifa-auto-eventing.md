@@ -34,6 +34,11 @@ category: flagship
   <p>The research received the International Sports Engineering Association and Springer Sports Engineering Paper of the Year award in 2023.</p>
     <p>The efforts we spearheaded paved the path towards all major football tracking data companies today offering similar automated event data products.</p>
 
+  <figure class="fv-figure">
+    <img src="{{ '/assets/img/isea_infographic.png' | relative_url }}" alt="ISEA infographic summarizing the automatic event detection research">
+    <figcaption>ISEA infographic summarizing the Paper of the Year research.</figcaption>
+  </figure>
+
   <p><a class="fv-button" href="https://doi.org/10.1007/s12283-022-00381-6">Read the open-access paper</a></p>
 
 {% include project_navigation.liquid %}

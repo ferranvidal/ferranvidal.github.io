@@ -82,7 +82,7 @@ latest_posts:
   <section class="fv-section">
     <h2>Recognition</h2>
     <div class="fv-recognition">
-      <div><span class="fv-recognition-year">2023</span><h3>Paper of the Year</h3><p>International Sports Engineering Association and Springer Sports Engineering, for <em>Automatic event detection in football using tracking data</em>.</p></div>
+      <div><span class="fv-recognition-year">2022</span><h3>Paper of the Year</h3><p>International Sports Engineering Association and Springer Sports Engineering, for <em>Automatic event detection in football using tracking data</em>.</p></div>
       <div><span class="fv-recognition-year">2011–2013</span><h3>La Caixa Foundation Fellowship</h3><p>$150,000 fellowship supporting graduate study at MIT.</p></div>
     </div>
   </section>
