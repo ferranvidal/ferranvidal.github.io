@@ -60,13 +60,19 @@
         pct = shown.length ? ((100 * made) / shown.length).toFixed(1) : "0.0";
       summary.innerHTML = `<strong>${made}/${shown.length}</strong>${pct}% FG`;
       svg.replaceChildren();
-      const court = el("g", { transform: `translate(${pan.x} ${pan.y}) scale(${scale})` });
+      const court = el("g", { transform: `translate(${pan.x / scale} ${pan.y / scale}) scale(${scale})` });
       svg.append(court);
-      court.append(el("rect", { x: -250, y: 0, width: 500, height: 470, fill: "none", stroke: "currentColor", "stroke-width": 2 }));
-      court.append(el("circle", { cx: 0, cy: 0, r: 60, fill: "none", stroke: "currentColor", "stroke-width": 2 }));
+      // The source data is NBA court space: tenths of a foot, with the rim at
+      // (0, 0), the endline at y=-50, and y increasing toward half court. These
+      // are the same dimensions and paths used in the NBA assistant.
+      court.append(el("rect", { x: -250, y: -50, width: 500, height: 780, fill: "#f8fafc", stroke: "#94a3b8", "stroke-width": 2 }));
+      court.append(el("rect", { x: -80, y: -50, width: 160, height: 190, fill: "none", stroke: "#94a3b8", "stroke-width": 2 }));
+      court.append(el("circle", { cx: 0, cy: 142.5, r: 60, fill: "none", stroke: "#94a3b8", "stroke-width": 2 }));
       court.append(
-        el("path", { d: "M -80 0 V 190 H 80 V 0 M -220 140 A 250 250 0 0 1 220 140", fill: "none", stroke: "currentColor", "stroke-width": 2 })
+        el("path", { d: "M -220,-50 L -220,89.5 A 237.5,237.5 0 0,0 220,89.5 L 220,-50", fill: "none", stroke: "#94a3b8", "stroke-width": 2.5 })
       );
+      court.append(el("rect", { x: -30, y: -7.5, width: 60, height: 2, fill: "#475569" }));
+      court.append(el("circle", { cx: 0, cy: 0, r: 7.5, fill: "none", stroke: "#475569", "stroke-width": 2.5 }));
       shown.forEach((r) => {
         const mark = el(
           r.made ? "circle" : "path",

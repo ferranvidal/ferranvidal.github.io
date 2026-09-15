@@ -44,7 +44,7 @@ category: flagship
       <button type="button" data-zoom-in aria-label="Zoom in">+</button>
       <button type="button" data-reset>Reset view</button>
     </div>
-    <div class="fv-shot-chart-wrap"><svg class="fv-shot-chart" viewBox="-250 -25 500 350" role="img" aria-label="Jalen Brunson shot chart from the 2026 NBA Finals"></svg></div>
+    <div class="fv-shot-chart-wrap"><svg class="fv-shot-chart" viewBox="-258 -70 516 400" role="img" aria-label="Jalen Brunson shot chart from the 2026 NBA Finals"></svg></div>
     <p class="fv-chart-note">Snapshot created September 14, 2026. Hover or focus a mark for shot details; use the mouse wheel or controls to zoom, then drag to pan.</p>
   </section>
 
