@@ -31,7 +31,7 @@ category: flagship
 
   <h2>Production and impact</h2>
   <p>The pipeline ran on GCP, wrote generated events to a data warehouse and data lake, and produced automated match reports. It was used for post-match auto-eventing at the 2022 FIFA World Cup, fully embedded within FIFA's data ecosystem.</p>
-  <p>The research received the International Sports Engineering Association and Springer Sports Engineering Paper of the Year award in 2023.</p>
+  <p>The research received the International Sports Engineering Association and Springer Sports Engineering Paper of the Year award in 2022.</p>
     <p>The efforts we spearheaded paved the path towards all major football tracking data companies today offering similar automated event data products.</p>
 
   <figure class="fv-figure">

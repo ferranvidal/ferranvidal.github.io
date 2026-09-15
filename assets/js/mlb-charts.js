@@ -58,6 +58,14 @@
     return r.isOut === "true" || e.includes("out") ? "Out" : "Other";
   };
   const eventLabel = (r) => r.event || r.description || "Pitch";
+  const pitchResult = (r) => {
+    if (r.event) return r.isOut === "true" ? "In Play (Out)" : "In Play (Not Out)";
+    const call = (r.call || r.description || "").toLowerCase();
+    if (call.includes("foul")) return "Foul";
+    if (call.includes("swinging") || call.includes("missed bunt")) return "Swinging Strike";
+    if (call.includes("called strike")) return "Called Strike";
+    return "Ball";
+  };
   const tooltip = (wrap, data, type) => {
     const box = wrap.querySelector("[data-mlb-tooltip]");
     const score =
@@ -92,19 +100,82 @@
       wrap = root.querySelector(".fv-mlb-chart-wrap"),
       summary = root.querySelector("[data-mlb-summary]"),
       legend = root.querySelector("[data-mlb-legend]"),
-      filter = root.querySelector("[data-mlb-filter]");
+      metrics = root.querySelector("[data-mlb-metrics]"),
+      resultFilter = root.querySelector("[data-result-filter]");
+    const inputs = {
+      speedMin: root.querySelector("[data-speed-min]"),
+      speedMax: root.querySelector("[data-speed-max]"),
+      angleMin: root.querySelector("[data-angle-min]"),
+      angleMax: root.querySelector("[data-angle-max]"),
+      spinMin: root.querySelector("[data-spin-min]"),
+      spinMax: root.querySelector("[data-spin-max]"),
+      inningMin: root.querySelector("[data-inning-min]"),
+      inningMax: root.querySelector("[data-inning-max]"),
+    };
+    const limits = (key, fallback = 0) => {
+      const values = data
+        .map((r) => +(key === "angle" ? r.launchAngle : key === "spin" ? r.spinRate : key === "inning" ? r.inning : r.speed))
+        .filter(Number.isFinite);
+      return { min: values.length ? Math.min(...values) : fallback, max: values.length ? Math.max(...values) : fallback };
+    };
+    const bounds = { speed: limits("speed"), angle: limits("angle"), spin: limits("spin"), inning: limits("inning", 1) };
     let scale = 1,
       pan = { x: 0, y: 0 },
       drag = null,
       selected = "",
+      resultType = "",
       region = null,
       draft = null,
       selecting = false,
       group;
     const categories = [...new Set(data.map((r) => (kind === "spray" ? outcome(r) : r.pitchType)).filter(Boolean))].sort();
-    filter.innerHTML = `<option value="">All ${kind === "spray" ? "outcomes" : "pitch types"}</option>${categories.map((x) => `<option value="${esc(x)}">${esc(x)}</option>`).join("")}`;
+    const setRange = (name) => {
+      const low = inputs[`${name}Min`],
+        high = inputs[`${name}Max`],
+        limit = bounds[name];
+      if (!low || !high) return;
+      low.min = high.min = limit.min;
+      low.max = high.max = limit.max;
+      low.value = limit.min;
+      high.value = limit.max;
+      const labelMin = root.querySelector(`[data-${name}-min-label]`),
+        labelMax = root.querySelector(`[data-${name}-max-label]`);
+      const suffix = name === "spin" ? " rpm" : name === "inning" ? "" : name === "angle" ? "°" : " mph";
+      const update = () => {
+        labelMin.textContent = `${+low.value}${suffix}`;
+        labelMax.textContent = `${+high.value}${suffix}`;
+        const track = low.closest(".fv-double-range");
+        track.style.setProperty("--fv-range-start", `${((+low.value - limit.min) / Math.max(1, limit.max - limit.min)) * 100}%`);
+        track.style.setProperty("--fv-range-end", `${((+high.value - limit.min) / Math.max(1, limit.max - limit.min)) * 100}%`);
+      };
+      low.addEventListener("input", () => {
+        if (+low.value > +high.value) low.value = high.value;
+        update();
+        render();
+      });
+      high.addEventListener("input", () => {
+        if (+high.value < +low.value) high.value = low.value;
+        update();
+        render();
+      });
+      update();
+    };
+    ["speed", "angle", "spin", "inning"].forEach(setRange);
+    if (resultFilter) {
+      const results = [...new Set(data.map(pitchResult))].sort();
+      resultFilter.innerHTML = `<option value="">All results</option>${results.map((x) => `<option value="${esc(x)}">${esc(x)}</option>`).join("")}`;
+      resultFilter.addEventListener("change", () => {
+        resultType = resultFilter.value;
+        render();
+      });
+    }
     const match = (r) =>
       (!selected || (kind === "spray" ? outcome(r) : r.pitchType) === selected) &&
+      (!resultType || pitchResult(r) === resultType) &&
+      (!inputs.speedMin || (r.speed >= +inputs.speedMin.value && r.speed <= +inputs.speedMax.value)) &&
+      (!inputs.angleMin || (+r.launchAngle >= +inputs.angleMin.value && +r.launchAngle <= +inputs.angleMax.value)) &&
+      (!inputs.spinMin || (+r.spinRate >= +inputs.spinMin.value && +r.spinRate <= +inputs.spinMax.value)) &&
+      (!inputs.inningMin || (+r.inning >= +inputs.inningMin.value && +r.inning <= +inputs.inningMax.value)) &&
       (!region || (r.x >= region.x0 && r.x <= region.x1 && r.y >= region.y0 && r.y <= region.y1));
     const point = (event) => {
       const matrix = group?.getScreenCTM();
@@ -112,11 +183,25 @@
       const p = new DOMPoint(event.clientX, event.clientY).matrixTransform(matrix.inverse());
       return kind === "spray" ? { x: clamp(p.x, 0, 250), y: clamp(p.y, 0, 230) } : { x: clamp(p.x, -3, 3), y: clamp(p.y, 0, 5) };
     };
-    const bounds = (d) => ({ x0: Math.min(d.x0, d.x1), x1: Math.max(d.x0, d.x1), y0: Math.min(d.y0, d.y1), y1: Math.max(d.y0, d.y1) });
+    const regionBounds = (d) => ({ x0: Math.min(d.x0, d.x1), x1: Math.max(d.x0, d.x1), y0: Math.min(d.y0, d.y1), y1: Math.max(d.y0, d.y1) });
     const render = () => {
       const visible = data.filter(match),
         average = visible.length ? visible.reduce((a, r) => a + r.speed, 0) / visible.length : 0;
       summary.innerHTML = `<strong>${visible.length.toLocaleString()}</strong><span>${kind === "spray" ? "batted balls" : "pitches"} · ${average.toFixed(1)} mph avg</span>`;
+      if (metrics) {
+        const hits = visible.filter((r) => ["Single", "Double", "Triple", "Home Run"].includes(outcome(r))).length;
+        const hardHit = visible.filter((r) => r.speed >= 95).length;
+        const homers = visible.filter((r) => outcome(r) === "Home Run").length;
+        metrics.innerHTML = [
+          ["Batted balls", visible.length, visible.length === data.length ? "in view" : `of ${data.length} total`],
+          ["Hits", `${hits}/${visible.length}`, visible.length ? `${((hits / visible.length) * 100).toFixed(1)}% hit rate` : "no batted balls"],
+          ["Hard-Hit%", visible.length ? `${((hardHit / visible.length) * 100).toFixed(1)}%` : "--", "95+ mph exit velo"],
+          ["Avg exit velo", visible.length ? `${average.toFixed(1)} mph` : "--", "batted ball speed"],
+          ["Home runs", homers, visible.length ? `${((homers / visible.length) * 100).toFixed(1)}% of batted balls` : "none in view"],
+        ]
+          .map(([label, value, note]) => `<div><span>${label}</span><strong>${value}</strong><small>${note}</small></div>`)
+          .join("");
+      }
       chart.replaceChildren();
       group = svg("g", { transform: `translate(${pan.x / scale} ${pan.y / scale}) scale(${scale})` });
       chart.append(group);
@@ -176,7 +261,7 @@
         });
         group.append(mark, target);
       });
-      const active = draft ? bounds(draft) : region;
+      const active = draft ? regionBounds(draft) : region;
       if (active)
         group.append(
           svg("rect", {
@@ -200,7 +285,6 @@
       legend.querySelectorAll("button").forEach((b) =>
         b.addEventListener("click", () => {
           selected = selected === b.dataset.key ? "" : b.dataset.key;
-          filter.value = selected;
           render();
         })
       );
@@ -226,8 +310,19 @@
       else selecting = !selecting;
       render();
     };
-    filter.onchange = () => {
-      selected = filter.value;
+    root.querySelector("[data-filter-reset]").onclick = () => {
+      selected = "";
+      resultType = "";
+      region = null;
+      selecting = false;
+      ["speed", "angle", "spin", "inning"].forEach((name) => {
+        if (inputs[`${name}Min`]) {
+          inputs[`${name}Min`].value = bounds[name].min;
+          inputs[`${name}Max`].value = bounds[name].max;
+          inputs[`${name}Min`].dispatchEvent(new Event("input"));
+        }
+      });
+      if (resultFilter) resultFilter.value = "";
       render();
     };
     chart.addEventListener("wheel", (e) => {
@@ -259,7 +354,7 @@
     });
     chart.addEventListener("pointerup", () => {
       if (draft) {
-        const b = bounds(draft);
+        const b = regionBounds(draft);
         region = b.x1 - b.x0 > 0.05 && b.y1 - b.y0 > 0.05 ? b : null;
         draft = null;
         selecting = false;

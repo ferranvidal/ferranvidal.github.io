@@ -753,6 +753,33 @@ body {
   padding-top: 1.5rem;
 }
 
+.fv-mlb-metrics {
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 0 0 1rem;
+}
+
+.fv-mlb-metrics > div {
+  border-bottom: 1px solid var(--fv-border);
+  border-top: 1px solid var(--fv-border);
+  padding: 0.65rem 0;
+}
+
+.fv-mlb-metrics span,
+.fv-mlb-metrics small {
+  color: var(--fv-muted);
+  display: block;
+  font-size: 0.7rem;
+  line-height: 1.3;
+}
+
+.fv-mlb-metrics strong {
+  display: block;
+  font-size: 1.05rem;
+  margin: 0.18rem 0;
+}
+
 .fv-mlb-legend {
   display: flex;
   flex-wrap: wrap;
@@ -811,6 +838,12 @@ body {
 
 .fv-mlb-chart-wrap--pitch .fv-mlb-chart {
   min-height: 420px;
+}
+
+@media (max-width: 720px) {
+  .fv-mlb-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .fv-summary {
