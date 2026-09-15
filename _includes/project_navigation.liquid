@@ -7,25 +7,37 @@
 {% endfor %}
 {% assign previous_index = current_index | minus: 1 %}
 {% assign next_index = current_index | plus: 1 %}
+{% assign project_count = sorted_projects | size %}
 
 <nav class="fv-project-nav" aria-label="Project navigation">
+  <p class="fv-project-nav-heading">
+    Browse selected projects <span>{{ current_index | plus: 1 }} of {{ project_count }}</span>
+  </p>
   <div class="fv-project-nav-item fv-project-nav-item--previous">
-    {% for project in sorted_projects %}
-      {% if forloop.index0 == previous_index %}
-        <a href="{{ project.url | relative_url }}"
-          ><span>← Previous</span><strong>{{ project.title }}</strong></a
-        >
-      {% endif %}
-    {% endfor %}
+    {% if previous_index >= 0 %}
+      {% for project in sorted_projects %}
+        {% if forloop.index0 == previous_index %}
+          <a href="{{ project.url | relative_url }}"
+            ><span>← Previous project</span><strong>{{ project.title }}</strong></a
+          >
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      <a href="{{ '/projects/' | relative_url }}"><span>← Start of selected work</span><strong>View all projects</strong></a>
+    {% endif %}
   </div>
   <a class="fv-project-nav-all" href="{{ '/projects/' | relative_url }}">All projects</a>
   <div class="fv-project-nav-item fv-project-nav-item--next">
-    {% for project in sorted_projects %}
-      {% if forloop.index0 == next_index %}
-        <a href="{{ project.url | relative_url }}"
-          ><span>Next →</span><strong>{{ project.title }}</strong></a
-        >
-      {% endif %}
-    {% endfor %}
+    {% if next_index < project_count %}
+      {% for project in sorted_projects %}
+        {% if forloop.index0 == next_index %}
+          <a href="{{ project.url | relative_url }}"
+            ><span>Next project →</span><strong>{{ project.title }}</strong></a
+          >
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      <a href="{{ '/projects/' | relative_url }}"><span>End of selected work →</span><strong>Return to all projects</strong></a>
+    {% endif %}
   </div>
 </nav>

@@ -38,25 +38,25 @@ latest_posts:
   <section class="fv-section">
     <div class="fv-section-head"><h2>Selected work</h2><span class="fv-section-note">Problem → approach → measurable result</span></div>
     <div class="fv-work-list">
-      <a class="fv-work-item" href="{{ '/projects/fifa-auto-eventing/' | relative_url }}">
+      <a class="fv-work-item" href="{{ '/projects/saot-technology-validation/' | relative_url }}">
         <span class="fv-work-number">01</span>
+        <span><span class="fv-work-title">Validating Semi-Automated Offside Technology (SAOT)</span><span class="fv-work-copy">Live data collection, latency assessment, and quality validation for the sensing systems behind FIFA’s offside technology.</span></span>
+        <span class="fv-work-result">80+ matches<br>GCP · RabbitMQ<br>FIFA World Cup 2022</span>
+      </a>
+      <a class="fv-work-item" href="{{ '/projects/fifa-auto-eventing/' | relative_url }}">
+        <span class="fv-work-number">02</span>
         <span><span class="fv-work-title">Automatic event detection at the FIFA World Cup</span><span class="fv-work-copy">A provider-agnostic system that converted player and ball tracking data into structured football events.</span></span>
         <span class="fv-work-result">&gt;90% detection<br>&gt;95% set pieces<br>Deployed at the 2022 World Cup</span>
       </a>
       <a class="fv-work-item" href="{{ '/projects/playbook-digitization/' | relative_url }}">
-        <span class="fv-work-number">02</span>
+        <span class="fv-work-number">03</span>
         <span><span class="fv-work-title">Digitizing football playbooks without labeled data</span><span class="fv-work-copy">Synthetic-data generation, semantic segmentation, and route tracing for proprietary play diagrams.</span></span>
         <span class="fv-work-result">Zero real training labels<br>&gt;80% real-world IoU</span>
       </a>
       <a class="fv-work-item" href="{{ '/projects/sports-analytics-assistants/' | relative_url }}">
-        <span class="fv-work-number">03</span>
+        <span class="fv-work-number">04</span>
         <span><span class="fv-work-title">Three open-source sports analytics assistants</span><span class="fv-work-copy">NBA, MLB, and NCAA basketball chatbots with a shared data and agent architecture.</span></span>
         <span class="fv-work-result">Prefect · BigQuery<br>DuckDB · LangGraph · OpenAI</span>
-      </a>
-      <a class="fv-work-item" href="{{ '/projects/saot-technology-validation/' | relative_url }}">
-        <span class="fv-work-number">04</span>
-        <span><span class="fv-work-title">Validating the technology behind SAOT</span><span class="fv-work-copy">Live data collection, latency assessment, and technology accuracy validation for FIFA's officiating technology.</span></span>
-        <span class="fv-work-result">80+ matches<br>GCP · RabbitMQ</span>
       </a>
     </div>
   </section>
@@ -64,17 +64,20 @@ latest_posts:
   <section class="fv-section fv-two-column">
     <div>
       <h2>Across the stack</h2>
-      <p>I’m comfortable moving between the layers of a system: pulling data from an awkward API, shaping it into something people can query, and putting a useful interface on top. I’ve worked on the infrastructure, the models, and the product around them.</p>
+      <p>I’m happiest when I can follow a problem end to end: get the data from wherever it lives, make it dependable, build the model or workflow, and give people a clear way to use it. I’ve worked in each of those layers, so I can usually spot where a handoff will get painful before it does.</p>
     </div>
     <div>
       <h2>How I work</h2>
-      <p>I like to get a small version working early, then learn from the places where it breaks. I talk to the people who will use the system, look at the failures myself, and keep the difference between a good metric and a good outcome in view.</p>
+      <p>I start small and put the work in front of the people who need it early. Then I stay close to the rough edges: the data that does not line up, the cases a model misses, and the workflow nobody will adopt. A useful result matters more to me than a tidy demo.</p>
     </div>
   </section>
 
   <section class="fv-section">
     <h2>Recognition</h2>
-    <p>My automatic event-detection research received the International Sports Engineering Association Paper of the Year award in 2023. I was also awarded a $150,000 La Caixa Foundation Fellowship for graduate study at MIT.</p>
+    <div class="fv-recognition">
+      <div><span class="fv-recognition-year">2023</span><h3>Paper of the Year</h3><p>International Sports Engineering Association and Springer Sports Engineering, for <em>Automatic event detection in football using tracking data</em>.</p></div>
+      <div><span class="fv-recognition-year">2011–2013</span><h3>La Caixa Foundation Fellowship</h3><p>$150,000 fellowship supporting graduate study at MIT.</p></div>
+    </div>
   </section>
 
   <section class="fv-section">

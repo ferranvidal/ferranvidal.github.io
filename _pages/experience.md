@@ -10,7 +10,7 @@ nav_order: 2
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
 
 <div class="fv-page">
-  <p class="fv-lede">I am a hands-on data scientist, AI & machine learning engineer with nine years of research and engineering experience, including seven years delivering production data platforms, ML systems, and AI applications.</p>
+  <p class="fv-lede">I am a hands-on data scientist, AI and machine-learning engineer with nine years of research and engineering experience, including seven years delivering production data platforms, ML systems, and AI applications.</p>
 
   <h2>Professional experience</h2>
 
@@ -18,8 +18,17 @@ nav_order: 2
     <div class="fv-timeline-date">2022 — present</div>
     <div>
       <h3>Lead AI and Data Scientist · TTY Analytics and Consulting</h3>
-      <p>Lead the data engineering, data science, machine learning, and AI implementation across a two-person consultancy. Delivered 15+ engagements for 10 clients, including Google, FIFA, the Golden State Warriors, FC Internazionale, the English Premier League, and US Soccer.</p>
-      <p class="fv-meta">LLM applications · computer vision · data platforms · cloud architecture · technical evaluation</p>
+      <p>Lead data engineering, data science, machine learning, and AI delivery across a two-person consultancy. I have supported sports and technology organizations including the Golden State Warriors, Google, MIT Sports Lab, FIFA, FC Internazionale, Football DataCo, US Soccer, StatusPro, and StreamLayer.</p>
+      <p class="fv-meta">LLM applications · computer vision · data platforms · cloud architecture · technical evaluation · real-time systems</p>
+    </div>
+  </div>
+
+  <div class="fv-timeline-item">
+    <div class="fv-timeline-date">2025 — present</div>
+    <div>
+      <h3>Independent product builder</h3>
+      <p>Designed and built an AI-assisted meal-planning application for toddlers, from the product experience through authentication, subscriptions, payments, email, and deployment.</p>
+      <p class="fv-meta">Next.js · React · MongoDB · Auth.js · Stripe · OpenAI · DeepSeek</p>
     </div>
   </div>
 
@@ -36,7 +45,7 @@ nav_order: 2
     <div class="fv-timeline-date">2017 — 2019</div>
     <div>
       <h3>Postdoctoral Associate · MIT</h3>
-      <p>Continued computational-electromagnetics research while transitioning into sports data science. Developed numerical methods with 100× lower computational cost and led a San Antonio Spurs-sponsored project connecting video tracking with athlete load.</p>
+      <p>Continued computational-electromagnetics research while transitioning into sports data science. Developed numerical methods with substantially lower computational cost and led a San Antonio Spurs-sponsored project connecting video tracking with athlete load.</p>
       <p class="fv-meta">Aerospace Computational Design Lab · Sports Lab · numerical methods</p>
     </div>
   </div>
