@@ -291,6 +291,7 @@
       const regionButton = root.querySelector("[data-region]");
       regionButton.setAttribute("aria-pressed", String(selecting || !!region));
       regionButton.textContent = region ? "Clear area" : selecting ? "Drawing…" : "Select area";
+      chart.classList.toggle("fv-shot-chart--selecting", selecting);
     };
     root.querySelector("[data-zoom-in]").onclick = () => {
       scale = clamp(scale * 1.25, 0.5, 3);

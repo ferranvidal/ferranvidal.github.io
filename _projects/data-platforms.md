@@ -12,13 +12,13 @@ category: engineering
 <link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}">
 
 <div class="fv-page">
-  <p class="fv-lede">Two generations of the same live-ingestion system, both on GCP, show how I evolve infrastructure as requirements grow: a RabbitMQ pipeline that carried FIFA certification events through 2023, and the gRPC service that replaced it from 2024 onward.</p>
+  <p class="fv-lede">Two generations of the same live-ingestion system, both on GCP, show how I evolve infrastructure as requirements grow: a RabbitMQ pipeline that carried FIFA certification events from 2021 to 2023, and the gRPC service that replaced it from 2024 onward.</p>
   <p class="fv-project-period">Project period · {{ page.period }}</p>
 
   <div class="fv-metric-row">
     <div><strong>10 MB/s</strong><span>live tracking throughput</span></div>
     <div><strong>50 ms</strong><span>p99 end-to-end latency</span></div>
-    <div><strong>6</strong><span>services supporting FIFA certification events</span></div>
+    <div><strong>10+ data providers</strong><span>over 8 FIFA certification events</span></div>
   </div>
 
   <h2>RabbitMQ live ingestion (2021 – 2023)</h2>
