@@ -16,7 +16,7 @@ capability: "LLM systems"
 role: "Designed and built jointly with one colleague, from data platform to chat interface"
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url | bust_css_cache }}">
+<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 <script src="{{ '/assets/js/nba-shot-chart.js' | relative_url | bust_file_cache }}" defer></script>
 <script src="{{ '/assets/js/mlb-charts.js' | relative_url | bust_file_cache }}" defer></script>
 

@@ -16,7 +16,7 @@ capability: "Full-stack AI"
 role: "Independent side projects, built and shipped solo"
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url | bust_css_cache }}">
+<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
 <div class="fv-page">
   <p class="fv-lede">Personal projects give me room to experiment and learn with the technologies as well as the models and data behind it.</p>

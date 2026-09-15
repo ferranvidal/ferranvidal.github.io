@@ -7,7 +7,7 @@ nav: true
 nav_order: 3
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url | bust_css_cache }}">
+<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
 <div class="fv-page">
   <p class="fv-lede">Sixteen peer-reviewed papers: applied data science and sports analytics, plus the numerical methods and simulation work from my PhD and postdoc. Full record on <a href="https://scholar.google.com/citations?user=GsF2GmAAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a>.</p>

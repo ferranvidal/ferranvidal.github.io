@@ -16,7 +16,7 @@ capability: "Applied ML"
 role: "Led the algorithm work from applied research through production deployment"
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url | bust_css_cache }}">
+<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
 <div class="fv-page">
   <p class="fv-lede">I developed a provider-agnostic system that automatically detects football events from player and ball tracking data. The work moved from applied research to post-match deployment at the 2022 FIFA World Cup.</p>

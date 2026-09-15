@@ -7,7 +7,7 @@ nav: true
 nav_order: 2
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url | bust_css_cache }}">
+<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
 <div class="fv-page">
   <p class="fv-lede">I am a hands-on data scientist, AI and machine-learning engineer with nine years of research and engineering experience, including seven years delivering production data platforms, ML systems, and AI applications.</p>

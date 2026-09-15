@@ -16,7 +16,7 @@ capability: "Data engineering"
 role: "Two-person engagement; I designed and ran both generations of the service"
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url | bust_css_cache }}">
+<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
 <div class="fv-page">
   <p class="fv-lede">Two generations of the same live-ingestion system, both on GCP, show how I evolve infrastructure as requirements grow: a RabbitMQ pipeline that carried FIFA certification events from 2021 to 2023, and the gRPC service that replaced it from 2024 onward.</p>

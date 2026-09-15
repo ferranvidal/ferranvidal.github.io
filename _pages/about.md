@@ -17,7 +17,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url | bust_css_cache }}">
+<link rel="stylesheet" href="{{ '/assets/css/ferran.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
 <div class="fv-home">
   <div class="fv-hero">
